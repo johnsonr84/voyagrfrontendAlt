@@ -21,6 +21,7 @@ import "react-multi-carousel/lib/styles.css";
 var moment = require('moment');
 
 
+
 export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
   const { user } = useAuth0();
   const { name, picture, sub } = user;
