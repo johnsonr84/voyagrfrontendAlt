@@ -159,7 +159,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           placeholder="Find Your Destination"
         />
-        {/* {
+        {
           newPosts.map(post => (
             <React.Fragment key={post._id}>
               <Marker
@@ -288,7 +288,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
               </Popup>
             </>
           ) : null
-        } */}
+        }
       </ReactMapGL>
       <ProfileImage
         avatarImage={picture}
