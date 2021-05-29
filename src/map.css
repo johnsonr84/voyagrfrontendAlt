@@ -1,0 +1,171 @@
+body {
+  margin: none;
+}
+
+@media (min-width: 768px) {
+  .voyagr-logo {
+    margin-left: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .voyagr-logo {
+    margin-left: 0px;
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .mapboxgl-ctrl-geocoder {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mapboxgl-ctrl-geocoder {
+    margin-left: 130px;
+  }
+}
+
+
+/* -------------------------------------------- */
+
+/* @media (min-width: 360px) {
+  .popup , .popup > div, .popup > button {
+    height: 90vw !important;
+    width: 50vw !important;
+  padding: 1rem;
+  }
+}
+
+@media (min-width: 360px) {
+  .popupImages ,  .popupImages > div, .popupImages {
+    size: 10%;
+    
+  ;
+  }
+} */
+
+/* --------------------------------------------- */
+
+.mapboxgl-ctrl-geocoder {
+  border-radius: 24px !important;
+  padding: 4px;
+  width: 8rem !important;
+  background-color: #D3D3D3;
+  border: 2px solid white;
+}
+
+a:hover {
+  color: #61DAFB;
+}
+
+.geoLocater{
+  background: #61DAFB;
+  padding: 10px 24px; 
+  align-items: center !important;
+  color: "#fff";
+  border: 1px solid white;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  border-radius: 24px !important;
+  width: 14rem !important;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.geoLocater:hover { 
+  transform: scale(1.1); 
+  }
+
+.marker {
+  transform: translate(-50%, -100%);
+}
+  
+.error {
+  color: #FE7A02;
+}
+  
+.marker.react-blue path {
+  fill: #FE7A02;
+}
+  
+.marker.yellow path {
+  fill: #F3B73E;
+}
+  
+.popup {
+  width: 40vw;
+  padding: 1rem;
+}
+  
+.popup img {
+  height: 200px;
+  width: auto;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+  
+.post-form label,
+.post-form input,
+.post-form textarea,
+.post-form button {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  display: block;
+  width: 100%;
+}
+
+/* ---------Profile Name------------ */
+
+.profileName {
+  display: flex;
+  justify-content: center;
+  top: -2rem;
+  position: relative;
+}
+
+
+@media (max-width: 576px) {
+ .profileName  {
+  top: -3rem;
+  }
+}
+
+@media (min-width: 576px) {
+ .profileName  {
+  top: -3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .profileName  {
+top: -5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+   .profileName  {
+   top: -5rem;
+  }
+}
+
+/* ----------------------------- */
+.upload_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem
+}
+
+ .popupImages {
+  justify-content: center;
+  width: 100% !important;
+  background-color: #333333 !important;
+  height: 3rem;
+  border-radius: 24px;
+} 

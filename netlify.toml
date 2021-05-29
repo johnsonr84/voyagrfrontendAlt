@@ -1,0 +1,4 @@
+[build]	
+  base = "client/"
+  command = "echo 'default context'"
+  publish = "build"

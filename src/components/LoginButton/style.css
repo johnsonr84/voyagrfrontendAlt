@@ -1,0 +1,34 @@
+.loginBtn {
+  background: none!important;
+  border: none !important;  
+  color: #fff;
+  margin: auto !important;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* transition: all 0.2s ease-in-out; */
+}
+
+/* .voyagr-logo {
+  margin-left: 25px;
+} */
+
+@media (min-width: 768px) {
+  .voyagr-logo {
+    margin-left: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .voyagr-logo {
+    margin-left: 0px;
+    display: none;
+  }
+}
+
+/* .loginBtn:hover {
+  transition: all 0.2s ease-in-out;
+  background: #fff;
+  color: #fff;
+} */

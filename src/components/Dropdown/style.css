@@ -1,0 +1,23 @@
+.dropdown-icon { 
+  height: 80px;
+  width: 80px;
+}
+
+.dropdown-icon:hover {
+  background-color: #fff;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.dropdown-icon:after {
+  display: none;
+}
+
+.fa-bars {
+  color: lightgrey;
+}
+
+/* .dropdown-icon .fa-bars:hover {
+  color: #fff;
+} */

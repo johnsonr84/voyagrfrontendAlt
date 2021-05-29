@@ -1,0 +1,248 @@
+
+/* -------------Icons 4x1--------------- */
+
+@media (min-width: 992px) {
+.messageSender-icons, .icons-row-first, .icons-row-second {
+  padding-top: 10px;
+  display: flex; 
+  justify-content: space-evenly;
+}
+}
+
+/* -------Icons 2x2------------- */
+
+@media (max-width: 992px) {
+.icons-row-first {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+}
+
+@media (max-width: 992px) {
+.icons-row-second {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+}
+/* --------------------- */
+
+.messageSender {
+  background-color: #333333;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, .75);
+  width: 100%;
+  padding: 10px;
+  border-radius: 33px;
+}
+
+.messageSender-forms {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #61DAFB;
+  padding: 20px;
+}
+
+/* -----Popup Image Upload Link------------- */
+
+  .upload_link {
+    color: white;
+  }
+
+
+@media (max-width: 576px) {
+  .upload_link {
+    font-size: small;
+  }
+}
+
+@media (max-width: 476px) {
+.upload_link {
+font-size: x-small;
+}
+}
+
+@media (min-width: 576px) {
+.upload_link {
+font-size: medium;
+}
+}
+
+/* ----------------Hide Inputs------------- */
+
+.visitDateInput, .titleInput {
+  border:none;
+  background-color: transparent;
+  outline-width: 0;
+   width: 100%;
+}
+
+.descriptionInput {
+  border:none;
+  background-color: transparent;
+  outline-width: 0;
+   width: 100%
+}
+
+/* --------Form break-point----------------- */
+
+@media (min-width: 768px) {
+  .messageSender-top-forms {
+  display: flex;
+}
+}
+
+/* ------------------Title----------------------- */
+
+@media (max-width: 360px) {
+  .messageSender-bottom-form{
+ width: 11.5rem
+}
+}
+
+@media (min-width: 768px) {
+  .messageSender-top-left-form{
+ width: 15rem
+}
+}
+
+@media (min-width: 992px) {
+  .messageSender-top-left-form{
+ width: 20rem
+}
+}
+
+@media (min-width: 1200px) {
+  .messageSender-top-left-form{
+ width: 28rem
+}
+}
+
+/* --------------------Date---------------------- */
+
+
+.visitDateDiv{
+ width: 100%;
+ }
+
+
+@media (max-width: 768px) {
+.visitDateDiv {
+margin-top: 1rem;
+}
+}
+
+@media (min-width: 768px) {
+.visitDateDiv {
+margin-top: 0;
+}
+}
+
+
+/* -------------------------------------------- */
+
+
+@media (max-width:992px) {
+.visitDateText{
+  display: none;
+    }
+}
+
+@media (min-width: 992px) {
+.visitDateText{
+  color: white;
+  font-size: larger;
+  width: 40%;
+  margin-top: 8px !important;
+  margin-right: 2px !important;
+
+  }
+}
+
+/* -------------------Description---------------------- */
+
+@media (max-width: 360px) {
+  .messageSender-bottom-form{
+ width: 11.5rem
+}
+}
+
+@media (min-width: 576px) {
+  .messageSender-bottom-form{
+ width: 20rem
+}
+}
+
+@media (min-width: 768px) {
+  .messageSender-bottom-form{
+ width: 30rem
+}
+}
+
+@media (min-width: 992px) {
+  .messageSender-bottom-form{
+ width: 49rem
+}
+}
+
+@media (min-width: 1200px) {
+  .messageSender-bottom-form{
+ width: 58rem
+}
+}
+/* -------------------------- */
+
+ .messageSender-bottom-form ,.visitDateInput, .messageSender-top-left-form {
+  background-color: rgb(240, 240, 240) !important;
+  padding: 10px;
+  border-radius: 24px;
+  
+}
+
+.senderBtn  {
+  display:  none;
+}
+
+.fa-user-circle {
+  color: rgb(190, 190, 190);
+}
+
+.fa-images {
+  color: #61DAFB;
+}
+
+.fa-video {
+  color: rgb(224, 9, 9);
+  margin-right: 5px;
+}
+
+.fa-map-marker-alt {
+  color: #FE7A02;
+  margin-right: 5px;
+}
+
+.fa-grin-alt {
+  color: rgba(221, 199, 0, 0.986);
+  margin-right: 5px;
+}
+
+.messageSender-icon {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  align-items: center;
+  display: flex;
+  color: white;
+  padding: 10px;
+  width: 200px;
+}
+
+.messageSender-icon:hover {
+  background-color: grey;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.messageSender-top-right-form{
+  display: flex;
+}
