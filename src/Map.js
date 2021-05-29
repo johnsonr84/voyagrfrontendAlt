@@ -271,7 +271,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
                       />
                     </div>
                     <label htmlFor="visitDate">Visit Date</label>
-                    <input
+                    {/* <input
                       type="text"
                       onFocus={
                         (e) => {
@@ -282,7 +282,8 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
                       placeholder="Date"
                       name="visitDate"
                       value={input.visitDate}
-                    />
+                    /> */}
+                    <input name="visitDate" type="date" value={input.visitDate} onChange={handleChange} />
                     <input type="submit" value="Submit" />
                   </form>
                 </div>
