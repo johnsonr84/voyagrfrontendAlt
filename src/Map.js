@@ -161,7 +161,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           placeholder="Find Your Destination"
         /> */}
-        {/* {
+        {
           newPosts.map(post => (
             <React.Fragment key={post._id}>
               <Marker
@@ -272,14 +272,14 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
                       />
                     </div>
                     <label htmlFor="visitDate">Visit Date</label>
-                                 <input name="visitDate" type="date" value={input.visitDate} onChange={handleChange} />
+                    <input name="visitDate" type="date" value={input.visitDate} onChange={handleChange} />
                     <input type="submit" value="Submit" />
                   </form>
                 </div>
               </Popup>
             </>
           ) : null
-        } */}
+        }
       </ReactMapGL>
       <ProfileImage
         avatarImage={picture}
