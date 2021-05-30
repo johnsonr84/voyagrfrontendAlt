@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PhotoListContainer from "./components/PhotoList";
-// import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-// import ReactMapGL, { Marker, Popup, GeolocateControl } from 'react-map-gl';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-// import Geocoder from 'react-map-gl-geocoder';
+import ReactMapGL, { Marker, Popup, GeolocateControl } from 'react-map-gl';
+// import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import Geocoder from 'react-map-gl-geocoder';
 import { Nav, NavMenu } from "./NavbarElements"
 import BurgerMenu from "./components/Dropdown"
 // import { Nav, NavLink, NavMenu } from "./NavbarElements"
@@ -128,10 +128,10 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
         />
         <NavMenu>
 
-          {/* <div
+          <div
             ref={geocoderContainerRef}
             style={{ position: "relative", right: 100 }}
-          /> */}
+          />
 
         </NavMenu>
         <BurgerMenu />
@@ -147,7 +147,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
         onClick={showAddMarkerPopup}
         transitionDuration="200"
       >
-        {/* <GeolocateControl
+        <GeolocateControl
           style={geolocateControlStyle}
           containerRef={geolocateControlRef}
           positionOptions={{ enableHighAccuracy: true }}
@@ -160,7 +160,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           placeholder="Find Your Destination"
-        /> */}
+        />
         {
           newPosts.map(post => (
             <React.Fragment key={post._id}>
