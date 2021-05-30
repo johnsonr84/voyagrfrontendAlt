@@ -36,29 +36,9 @@ justify-content: right;
 export const NavBtn = styled.nav`
 display: flex;
 align-items: center;
-margin-top: 1rem;
-/* margin-left: 20%; */
-
+margin-top: 2rem;
 
  @media (min-width: 768px) {
     
  }
 `;
-
-// export const NavBtnLink = styled(Link)`
-// border-radius:4px;
-// background: #256ce1;
-// padding: 10px 22px;
-// color: #fff;
-// border: none;
-// outline: none;
-// cursor: pointer;
-// transition: all 0.2s ease-in-out;
-// text-decoration: none;
-
-// &:hover {
-//     transition: all 0.2s ease-in-out;
-//     background: #fff;
-//     color: #010606;
-// }
-// `;

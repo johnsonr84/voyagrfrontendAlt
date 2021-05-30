@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import "./style.css";
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 import { faVideo } from '@fortawesome/free-solid-svg-icons'
@@ -58,7 +58,6 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setAddPostLocation({ latitude: addPostLocation?.latitude || viewport.latitude, longitude: addPostLocation?.longitude || viewport.longitude });
-
 
     return (
         <>

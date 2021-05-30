@@ -1,7 +1,6 @@
 import React from 'react'
 import "./style.css"
 import { useAuth0 } from '@auth0/auth0-react';
-// import { API } from "../../utils/API"
 import Message from '../Message'
 import { usePosts } from '../../Contexts/PostContexts';
 

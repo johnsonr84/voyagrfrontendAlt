@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
@@ -8,7 +7,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { PostContextProvider } from './Contexts/PostContexts';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-// import { render } from 'react-dom';
 import PhotosListReducer from './reducers/PhotosListReducer';
 import UploadedPhotosReducer from './reducers/UploadedPhotosReducer';
 import config from './config/config';
@@ -33,4 +31,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 );
-

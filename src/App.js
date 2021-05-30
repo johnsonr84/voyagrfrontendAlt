@@ -3,15 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import "./App.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import Loading from "./components/Loading";
 import ProtectedRoute from "./auth/protected-route";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CloudinaryContext } from 'cloudinary-react';
 import { photosFetched } from './actions';
-// import PhotoListContainer from './components/PhotoList';
-// import PhotosUploaderContainer from './components/PhotosUploader';
 import { fetchPhotos } from './utils/CloudinaryService';
 
 

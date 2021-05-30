@@ -6,7 +6,7 @@ import request from 'superagent';
 import Dropzone from 'react-dropzone';
 import { photosUploaded, updateUploadedPhoto } from '../actions';
 import UploadedPhotoStatusContainer from './UploadedPhotosStatus';
-import {CloudinaryContext} from "cloudinary-react";
+import { CloudinaryContext } from "cloudinary-react";
 
 class PhotosUploader extends Component {
     constructor(props, context) {
@@ -98,8 +98,7 @@ class PhotosUploader extends Component {
     }
 
     onPhotoSelected(files) {
-        const url = `https://api.cloudinary.com/v1_1/${
-            this.context.cloudName
+        const url = `https://api.cloudinary.com/v1_1/${this.context.cloudName
             }/upload`;
         const title = this.titleEl.value;
 

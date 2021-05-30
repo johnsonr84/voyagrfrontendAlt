@@ -47,9 +47,9 @@
 
 /* -----Popup Image Upload Link------------- */
 
-  .upload_link {
-    color: white;
-  }
+.upload_link {
+  color: white;
+}
 
 
 @media (max-width: 576px) {

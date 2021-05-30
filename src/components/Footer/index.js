@@ -6,7 +6,6 @@ function Footer() {
     <footer className="footer">
       <img
         src="/voyagr.png"
-        // width="30"
         height="60"
         className="voyagr-logo"
         alt="Voyagr logo"

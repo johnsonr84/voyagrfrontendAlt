@@ -3,15 +3,9 @@ import PhotoListContainer from "./components/PhotoList";
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import ReactMapGL, { Marker, Popup, GeolocateControl } from 'react-map-gl';
-// import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import { Nav, NavMenu } from "./NavbarElements"
 import BurgerMenu from "./components/Dropdown"
-// import { Nav, NavLink, NavMenu } from "./NavbarElements"
-// import { faHome } from '@fortawesome/free-solid-svg-icons'
-// import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
-// import { faCog } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./map.css";
 import { API } from "./utils/API"
 import { useAuth0 } from '@auth0/auth0-react';
@@ -28,7 +22,6 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const { name, picture, sub } = user;
   const userID = sub;
   const [input, setInput] = useState({});
-  // const [geoLocate, setGeoLocate] = useState("");
   const [newPosts, setNewPosts] = usePosts();
   const [showPopup, setShowPopup] = useState({});
   const [posts, setPosts] = usePosts();
@@ -90,11 +83,6 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     API.savePost(newPost).catch(e => console.log(e))
     setNewPosts((newPosts) => [newPost, ...newPosts])
   }
-  // useEffect(() => console.log(viewport), [viewport])
-  // function geolocateToggle(e) {
-  //   e.preventDefault;
-  //   setGeoLocate(trackUserLocation = true)
-  // }
 
   const responsive = {
     superLargeDesktop: {
@@ -121,7 +109,6 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       <Nav>
         <img
           src="/voyagr.png"
-          // width="30"
           height="60"
           className="voyagr-logo"
           alt="Voyagr logo"

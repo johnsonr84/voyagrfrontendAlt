@@ -19,54 +19,54 @@ const transformations = [
     ],
 ];
 
-const PhotoThumbnails = ({publicId}) => (
+const PhotoThumbnails = ({ publicId }) => (
     <table className="thumbnails">
         <tbody>
-        <tr>
-            {transformations.map((transformation, transformationIndex) => {
-                return (
-                    <td key={transformationIndex}>
-                        <div className="thumbnail_holder">
-                            <Image
-                                publicId={publicId}
-                                className="thumbnail inline"
-                                format="jpg"
-                            >
-                                {transformation.map(
-                                    (subTransformation, subTransformationIndex) => {
-                                        return (
-                                            <Transformation
-                                                {...subTransformation}
-                                                key={subTransformationIndex}
-                                            />
+            <tr>
+                {transformations.map((transformation, transformationIndex) => {
+                    return (
+                        <td key={transformationIndex}>
+                            <div className="thumbnail_holder">
+                                <Image
+                                    publicId={publicId}
+                                    className="thumbnail inline"
+                                    format="jpg"
+                                >
+                                    {transformation.map(
+                                        (subTransformation, subTransformationIndex) => {
+                                            return (
+                                                <Transformation
+                                                    {...subTransformation}
+                                                    key={subTransformationIndex}
+                                                />
+                                            );
+                                        }
+                                    )}
+                                </Image>
+                            </div>
+                            <table className="info">
+                                <tbody>
+                                    {transformation.map(subTransformation => {
+                                        return Object.keys(subTransformation).map(
+                                            (prop, propIndex) => {
+                                                return (
+                                                    <tr key={propIndex}>
+                                                        <td>{prop}</td>
+                                                        <td>
+                                                            {subTransformation[prop]}
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            }
                                         );
-                                    }
-                                )}
-                            </Image>
-                        </div>
-                        <table className="info">
-                            <tbody>
-                            {transformation.map(subTransformation => {
-                                return Object.keys(subTransformation).map(
-                                    (prop, propIndex) => {
-                                        return (
-                                            <tr key={propIndex}>
-                                                <td>{prop}</td>
-                                                <td>
-                                                    {subTransformation[prop]}
-                                                </td>
-                                            </tr>
-                                        );
-                                    }
-                                );
-                            })}
-                            </tbody>
-                        </table>
-                        <br />
-                    </td>
-                );
-            })}
-        </tr>
+                                    })}
+                                </tbody>
+                            </table>
+                            <br />
+                        </td>
+                    );
+                })}
+            </tr>
         </tbody>
     </table>
 );

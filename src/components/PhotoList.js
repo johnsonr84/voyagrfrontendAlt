@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { openUploadWidget } from '../utils/CloudinaryService';
 import { photosUploaded } from '../actions';
-import Photo from './Photo';
-// import FacebookImage from './FacebookImage';
 import { CloudinaryContext } from 'cloudinary-react';
-// import "./MessageSender/style.css"
 
 
 class PhotoList extends Component {
@@ -22,17 +18,6 @@ class PhotoList extends Component {
                         Upload Images
                     </div>
                 </div>
-                {/* <div className="photos">
-                    {this.props.photos.length === 0}
-                    {this.props.photos.map(photo => {
-                        return (
-                            <Photo
-                                key={photo.public_id}
-                                publicId={photo.public_id}
-                            />
-                        );
-                    })}
-                </div> */}
             </div>
         );
     }
