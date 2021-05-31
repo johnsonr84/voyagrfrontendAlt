@@ -110,16 +110,12 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
         <img
           src="/voyagr.png"
           height="60"
-          className="voyagr-logo"
+          className="voyagr-logo-header"
           alt="Voyagr logo"
         />
-        <NavMenu>
-
-          <div
-            ref={geocoderContainerRef}
-            style={{ position: "relative", right: 100 }}
-          />
-
+        <NavMenu
+          ref={geocoderContainerRef}
+        >
         </NavMenu>
         <BurgerMenu />
       </Nav>
