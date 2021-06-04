@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { API } from "../../utils/API"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
@@ -6,6 +7,16 @@ import Form from 'react-bootstrap/Form'
 import './style.css';
 
 export default function ModalComp() {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newUser = {
+            userName: username,
+        }
+        console.log(newUser);
+        API.saveUser(newUser).catch(e => console.log(e))
+    }
+
 
     const [username, setUsername] = useState()
 
@@ -37,7 +48,7 @@ export default function ModalComp() {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary">Submit</Button>
+                    <Button variant="primary" onSubmit={handleSubmit}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         </>
