@@ -8,10 +8,6 @@ import ModalComp from "../../components/Modal";
 // import Modal from 'react-bootstrap/Modal';
 
 function DashboardPage() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [addPostLocation, setAddPostLocation] = useState(null);
   const [viewport, setViewport] = useState({
     width: '100vw',

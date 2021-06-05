@@ -55,8 +55,6 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
         setPosts((newPosts) => [newPost, ...newPosts])
     }
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
     const handleShow = () => setAddPostLocation({ latitude: addPostLocation?.latitude || viewport.latitude, longitude: addPostLocation?.longitude || viewport.longitude });
 
     return (
