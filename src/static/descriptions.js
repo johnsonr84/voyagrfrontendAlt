@@ -1,5 +1,3 @@
-const image1 = ""
-
 // add image url
 
 const description = [
