@@ -1,23 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { API } from "../../utils/API"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
+import { useAuth0 } from '@auth0/auth0-react';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import './style.css';
 
 export default function ModalComp() {
+    const { user } = useAuth0();
+    const { sub } = user;
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const newUser = {
             userName: username,
-            profileImage: ""
+            profileImage: "",
+            subID: sub
         }
         console.log(newUser);
         API.saveUser(newUser).catch(e => console.log(e))
     }
+    useEffect(() => {
+        API.userExists(sub).then({ handleShow }).catch(e => console.log(e))
 
+    }, [])
 
     const [username, setUsername] = useState("")
 
