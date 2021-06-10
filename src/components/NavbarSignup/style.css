@@ -1,0 +1,6 @@
+.modal-open {
+  position: fixed;
+  overflow: scroll !important;
+  width: 100%;
+  padding-right: 0!important;
+}

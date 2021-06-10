@@ -55,11 +55,12 @@ export const NavbarSignup = () => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShowSignup = () => setShow(true);
 
 
     return (
         <>
+
             <Container>
                 <Row>
                     <Col size="md-4">
@@ -78,7 +79,7 @@ export const NavbarSignup = () => {
                         <NavBtn>
                             <LoginButton
                             />
-                            <Button className="signupBtn" variant="success" onClick={handleShow}>
+                            <Button className="signupBtn" variant="success" onClick={handleShowSignup}>
                                 Sign Up
       </Button>
                         </NavBtn>
@@ -88,14 +89,15 @@ export const NavbarSignup = () => {
             <Modal
                 show={show}
                 onHide={handleClose}
-                backdrop="static"
+                centered
+                // backdrop="static"
                 keyboard={false}
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Sign Up</Modal.Title>
-                    {error && <Alert variant="danger">{error}</Alert>}
                 </Modal.Header>
                 <Modal.Body>
+                    {error && <Alert variant="danger">{error}</Alert>}
 
                     <Form.Group onSubmit={handleSubmit}>
 
@@ -134,9 +136,6 @@ export const NavbarSignup = () => {
                     >Submit</Button>
                 </Modal.Footer>
             </Modal>
-            {/* <Button className="signupBtn" variant="success" onClick={handleShow}>
-                Sign Up
-      </Button> */}
         </>
     )
 }
