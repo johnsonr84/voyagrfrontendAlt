@@ -3,7 +3,7 @@ import axios from "axios";
 export const API = {
   saveUser: (user) => axios.post("api/users", user),
 
-  userExists: (sub) => axios.get("api/users" + sub),
+  // userExists: (user) => axios.post("api/users", user),
 
   savePost: (post) => axios.post("api/posts", post),
 

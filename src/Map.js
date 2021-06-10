@@ -19,7 +19,7 @@ var moment = require('moment');
 
 export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
   const { user } = useAuth0();
-  const { name, picture, sub } = user;
+  const { username, picture, sub } = user;
   const userID = sub;
   const [input, setInput] = useState({});
   const [newPosts, setNewPosts] = usePosts();
@@ -30,6 +30,9 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const geocoderContainerRef = useRef();
   const geolocateControlRef = useRef();
   const mapRef = useRef();
+
+  const profileName = "user." + "https://mynamespace/username";
+
   const handleViewportChange = useCallback(
     (newViewport) => setViewport(newViewport),
     []
@@ -269,7 +272,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       />
       <h2
         className="profileName">
-        {name}
+        {profileName}
       </h2>
     </>
   )

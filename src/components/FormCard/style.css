@@ -1,0 +1,5 @@
+.card {
+    box-shadow: 1px 3px 8px 1px rgba(0, 0, 0, .75);
+    width: fit-content;
+    padding: 20px;
+}
