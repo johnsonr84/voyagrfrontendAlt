@@ -3,7 +3,8 @@ import Header from "../../Map"
 import MessageSender from "../../components/MessageSender"
 import Feed from "../../components/Feed";
 import Post from "../../components/Post";
-import ModalComp from "../../components/Modal";
+// import ModalComp from "../../components/Modal";
+import Profile from "../../components/Profile";
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 
@@ -22,7 +23,8 @@ function DashboardPage() {
     >
       <Header addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
       <Feed>
-        <ModalComp />
+        <Profile />
+        {/* <ModalComp /> */}
         <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
         <Post />
       </Feed>

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { CloudinaryContext } from 'cloudinary-react';
 import { photosFetched } from './actions';
 import { fetchPhotos } from './utils/CloudinaryService';
-
+import { AuthProvider } from "./Contexts/AuthContext"
 
 class App extends Component {
   componentDidMount() {
@@ -17,17 +17,19 @@ class App extends Component {
   }
   render() {
     return (
-      <CloudinaryContext
-        cloudName={this.props.cloudName}
-        uploadPreset={this.props.uploadPreset}
-      >
-        <Router>
-          <Switch>
-            <Route path="/" component={Landing} exact />
-            <ProtectedRoute path="/dashboard" component={Dashboard} exact />
-          </Switch>
-        </Router >
-      </CloudinaryContext>
+      <AuthProvider>
+        <CloudinaryContext
+          cloudName={this.props.cloudName}
+          uploadPreset={this.props.uploadPreset}
+        >
+          <Router>
+            <Switch>
+              <Route path="/" component={Landing} exact />
+              <ProtectedRoute path="/dashboard" component={Dashboard} exact />
+            </Switch>
+          </Router >
+        </CloudinaryContext>
+      </AuthProvider>
     );
   }
 }
