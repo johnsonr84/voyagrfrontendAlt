@@ -18,9 +18,9 @@ var moment = require('moment');
 
 
 export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
-  const { user } = useAuth0();
-  const { username, picture, sub } = user;
-  const userID = sub;
+  // const { user } = useAuth0();
+  // const { picture, sub } = user;
+  // const userID = sub;
   const [input, setInput] = useState({});
   const [newPosts, setNewPosts] = usePosts();
   const [showPopup, setShowPopup] = useState({});
@@ -31,7 +31,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const geolocateControlRef = useRef();
   const mapRef = useRef();
 
-  const profileName = "user." + "https://mynamespace/username";
+  // const profileName = "user." + "https://mynamespace/username";
 
   const handleViewportChange = useCallback(
     (newViewport) => setViewport(newViewport),
@@ -78,7 +78,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       latitude: parseFloat(addPostLocation.latitude),
       longitude: parseFloat(addPostLocation.longitude),
       visitDate: input.visitDate,
-      userID: userID,
+      // userID: userID,
       date: now,
       timestamp: timestamp
     }
@@ -268,11 +268,11 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
         }
       </ReactMapGL>
       <ProfileImage
-        avatarImage={picture}
+      // avatarImage={picture}
       />
       <h2
         className="profileName">
-        {profileName}
+        {/* {profileName} */}
       </h2>
     </>
   )

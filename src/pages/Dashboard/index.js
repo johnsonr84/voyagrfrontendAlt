@@ -22,12 +22,12 @@ function DashboardPage() {
       style={{ backgroundColor: "lightgray" }}
     >
       <Header addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
-      <Feed>
-        <Profile />
-        {/* <ModalComp /> */}
-        <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
-        <Post />
-      </Feed>
+      {/* <Feed> */}
+      {/* <Profile /> */}
+      {/* <ModalComp /> */}
+      {/* <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} /> */}
+      {/* <Post /> */}
+      {/* </Feed> */}
     </div>
   );
 }

@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
+import ResetPassword from "./pages/ResetPassword";
 import "./App.css";
-import ProtectedRoute from "./auth/protected-route";
+// import ProtectedRoute from "./auth/protected-route";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CloudinaryContext } from 'cloudinary-react';
 import { photosFetched } from './actions';
 import { fetchPhotos } from './utils/CloudinaryService';
-import { AuthProvider } from "./Contexts/AuthContext"
+import { AuthProvider } from "./Contexts/AuthContext";
+import PrivateRoute from "./components/PrivateRoute"
 
 class App extends Component {
   componentDidMount() {
@@ -25,7 +27,8 @@ class App extends Component {
           <Router>
             <Switch>
               <Route path="/" component={Landing} exact />
-              <ProtectedRoute path="/dashboard" component={Dashboard} exact />
+              <Route path="/password-reset" component={ResetPassword} />
+              <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
           </Router >
         </CloudinaryContext>
