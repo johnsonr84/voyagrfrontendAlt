@@ -20,7 +20,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const NavbarSignup = () => {
-    const { signup, currentUser } = useAuth()
+    const { login, signup, currentUser } = useAuth()
     // const emailRef = useRef()
     // const passwordRef = useRef()
     // const passwordConfirmRef = useRef()
@@ -31,7 +31,7 @@ export const NavbarSignup = () => {
     const [password, setPassword] = useState()
     const [passwordConfirm, setPasswordConfirm] = useState()
 
-    async function handleSubmit(e) {
+    async function handleSubmitSignup(e) {
         e.preventDefault()
 
         if (password !== passwordConfirm) {
@@ -42,7 +42,7 @@ export const NavbarSignup = () => {
             setError("")
             setLoading(true)
             await signup(email, password)
-            history.push("/")
+            history.push("/dashboard")
         } catch {
             setError("Failed to create an account")
         }
@@ -51,12 +51,37 @@ export const NavbarSignup = () => {
 
     }
 
+
+    async function handleSubmitLogin(e) {
+        e.preventDefault()
+
+        // if (password !== passwordConfirm) {
+        //     return setError("Passwords do not match")
+        // }
+
+        try {
+            setError("")
+            setLoading(true)
+            await login(email, password)
+            history.push("/dashboard")
+        } catch {
+            setError("Invalid Username or Password")
+        }
+
+        setLoading(false)
+
+    }
+
+
     // const [username, setUsername] = useState("")
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShowSignup = () => setShow(true);
+    const [showLogin, setShowLogin] = useState(false);
+    const handleCloseLogin = () => setShowLogin(false);
+    const handleShowLogin = () => setShowLogin(true);
 
+    const [showSignup, setShowSignup] = useState(false);
+    const handleCloseSignup = () => setShowSignup(false);
+    const handleShowSignup = () => setShowSignup(true);
 
     return (
         <>
@@ -77,8 +102,9 @@ export const NavbarSignup = () => {
                     </Col>
                     <Col size="md-6">
                         <NavBtn>
-                            <LoginButton
-                            />
+                            <Button className="loginBtn" onClick={handleShowLogin}>
+                                Login
+      </Button>
                             <Button className="signupBtn" variant="success" onClick={handleShowSignup}>
                                 Sign Up
       </Button>
@@ -86,9 +112,58 @@ export const NavbarSignup = () => {
                     </Col>
                 </Row>
             </Container>
+
+
             <Modal
-                show={show}
-                onHide={handleClose}
+                show={showLogin}
+                onHide={handleCloseLogin}
+                centered
+                // backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {error && <Alert variant="danger">{error}</Alert>}
+
+                    <Form.Group onSubmit={handleSubmitLogin}>
+
+
+                        <Form.Label>Name: </Form.Label>
+                        <Form.Control
+                            onChange={(e) => setEmail(e.target.value)}
+                            id="email"
+                            type="email"
+                            required
+                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
+                        />
+                        <Form.Label>Password: </Form.Label>
+                        <Form.Control
+                            onChange={(e) => setPassword(e.target.value)}
+                            id="password"
+                            type="password"
+                            required
+                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
+                        />
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        disabled={loading}
+                        onClick={handleSubmitLogin}
+                    // variant="primary" form="userForm" type="submit" onClick={handleSubmit}
+                    >Submit</Button>
+                </Modal.Footer>
+            </Modal>
+
+
+
+
+
+            <Modal
+                show={showSignup}
+                onHide={handleCloseSignup}
                 centered
                 // backdrop="static"
                 keyboard={false}
@@ -99,7 +174,7 @@ export const NavbarSignup = () => {
                 <Modal.Body>
                     {error && <Alert variant="danger">{error}</Alert>}
 
-                    <Form.Group onSubmit={handleSubmit}>
+                    <Form.Group onSubmit={handleSubmitSignup}>
 
 
                         <Form.Label>Name: </Form.Label>
@@ -131,7 +206,7 @@ export const NavbarSignup = () => {
                 <Modal.Footer>
                     <Button
                         disabled={loading}
-                        onClick={handleSubmit}
+                        onClick={handleSubmitSignup}
                     // variant="primary" form="userForm" type="submit" onClick={handleSubmit}
                     >Submit</Button>
                 </Modal.Footer>

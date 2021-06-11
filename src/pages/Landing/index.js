@@ -6,7 +6,7 @@ import Header from '../../components/Header/Header';
 import PlacesToVisit from '../../components/About/AboutCards';
 import Footer from '../../components/Footer';
 import Image from '../../assets/images/bg.png';
-import Signup from "../../components/Signup";
+import UserInfo from "../../components/UserInfo";
 import ModalComp from "../../components/Modal";
 
 const RegisterUser = () => {
@@ -25,7 +25,7 @@ const RegisterUser = () => {
       <CssBaseline />
       <Header />
       {/* <ModalComp /> */}
-      {/* <Signup /> */}
+      <UserInfo />
       <PlacesToVisit />
       <Footer />
     </div>
