@@ -31,27 +31,31 @@ export default function ResetPassword() {
     }
     return (
         <>
-            <Card className="resetPasswordCard" style={{ marginTop: 100, marginLeft: "auto", marginRight: "auto" }}>
-                <h2>Reset Password</h2>
-                {error && <Alert variant="danger">{error}</Alert>}
-                {message && <Alert variant="success">{message}</Alert>}
-                <form onSubmit={handleSubmit}>
-                    <label> Email:</label>
-                    <Input
-                        // onChange={(e) => setEmail(e.target.value)}
-                        type="email" onChange={(e) => setEmail(e.target.value)} required
-                    />
+            <div
+                style={{ backgroundColor: "#333333", height: "100vh" }}
+            >
+                <Card className="resetPasswordCard" style={{ top: 100, marginLeft: "auto", marginRight: "auto" }}>
+                    <h2>Reset Password</h2>
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    {message && <Alert variant="success">{message}</Alert>}
+                    <form onSubmit={handleSubmit}>
+                        <label> Email:</label>
+                        <Input
+                            // onChange={(e) => setEmail(e.target.value)}
+                            type="email" onChange={(e) => setEmail(e.target.value)} required
+                        />
 
-                    <Button disabled={loading} className="w-100" type="submit" variant="success">
-                        Reset Password
-                    </Button>
-                </form>
-                <Link to="/">
-                    <Button
-                        className="w-100"
-                        style={{ marginTop: 10 }}> Back</Button>
-                </Link>
-            </Card >
+                        <Button disabled={loading} className="w-100" type="submit" variant="success">
+                            Reset Password
+                        </Button>
+                    </form>
+                    <Link to="/">
+                        <Button
+                            className="w-100"
+                            style={{ marginTop: 10 }}> Back</Button>
+                    </Link>
+                </Card >
+            </div>
         </>
     )
 }
