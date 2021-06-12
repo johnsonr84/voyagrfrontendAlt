@@ -1,4 +1,4 @@
-import { NavBtn } from "./NavbarElements"
+import { NavLink, NavBtn } from "./NavbarElements"
 import "./style.css";
 import LoginButton from '../LoginButton';
 import SignupButton from '../SignupButton';
@@ -11,7 +11,7 @@ import { Alert } from "react-bootstrap"
 import { Input, LoginBtn, SignupBtn } from "../Form";
 import axios from 'axios'
 import { useAuth, AuthProvider } from "../../Contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -55,10 +55,6 @@ export const NavbarSignup = () => {
 
     async function handleSubmitLogin(e) {
         e.preventDefault()
-
-        // if (password !== passwordConfirm) {
-        //     return setError("Passwords do not match")
-        // }
 
         try {
             setError("")
@@ -149,6 +145,7 @@ export const NavbarSignup = () => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
+                    <NavLink className="forgotPasswordText" to="/password-reset">Forgot Password?</NavLink>
                     <Button
                         disabled={loading}
                         onClick={handleSubmitLogin}

@@ -4,3 +4,13 @@
   width: 100%;
   padding-right: 0!important;
 }
+
+.forgotPasswordText {
+  color: blue !important;
+
+}
+
+.modal-footer{
+/* display: flex; */
+justify-content: space-between !important;
+}
