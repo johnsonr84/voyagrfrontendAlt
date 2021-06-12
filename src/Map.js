@@ -8,30 +8,35 @@ import { Nav, NavMenu } from "./NavbarElements"
 import BurgerMenu from "./components/Dropdown"
 import "./map.css";
 import { API } from "./utils/API"
-import { useAuth0 } from '@auth0/auth0-react';
 import ProfileImage from './components/ProfileImage';
 import { usePosts } from './Contexts/PostContexts';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useAuth, AuthProvider } from "./Contexts/AuthContext"
+
 var moment = require('moment');
 
 
 
 export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
-  // const { user } = useAuth0();
-  // const { picture, sub } = user;
-  // const userID = sub;
+  const { signup, currentUser } = useAuth()
+  const { uid, displayName } = currentUser;
+  const userID = uid;
   const [input, setInput] = useState({});
   const [newPosts, setNewPosts] = usePosts();
   const [showPopup, setShowPopup] = useState({});
   const [posts, setPosts] = usePosts();
   const [image, setImage] = useState([]);
+  const [username, setUsername] = useState();
 
   const geocoderContainerRef = useRef();
   const geolocateControlRef = useRef();
   const mapRef = useRef();
 
-  // const profileName = "user." + "https://mynamespace/username";
+  const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
+
+
+
 
   const handleViewportChange = useCallback(
     (newViewport) => setViewport(newViewport),
@@ -78,7 +83,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       latitude: parseFloat(addPostLocation.latitude),
       longitude: parseFloat(addPostLocation.longitude),
       visitDate: input.visitDate,
-      // userID: userID,
+      userID: uid,
       date: now,
       timestamp: timestamp
     }
@@ -268,11 +273,11 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
         }
       </ReactMapGL>
       <ProfileImage
-      // avatarImage={picture}
+        avatarImage={defaultUserImage}
       />
       <h2
         className="profileName">
-        {/* {profileName} */}
+        {displayName}
       </h2>
     </>
   )

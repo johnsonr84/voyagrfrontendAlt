@@ -10,6 +10,8 @@ import { createStore, combineReducers } from 'redux';
 import PhotosListReducer from './reducers/PhotosListReducer';
 import UploadedPhotosReducer from './reducers/UploadedPhotosReducer';
 import config from './config/config';
+import { AuthProvider } from "./Contexts/AuthContext";
+
 
 const rootReducer = combineReducers({
   photos: PhotosListReducer,
@@ -21,13 +23,13 @@ const { cloud_name, upload_preset } = config;
 
 ReactDOM.render(
   <Router>
-    <Auth0ProviderWithHistory>
+    <AuthProvider>
       <Provider store={store}>
         <PostContextProvider>
           <App cloudName={cloud_name} uploadPreset={upload_preset} />
         </PostContextProvider>
       </Provider>
-    </Auth0ProviderWithHistory>
+    </AuthProvider>
   </Router>,
   document.getElementById('root')
 );
