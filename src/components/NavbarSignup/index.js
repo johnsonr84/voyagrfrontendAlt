@@ -28,6 +28,7 @@ export const NavbarSignup = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [email, setEmail] = useState()
+    const [name, setName] = useState()
     const [password, setPassword] = useState()
     const [passwordConfirm, setPasswordConfirm] = useState()
 
@@ -41,7 +42,7 @@ export const NavbarSignup = () => {
         try {
             setError("")
             setLoading(true)
-            await signup(email, password)
+            await signup(name, email, password)
             history.push("/dashboard")
         } catch {
             setError("Failed to create an account")
@@ -104,10 +105,10 @@ export const NavbarSignup = () => {
                         <NavBtn>
                             <Button className="loginBtn" onClick={handleShowLogin}>
                                 Login
-      </Button>
+                            </Button>
                             <Button className="signupBtn" variant="success" onClick={handleShowSignup}>
                                 Sign Up
-      </Button>
+                            </Button>
                         </NavBtn>
                     </Col>
                 </Row>
@@ -129,8 +130,7 @@ export const NavbarSignup = () => {
 
                     <Form.Group onSubmit={handleSubmitLogin}>
 
-
-                        <Form.Label>Name: </Form.Label>
+                        <Form.Label>Email: </Form.Label>
                         <Form.Control
                             onChange={(e) => setEmail(e.target.value)}
                             id="email"
@@ -176,8 +176,15 @@ export const NavbarSignup = () => {
 
                     <Form.Group onSubmit={handleSubmitSignup}>
 
-
-                        <Form.Label>Name: </Form.Label>
+                        <Form.Label>Username: </Form.Label>
+                        <Form.Control
+                            onChange={(e) => setName(e.target.value)}
+                            id="name"
+                            type="text"
+                            required
+                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
+                        />
+                        <Form.Label>Email: </Form.Label>
                         <Form.Control
                             onChange={(e) => setEmail(e.target.value)}
                             id="email"

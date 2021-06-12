@@ -31,7 +31,7 @@ export default function ResetPassword() {
     }
     return (
         <>
-            <Card style={{ marginTop: 100, marginLeft: "auto", marginRight: "auto" }}>
+            <Card className="resetPasswordCard" style={{ marginTop: 100, marginLeft: "auto", marginRight: "auto" }}>
                 <h2>Reset Password</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {message && <Alert variant="success">{message}</Alert>}
@@ -44,7 +44,7 @@ export default function ResetPassword() {
 
                     <Button disabled={loading} className="w-100" type="submit" variant="success">
                         Reset Password
-            </Button>
+                    </Button>
                 </form>
                 <Link to="/">
                     <Button

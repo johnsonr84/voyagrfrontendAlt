@@ -6,7 +6,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faGrinAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Avatar from '../Avatar';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth, AuthProvider } from "../../Contexts/AuthContext"
 import { API } from "../../utils/API"
 import { usePosts } from '../../Contexts/PostContexts';
 import { Col } from '../Grid';
@@ -20,9 +20,11 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
     let timestamp = Date.now()
     var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
-    const { user } = useAuth0();
-    const { picture, sub } = user;
-    const userID = sub;
+    const { currentUser } = useAuth()
+    const { uid, displayName } = currentUser;
+    const userID = uid;
+    const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
+
     const [input, setInput] = useState({});
     const [posts, setPosts] = usePosts();
     const [image, setImage] = useState([]);
@@ -35,7 +37,8 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        setInput({ title: "", description: "", visitDate: "" })
+        setImage([])
         const newPost = {
             title: input.title,
             description: input.description,
@@ -43,15 +46,12 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
             latitude: addPostLocation?.latitude || viewport.latitude,
             longitude: addPostLocation?.longitude || viewport.longitude,
             visitDate: input.visitDate,
-            userID: userID,
+            userID: uid,
             date: now,
             timestamp: timestamp
         }
         console.log(newPost);
-        API.savePost(newPost).then(() => {
-            setInput({ title: "", description: "", visitDate: "" })
-            setImage([])
-        }).catch(e => console.log(e))
+        API.savePost(newPost).catch(e => console.log(e))
         setPosts((newPosts) => [newPost, ...newPosts])
     }
 
@@ -62,7 +62,7 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
             <div className="messageSender">
                 <div className="messageSender-forms">
                     <Avatar
-                        avatarImage={picture}
+                        avatarImage={defaultUserImage}
                     />
                     <form>
                         <div className="messageSender-top-forms">
@@ -84,7 +84,7 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
                                 <div className="messageSender-top-right-form">
                                     <div className="visitDateText">
                                         Date Visited:
-                                        </div>
+                                    </div>
                                     <div
                                         className="visitDateDiv"
                                     >
@@ -121,8 +121,8 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
                         <div className="icons-row-first">
                             <div className="messageSender-icon" variant="primary" onClick={handleShow}>
                                 <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" />
-                                 Pin
-                        </div>
+                                Pin
+                            </div>
                             <div className="messageSender-icon ">
                                 <FontAwesomeIcon icon={faImages} size="2x" />
                                 <PhotoListContainer
@@ -134,7 +134,7 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
                             <div className="messageSender-icon">
                                 <FontAwesomeIcon icon={faVideo} size="2x" />
                                 Live
-                         </div>
+                            </div>
                             <div className="messageSender-icon">
                                 <FontAwesomeIcon icon={faGrinAlt} size="2x" />
                                 Feeling/Activity

@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth, AuthProvider } from "../AuthContext"
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { API } from "../../utils/API";
 
@@ -6,21 +6,21 @@ const initialState = []
 const PostContext = createContext()
 export const usePosts = () => useContext(PostContext)
 export const PostContextProvider = ({ children }) => {
-    const { user } = useAuth0();
+    const { currentUser } = useAuth()
 
     const [posts, setPosts] = useState(initialState)
 
     useEffect(() => {
-        if (!user) {
+        if (!currentUser) {
             return
         }
 
-        API.getPost(user.sub)
+        API.getPost(currentUser.uid)
             .then(res =>
                 setPosts(res.data)
             )
             .catch(err => console.log(err));
-    }, [user?.sub]);
+    }, [currentUser?.uid]);
 
     return (
         <PostContext.Provider value={[posts, setPosts]}>

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { CloudinaryContext } from 'cloudinary-react';
 import { photosFetched } from './actions';
 import { fetchPhotos } from './utils/CloudinaryService';
-import { AuthProvider } from "./Contexts/AuthContext";
+// import { AuthProvider } from "./Contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute"
 
 class App extends Component {
@@ -19,20 +19,20 @@ class App extends Component {
   }
   render() {
     return (
-      <AuthProvider>
-        <CloudinaryContext
-          cloudName={this.props.cloudName}
-          uploadPreset={this.props.uploadPreset}
-        >
-          <Router>
-            <Switch>
-              <Route path="/" component={Landing} exact />
-              <Route path="/password-reset" component={ResetPassword} />
-              <PrivateRoute path="/dashboard" component={Dashboard} />
-            </Switch>
-          </Router >
-        </CloudinaryContext>
-      </AuthProvider>
+
+      <CloudinaryContext
+        cloudName={this.props.cloudName}
+        uploadPreset={this.props.uploadPreset}
+      >
+        <Router>
+          <Switch>
+            <Route path="/" component={Landing} exact />
+            <Route path="/password-reset" component={ResetPassword} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+          </Switch>
+        </Router >
+      </CloudinaryContext>
+
     );
   }
 }
