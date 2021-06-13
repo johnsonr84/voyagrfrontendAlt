@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import ResetPassword from "./pages/ResetPassword";
+import Settings from "./pages/Settings";
 import "./App.css";
 // import ProtectedRoute from "./auth/protected-route";
 import { connect } from 'react-redux';
@@ -28,6 +29,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Landing} exact />
             <Route path="/password-reset" component={ResetPassword} />
+            <PrivateRoute path="/settings" component={Settings} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
           </Switch>
         </Router >

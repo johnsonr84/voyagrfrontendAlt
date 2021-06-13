@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../../firebase"
+import { useHistory } from "react-router-dom"
+import firebase from "firebase/app"
 
 const AuthContext = React.createContext()
 
@@ -10,23 +12,39 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
-
+    const history = useHistory()
 
     function signup(name, email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
             .then((userData) => {
                 userData.user.updateProfile({ displayName: name });
                 userData.user.sendEmailVerification();
-              auth.signOut();
+                auth.signOut();
             })
-            .then((userCredential)=>{
-                // send verification mail.
-              })
             .catch((error) => console.log(error));
     }
 
-    function login(email, password) {
-        return auth.signInWithEmailAndPassword(email, password)
+    async function login(email, password) {
+        try {
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    const emailVerified = firebase.auth().currentUser.emailVerified
+                    console.log(emailVerified)
+                    if (!emailVerified) { // note difference on this line
+                        auth.signOut();
+                        console.log("Email is not verified");
+                    }
+                    // else {
+                    //     history.push("/dashboard")
+                    //     console.log("Go ahead");
+                    // }
+                })
+        }
+
+        catch {
+            console.log("What happened?")
+
+        }
     }
 
     function logout() {

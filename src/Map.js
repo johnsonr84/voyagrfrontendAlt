@@ -13,6 +13,8 @@ import { usePosts } from './Contexts/PostContexts';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useAuth, AuthProvider } from "./Contexts/AuthContext"
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 var moment = require('moment');
 
@@ -272,9 +274,14 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
           ) : null
         }
       </ReactMapGL>
+
       <ProfileImage
+        className="profileImageDiv"
         avatarImage={defaultUserImage}
       />
+
+      <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
+
       <h2
         className="profileName">
         {displayName}
