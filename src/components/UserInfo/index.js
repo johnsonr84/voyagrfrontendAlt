@@ -14,7 +14,7 @@ const UserInfo = () => {
     <div>
       <Card style={{ marginTop: 100 }}>
         <h2>User Information</h2>
-        {/* {JSON.stringify(currentUser)} */}
+        {JSON.stringify(currentUser)}
         {/* {displayName} */}
       </Card>
     </div >
