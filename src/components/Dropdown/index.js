@@ -36,7 +36,7 @@ const BurgerMenu = (props) => {
                 </DropdownToggle>
                 <DropdownMenu right>
                     <DropdownItem href="/dashboard">Dashboard</DropdownItem>
-                    <DropdownItem href="/">Settings</DropdownItem>
+                    <DropdownItem href="/settings">Settings</DropdownItem>
                     <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
                 </DropdownMenu>
             </Dropdown >

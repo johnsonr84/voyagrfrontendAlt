@@ -16,11 +16,11 @@ import { useHistory } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
-import { useAuth0 } from '@auth0/auth0-react';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const NavbarSignup = () => {
-    const { login, signup, currentUser, emailVerified } = useAuth()
+    const { login, logout, signup, currentUser } = useAuth()
+
     // const emailRef = useRef()
     // const passwordRef = useRef()
     // const passwordConfirmRef = useRef()
@@ -46,7 +46,7 @@ export const NavbarSignup = () => {
             handleCloseSignup();
             handleShowAlert();
 
-        } 
+        }
         catch {
             setError("Failed to create an account")
         }
@@ -58,17 +58,35 @@ export const NavbarSignup = () => {
 
     async function handleSubmitLogin(e) {
         e.preventDefault()
-if (!emailVerified){
-    return setError("Invalid Username or Password")
-}
+
         try {
             setError("")
             setLoading(true)
-            await login(email, password)
-            history.push("/dashboard")
-        } catch {
-            setError("Invalid Username or Password")
+            // handleCloseLogin();
+            await login(email, password).then(() => {
+                history.push("/dashboard")
+            }
+            )
+
         }
+
+
+        catch {
+            setError("Invalid Username or Password")
+
+        }
+
+        // try {
+        //     if (currentUser.emailVerified) {
+        //         history.push("/dashboard")
+        //     }
+        //     throw logout()
+        // }
+
+
+        // catch {
+        //     setError("Nope")
+        // }
 
         setLoading(false)
 
@@ -91,7 +109,6 @@ if (!emailVerified){
 
     return (
         <>
-
             <Container>
                 <Row>
                     <Col size="md-4">
@@ -239,17 +256,17 @@ if (!emailVerified){
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                   
+
                 </Modal.Header>
                 <Modal.Body className="alertBody" >
-                <h3  >Check your inbox for further instructions</h3>
+                    <h3  >Check your inbox for further instructions</h3>
 
-                    
+
                 </Modal.Body>
                 <Modal.Footer className="signup-modal-footer">
-                    
+
                     <Button
-                        
+
                         onClick={handleCloseAlert}
                     // variant="primary" form="userForm" type="submit" onClick={handleSubmit}
                     >Close</Button>

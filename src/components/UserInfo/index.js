@@ -15,7 +15,7 @@ const UserInfo = () => {
       <Card style={{ marginTop: 100 }}>
         <h2>User Information</h2>
         {JSON.stringify(currentUser)}
-        {/* {displayName} */}
+        {/* {currentUser.emailVerified} */}
       </Card>
     </div >
   );
