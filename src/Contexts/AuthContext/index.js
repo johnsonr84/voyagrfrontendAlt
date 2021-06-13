@@ -16,7 +16,12 @@ export function AuthProvider({ children }) {
         return auth.createUserWithEmailAndPassword(email, password)
             .then((userData) => {
                 userData.user.updateProfile({ displayName: name });
+                userData.user.sendEmailVerification();
+              auth.signOut();
             })
+            .then((userCredential)=>{
+                // send verification mail.
+              })
             .catch((error) => console.log(error));
     }
 

@@ -3,7 +3,7 @@ import Header from "../../Map"
 import MessageSender from "../../components/MessageSender"
 import Feed from "../../components/Feed";
 import Post from "../../components/Post";
-// import ModalComp from "../../components/Modal";
+
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 

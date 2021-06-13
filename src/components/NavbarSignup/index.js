@@ -20,7 +20,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const NavbarSignup = () => {
-    const { login, signup, currentUser } = useAuth()
+    const { login, signup, currentUser, emailVerified } = useAuth()
     // const emailRef = useRef()
     // const passwordRef = useRef()
     // const passwordConfirmRef = useRef()
@@ -43,8 +43,11 @@ export const NavbarSignup = () => {
             setError("")
             setLoading(true)
             await signup(name, email, password)
-            history.push("/dashboard")
-        } catch {
+            handleCloseSignup();
+            handleShowAlert();
+
+        } 
+        catch {
             setError("Failed to create an account")
         }
 
@@ -55,7 +58,9 @@ export const NavbarSignup = () => {
 
     async function handleSubmitLogin(e) {
         e.preventDefault()
-
+if (!emailVerified){
+    return setError("Invalid Username or Password")
+}
         try {
             setError("")
             setLoading(true)
@@ -79,6 +84,10 @@ export const NavbarSignup = () => {
     const [showSignup, setShowSignup] = useState(false);
     const handleCloseSignup = () => setShowSignup(false);
     const handleShowSignup = () => setShowSignup(true);
+
+    const [showAlert, setShowAlert] = useState(false);
+    const handleCloseAlert = () => setShowAlert(false);
+    const handleShowAlert = () => setShowAlert(true);
 
     return (
         <>
@@ -221,6 +230,33 @@ export const NavbarSignup = () => {
                     >Submit</Button>
                 </Modal.Footer>
             </Modal>
+
+            <Modal
+                show={showAlert}
+                onHide={handleCloseAlert}
+                centered
+                // backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                   
+                </Modal.Header>
+                <Modal.Body className="alertBody" >
+                <h3  >Check your inbox for further instructions</h3>
+
+                    
+                </Modal.Body>
+                <Modal.Footer className="signup-modal-footer">
+                    
+                    <Button
+                        
+                        onClick={handleCloseAlert}
+                    // variant="primary" form="userForm" type="submit" onClick={handleSubmit}
+                    >Close</Button>
+                </Modal.Footer>
+            </Modal>
+
+
         </>
     )
 }
