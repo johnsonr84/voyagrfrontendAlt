@@ -25,7 +25,7 @@ const RegisterUser = () => {
       <CssBaseline />
       <Header />
       {/* <ModalComp /> */}
-      <UserInfo />
+      {/* <UserInfo /> */}
       <PlacesToVisit />
       <Footer />
     </div>

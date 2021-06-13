@@ -10,7 +10,12 @@
 
 }
 
-.modal-footer{
+.login-modal-footer{
 /* display: flex; */
 justify-content: space-between !important;
+}
+
+.signup-modal-footer{
+/* display: flex; */
+justify-content: flex-end !important;
 }

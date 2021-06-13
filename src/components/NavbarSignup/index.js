@@ -99,10 +99,16 @@ export const NavbarSignup = () => {
                     </Col>
                     <Col size="md-6">
                         <NavBtn>
-                            <Button className="loginBtn" onClick={handleShowLogin}>
+                            <Button className="loginBtn" onClick={() => {
+                                handleCloseSignup();
+                                handleShowLogin();
+                            }}>
                                 Login
                             </Button>
-                            <Button className="signupBtn" variant="success" onClick={handleShowSignup}>
+                            <Button className="signupBtn" variant="success" onClick={() => {
+                                handleCloseLogin();
+                                handleShowSignup();
+                            }}>
                                 Sign Up
                             </Button>
                         </NavBtn>
@@ -144,7 +150,7 @@ export const NavbarSignup = () => {
                         />
                     </Form.Group>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer className="login-modal-footer">
                     <NavLink className="forgotPasswordText" to="/password-reset">Forgot Password?</NavLink>
                     <Button
                         disabled={loading}
@@ -207,7 +213,7 @@ export const NavbarSignup = () => {
                         />
                     </Form.Group>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer className="signup-modal-footer">
                     <Button
                         disabled={loading}
                         onClick={handleSubmitSignup}
