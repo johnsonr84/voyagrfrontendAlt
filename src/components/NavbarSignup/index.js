@@ -4,7 +4,7 @@ import LoginButton from '../LoginButton';
 import SignupButton from '../SignupButton';
 import { Col, Row } from '../Grid';
 import Container from "../Container";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import Card from "../../components/FormCard";
 import { Alert } from "react-bootstrap"
@@ -21,9 +21,6 @@ import Form from 'react-bootstrap/Form'
 export const NavbarSignup = () => {
     const { login, logout, signup, currentUser } = useAuth()
 
-    // const emailRef = useRef()
-    // const passwordRef = useRef()
-    // const passwordConfirmRef = useRef()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -32,6 +29,9 @@ export const NavbarSignup = () => {
     const [password, setPassword] = useState()
     const [passwordConfirm, setPasswordConfirm] = useState()
 
+    const refreshPage = () => {
+        window.location.reload();
+    }
     async function handleSubmitSignup(e) {
         e.preventDefault()
 
@@ -62,9 +62,8 @@ export const NavbarSignup = () => {
         try {
             setError("")
             setLoading(true)
-            // handleCloseLogin();
+
             await login(email, password).then(() => {
-                history.push("/dashboard")
             }
             )
 
@@ -76,24 +75,10 @@ export const NavbarSignup = () => {
 
         }
 
-        // try {
-        //     if (currentUser.emailVerified) {
-        //         history.push("/dashboard")
-        //     }
-        //     throw logout()
-        // }
-
-
-        // catch {
-        //     setError("Nope")
-        // }
-
         setLoading(false)
 
     }
 
-
-    // const [username, setUsername] = useState("")
 
     const [showLogin, setShowLogin] = useState(false);
     const handleCloseLogin = () => setShowLogin(false);
@@ -106,6 +91,23 @@ export const NavbarSignup = () => {
     const [showAlert, setShowAlert] = useState(false);
     const handleCloseAlert = () => setShowAlert(false);
     const handleShowAlert = () => setShowAlert(true);
+
+
+
+
+
+    useEffect(() => {
+
+        const checkVerified = async () => {
+            if (currentUser && currentUser.emailVerified) {
+
+                history.push("/dashboard")
+            }
+            console.log("No entry")
+        }
+
+        checkVerified()
+    }, [currentUser])
 
     return (
         <>
