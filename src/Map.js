@@ -9,26 +9,32 @@ import BurgerMenu from "./components/Dropdown"
 import "./map.css";
 import { API } from "./utils/API"
 import ProfileImage from './components/ProfileImage';
+import UploadPhoto from './components/UploadPhoto';
 import { usePosts } from './Contexts/PostContexts';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useAuth, AuthProvider } from "./Contexts/AuthContext"
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import Button from 'react-bootstrap/Button';
+import { faImages } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form'
 
 var moment = require('moment');
 
 
 
 export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
-  const { signup, currentUser } = useAuth()
-  const { uid, displayName } = currentUser;
+  const { updatePhotoURL, currentUser } = useAuth()
+  const { uid, displayName, photoURL } = currentUser;
   const userID = uid;
   const [input, setInput] = useState({});
   const [newPosts, setNewPosts] = usePosts();
   const [showPopup, setShowPopup] = useState({});
   const [posts, setPosts] = usePosts();
   const [image, setImage] = useState([]);
+
   const [username, setUsername] = useState();
 
   const geocoderContainerRef = useRef();
@@ -113,6 +119,25 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       items: 1
     }
   };
+
+  function handleUploadPhoto() {
+
+    try {
+      console.log("Attempting photo upload")
+      console.log(image[0])
+      updatePhotoURL(image[0])
+
+    }
+    catch {
+      console.log("Didn't work")
+    }
+
+
+  }
+
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
 
   return (
     <>
@@ -257,7 +282,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
                       value={input.description}
                       onChange={handleChange}
                     />
-                    <label htmlFor="image">Image</label>
+                    <label htmlFor="image">Images</label>
                     <div className="popupImages">
                       <PhotoListContainer
                         style={{ justifyContent: "center" }}
@@ -277,11 +302,19 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
       <ProfileImage
         className="profileImageDiv"
-        avatarImage={defaultUserImage}
+        avatarImage={photoURL}
+      // {defaultUserImage}
       />
 
       <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
-
+      <div className="uploadPopup" >
+        <FontAwesomeIcon icon={faImages} className="imagesPopup" size="3x" />
+        <PhotoListContainer
+          style={{ justifyContent: "center" }}
+          setImage={setImage}
+        />
+        <Button style={{ backgroundColor: "#585858", borderColor: "white", marginLeft: 10 }} onClick={handleUploadPhoto}> Done </Button>
+      </div>
       <h2
         className="profileName">
         {displayName}

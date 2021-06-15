@@ -12,6 +12,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
+
     const history = useHistory()
 
     function signup(name, email, password) {
@@ -19,7 +20,6 @@ export function AuthProvider({ children }) {
             .then((userData) => {
                 userData.user.updateProfile({ displayName: name });
                 userData.user.sendEmailVerification();
-                auth.signOut();
             })
             .catch((error) => console.log(error));
     }
@@ -27,15 +27,6 @@ export function AuthProvider({ children }) {
     async function login(email, password) {
         try {
             auth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    const emailVerified = firebase.auth().currentUser.emailVerified
-                    // console.log(emailVerified)
-                    if (!emailVerified) {
-                        auth.signOut();
-                        console.log("Email is not verified");
-                    }
-
-                })
         }
         catch {
             console.log("What happened?")
@@ -59,6 +50,11 @@ export function AuthProvider({ children }) {
         return currentUser.updatePassword(password)
     }
 
+    function updatePhotoURL(image) {
+        return currentUser.updateProfile({ photoURL: image })
+    }
+
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -76,7 +72,8 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+        updatePhotoURL
     }
 
     return (
