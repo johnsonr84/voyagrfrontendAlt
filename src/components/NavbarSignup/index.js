@@ -12,6 +12,7 @@ import { Input, LoginBtn, SignupBtn } from "../Form";
 import axios from 'axios'
 import { useAuth, AuthProvider } from "../../Contexts/AuthContext"
 import { useHistory } from "react-router-dom"
+import { auth } from "../../firebase"
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -28,10 +29,8 @@ export const NavbarSignup = () => {
     const [name, setName] = useState()
     const [password, setPassword] = useState()
     const [passwordConfirm, setPasswordConfirm] = useState()
+    const [message, setMessage] = useState("")
 
-    const refreshPage = () => {
-        window.location.reload();
-    }
     async function handleSubmitSignup(e) {
         e.preventDefault()
 
@@ -40,12 +39,13 @@ export const NavbarSignup = () => {
         }
 
         try {
+            setMessage("")
             setError("")
             setLoading(true)
             await signup(name, email, password)
+            setMessage("Check your inbox for further instructions")
             handleCloseSignup();
             handleShowAlert();
-
         }
         catch {
             setError("Failed to create an account")
@@ -60,13 +60,10 @@ export const NavbarSignup = () => {
         e.preventDefault()
 
         try {
+            setMessage("")
             setError("")
             setLoading(true)
-
-            await login(email, password).then(() => {
-            }
-            )
-
+            await login(email, password)
         }
 
 
@@ -103,7 +100,10 @@ export const NavbarSignup = () => {
 
                 history.push("/dashboard")
             }
-            console.log("No entry")
+            else {
+                auth.signOut();
+                // setError("Email address not verified")
+            }
         }
 
         checkVerified()
@@ -128,12 +128,15 @@ export const NavbarSignup = () => {
                     <Col size="md-6">
                         <NavBtn>
                             <Button className="loginBtn" onClick={() => {
+                                setError("");
                                 handleCloseSignup();
                                 handleShowLogin();
                             }}>
                                 Login
                             </Button>
                             <Button className="signupBtn" variant="success" onClick={() => {
+
+                                setError("");
                                 handleCloseLogin();
                                 handleShowSignup();
                             }}>
@@ -158,7 +161,7 @@ export const NavbarSignup = () => {
                 <Modal.Body>
                     {error && <Alert variant="danger">{error}</Alert>}
 
-                    <Form.Group onSubmit={handleSubmitLogin}>
+                    <Form.Group>
 
                         <Form.Label>Email: </Form.Label>
                         <Form.Control
@@ -166,7 +169,6 @@ export const NavbarSignup = () => {
                             id="email"
                             type="email"
                             required
-                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
                         />
                         <Form.Label>Password: </Form.Label>
                         <Form.Control
@@ -174,7 +176,6 @@ export const NavbarSignup = () => {
                             id="password"
                             type="password"
                             required
-                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
                         />
                     </Form.Group>
                 </Modal.Body>
@@ -182,8 +183,8 @@ export const NavbarSignup = () => {
                     <NavLink className="forgotPasswordText" to="/password-reset">Forgot Password?</NavLink>
                     <Button
                         disabled={loading}
+                        type="submit"
                         onClick={handleSubmitLogin}
-                    // variant="primary" form="userForm" type="submit" onClick={handleSubmit}
                     >Submit</Button>
                 </Modal.Footer>
             </Modal>
@@ -204,8 +205,8 @@ export const NavbarSignup = () => {
                 </Modal.Header>
                 <Modal.Body>
                     {error && <Alert variant="danger">{error}</Alert>}
-
-                    <Form.Group onSubmit={handleSubmitSignup}>
+                    {/* {message && <Alert variant="success">{message}</Alert>} */}
+                    <Form.Group>
 
                         <Form.Label>Username: </Form.Label>
                         <Form.Control
@@ -213,7 +214,6 @@ export const NavbarSignup = () => {
                             id="name"
                             type="text"
                             required
-                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
                         />
                         <Form.Label>Email: </Form.Label>
                         <Form.Control
@@ -221,7 +221,6 @@ export const NavbarSignup = () => {
                             id="email"
                             type="email"
                             required
-                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
                         />
                         <Form.Label>Password: </Form.Label>
                         <Form.Control
@@ -229,7 +228,6 @@ export const NavbarSignup = () => {
                             id="password"
                             type="password"
                             required
-                        // type="text" onChange={handleChange} value={username} placeholder="Your name" 
                         />
                         <Form.Label>Confirm Password: </Form.Label>
                         <Form.Control
@@ -237,18 +235,19 @@ export const NavbarSignup = () => {
                             id="password-confirm"
                             type="password"
                             required
-                        //  type="text" onChange={handleChange} value={username} placeholder="Your name" 
                         />
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer className="signup-modal-footer">
                     <Button
                         disabled={loading}
+                        type="submit"
                         onClick={handleSubmitSignup}
-                    // variant="primary" form="userForm" type="submit" onClick={handleSubmit}
-                    >Submit</Button>
+                    >
+                        Submit</Button>
                 </Modal.Footer>
             </Modal>
+
 
             <Modal
                 show={showAlert}
@@ -270,7 +269,6 @@ export const NavbarSignup = () => {
                     <Button
 
                         onClick={handleCloseAlert}
-                    // variant="primary" form="userForm" type="submit" onClick={handleSubmit}
                     >Close</Button>
                 </Modal.Footer>
             </Modal>

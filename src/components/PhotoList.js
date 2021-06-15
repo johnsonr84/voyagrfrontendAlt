@@ -15,7 +15,7 @@ class PhotoList extends Component {
                         className="upload_link"
                         onClick={this.uploadImageWithCloudinary.bind(this)}
                     >
-                        Upload Images
+                        Upload
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@ class PhotoList extends Component {
 
     uploadImageWithCloudinary() {
         const uploadOptions = { tags: ['myphotoalbum'], ...this.context };
-        console.log(uploadOptions);
+
 
         openUploadWidget(uploadOptions, (error, result) => {
             if (!error) {
