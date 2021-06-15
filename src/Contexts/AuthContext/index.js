@@ -29,18 +29,14 @@ export function AuthProvider({ children }) {
             auth.signInWithEmailAndPassword(email, password)
                 .then(() => {
                     const emailVerified = firebase.auth().currentUser.emailVerified
-                    console.log(emailVerified)
-                    if (!emailVerified) { // note difference on this line
+                    // console.log(emailVerified)
+                    if (!emailVerified) {
                         auth.signOut();
                         console.log("Email is not verified");
                     }
-                    // else {
-                    //     history.push("/dashboard")
-                    //     console.log("Go ahead");
-                    // }
+
                 })
         }
-
         catch {
             console.log("What happened?")
 
@@ -67,6 +63,7 @@ export function AuthProvider({ children }) {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
+
         })
 
         return unsubscribe
