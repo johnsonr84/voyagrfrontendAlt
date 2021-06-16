@@ -12,7 +12,7 @@ class PhotoList extends Component {
             <div className="photoList">
                 <div className="actions">
                     <div
-                        className="upload_link"
+                        className="upload_link noselect"
                         onClick={this.uploadImageWithCloudinary.bind(this)}
                     >
                         Upload

@@ -7,40 +7,42 @@ background-color: #333333;
 color: #D3D3D3;
 border-radius: 20px;
 padding: 10px;
-position: relative;
-/* display: flex !important; */
+position: absolute;
+display: flex !important;
 justify-content: space-between;
-margin-left: auto;
-margin-right: auto;
 align-items: center;
 width: 30vw;
+z-index: 2;
+top: -6rem;
+left: 50%;
+transform: translate(-50%, 0);
 }
 
 @media (max-width: 360px) {
 .profilePopup  {
-top: -7rem;
+top: -6rem;
 width: 95vw;
   }
 }
 
 @media (min-width: 360px) {
 .profilePopup  {
-top: -7rem;
+top: -6rem;
 width: 95vw;
   }
 }
 
 @media (min-width: 425px) {
 .profilePopup  {
-top: -7rem;
-width: 80vw;
+top: -6rem;
+width: 88vw;
   }
 }
 
 @media (min-width: 576px) {
 .profilePopup  {
 top: -6rem;
-width: 60vw;
+width: 65vw;
   }
 }
 
@@ -54,6 +56,6 @@ width: 40vw;
 @media (min-width: 1200px) {
 .profilePopup  {
 top: -8rem;
-width: 30vw;
+width: 32vw;
   }
 }
