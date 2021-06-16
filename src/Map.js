@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import PhotoListContainer from "./components/PhotoList";
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -34,7 +34,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const [showPopup, setShowPopup] = useState({});
   const [posts, setPosts] = usePosts();
   const [image, setImage] = useState([]);
-
+  const [showProfilePopup, setShowProfilePopup] = useState();
   const [username, setUsername] = useState();
 
   const geocoderContainerRef = useRef();
@@ -43,8 +43,16 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
+  // useEffect(() => {
+  //   setImage (setImage)
+  // }, [image])
 
-
+  const profilePopupShow = (event) => {
+    setShowProfilePopup(true)
+  };
+  const profilePopupHide = (event) => {
+    setShowProfilePopup(false)
+  };
 
   const handleViewportChange = useCallback(
     (newViewport) => setViewport(newViewport),
@@ -126,7 +134,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       console.log("Attempting photo upload")
       console.log(image[0])
       updatePhotoURL(image[0])
-
+      profilePopupHide()
     }
     catch {
       console.log("Didn't work")
@@ -306,9 +314,11 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       // {defaultUserImage}
       />
 
-      <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
+      <div onClick={profilePopupShow}>
+        <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
+      </div>
 
-      <div className="profilePopup" >
+      <div className="profilePopup" style={{display:"flex !important"}} style={{ display: showProfilePopup ? "block" : "none" }}>
         {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
         <div className="profileImageUploadBtn">
           <PhotoListContainer
@@ -316,7 +326,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
           />
         </div>
         <p className="profilePopupText"> Choose a profile image</p>
-        <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white", justifyContent: "flex-end" }} onClick={handleUploadPhoto}> Done </Button>
+        <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white", justifyContent: "flex-end" }} onClick={handleUploadPhoto} > Done </Button>
       </div>
 
       <h2
