@@ -2,45 +2,58 @@
 color: #D3D3D3;
 }
 
-.uploadPopup {
+.profilePopup {
 background-color: #333333;
 color: #D3D3D3;
-border-radius: 50px;
+border-radius: 20px;
 padding: 10px;
 position: relative;
 display: flex !important;
-justify-content: center;
+justify-content: space-between;
 margin-left: auto;
 margin-right: auto;
 align-items: center;
-width: 25vw;
+width: 30vw;
 }
 
-.uploadPopup:hover {
-  background-color: #3d3d3d;
-}
-
-
-@media (max-width: 576px) {
-.uploadPopup  {
+@media (max-width: 360px) {
+.profilePopup  {
 top: -7rem;
+width: 95vw;
+  }
+}
+
+@media (min-width: 360px) {
+.profilePopup  {
+top: -7rem;
+width: 95vw;
+  }
+}
+
+@media (min-width: 425px) {
+.profilePopup  {
+top: -7rem;
+width: 80vw;
   }
 }
 
 @media (min-width: 576px) {
-.uploadPopup  {
+.profilePopup  {
 top: -6rem;
+width: 60vw;
   }
 }
 
 @media (min-width: 992px) {
-.uploadPopup  {
+.profilePopup  {
 top: -8rem;
+width: 40vw;
   }
 }
 
 @media (min-width: 1200px) {
-.uploadPopup  {
+.profilePopup  {
 top: -8rem;
+width: 30vw;
   }
 }

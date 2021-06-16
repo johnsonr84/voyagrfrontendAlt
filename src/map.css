@@ -178,3 +178,29 @@ top: -5rem;
   height: 3rem;
   border-radius: 24px;
 } 
+
+ .profileImageUploadBtn {
+   justify-content: center;
+  width: 100% !important;
+  background-color: #585858 !important;
+  height: 3rem;
+
+  border-radius: 15px;
+  width: 20% !important;
+} 
+
+
+.profileImageUploadBtn:hover {
+  background-color: #6D6D6D !important;
+}
+
+.profilePopupSubmit:hover {
+  background-color: #6D6D6D !important;
+}
+
+.profilePopupText {
+  font-size: large !important;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0% !important;
+}

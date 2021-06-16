@@ -6,7 +6,7 @@ import { usePosts } from '../../Contexts/PostContexts';
 
 export default function Post(profileImage) {
     const { currentUser } = useAuth()
-    const { uid, displayName } = currentUser;
+    const { uid, displayName, photoURL } = currentUser;
     const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
     const [messages, setMessages] = usePosts();
 
@@ -15,7 +15,7 @@ export default function Post(profileImage) {
             .map(message =>
                 <Message
                     title={message.title}
-                    profileImage={defaultUserImage}
+                    profileImage={photoURL}
                     username={displayName}
                     date={message.date}
                     description={message.description}

@@ -16,7 +16,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useAuth, AuthProvider } from "./Contexts/AuthContext"
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
-import { faImages } from '@fortawesome/free-solid-svg-icons'
+import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
@@ -307,14 +307,18 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       />
 
       <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
-      <div className="uploadPopup" >
-        <FontAwesomeIcon icon={faImages} className="imagesPopup" size="3x" />
-        <PhotoListContainer
-          style={{ justifyContent: "center" }}
-          setImage={setImage}
-        />
-        <Button style={{ backgroundColor: "#585858", borderColor: "white", marginLeft: 10 }} onClick={handleUploadPhoto}> Done </Button>
+
+      <div className="profilePopup" >
+        {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
+        <div className="profileImageUploadBtn">
+          <PhotoListContainer
+            setImage={setImage}
+          />
+        </div>
+        <p className="profilePopupText"> Choose a profile image</p>
+        <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white", justifyContent: "flex-end" }} onClick={handleUploadPhoto}> Done </Button>
       </div>
+
       <h2
         className="profileName">
         {displayName}
