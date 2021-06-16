@@ -21,7 +21,7 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
     var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
     const { currentUser } = useAuth()
-    const { uid, displayName } = currentUser;
+    const { uid, photoURL } = currentUser;
     const userID = uid;
     const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
@@ -62,7 +62,7 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
             <div className="messageSender">
                 <div className="messageSender-forms">
                     <Avatar
-                        avatarImage={defaultUserImage}
+                        avatarImage={photoURL}
                     />
                     <form>
                         <div className="messageSender-top-forms">
