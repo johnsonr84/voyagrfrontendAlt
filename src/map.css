@@ -134,32 +134,33 @@ a:hover {
 .profileName {
   display: flex;
   justify-content: center;
-  top: -2rem;
+  top: -4rem;
   position: relative;
+  z-index: 1;
 }
 
 
 @media (max-width: 576px) {
  .profileName  {
-  top: -3rem;
+  top: -5rem;
   }
 }
 
 @media (min-width: 576px) {
  .profileName  {
-  top: -3rem;
+  top: -5rem;
   }
 }
 
 @media (min-width: 992px) {
   .profileName  {
-top: -5rem;
+top: -7rem;
   }
 }
 
 @media (min-width: 1200px) {
    .profileName  {
-   top: -5rem;
+   top: -7rem;
   }
 }
 
@@ -184,7 +185,6 @@ top: -5rem;
   width: 100% !important;
   background-color: #585858 !important;
   height: 3rem;
-
   border-radius: 15px;
   width: 20% !important;
 } 
@@ -192,6 +192,10 @@ top: -5rem;
 
 .profileImageUploadBtn:hover {
   background-color: #6D6D6D !important;
+}
+
+.profilePopupSubmit{
+margin-right: 1rem !important;
 }
 
 .profilePopupSubmit:hover {
@@ -202,5 +206,24 @@ top: -5rem;
   font-size: large !important;
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 0% !important;
+  /* margin-left: 0% !important; */
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.profileImage, .avatarImage {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

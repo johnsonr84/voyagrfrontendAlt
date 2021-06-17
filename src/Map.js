@@ -47,6 +47,14 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   //   setImage (setImage)
   // }, [image])
 
+  const togglePopup = (e) => {
+    if (showProfilePopup)
+      setShowProfilePopup(false)
+    else {
+      setShowProfilePopup(true)
+    }
+  }
+
   const profilePopupShow = (event) => {
     setShowProfilePopup(true)
   };
@@ -309,28 +317,29 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       </ReactMapGL>
 
       <ProfileImage
-        className="profileImageDiv"
+        className="profileImageDiv noselect"
         avatarImage={photoURL}
       // {defaultUserImage}
       />
 
-      <div onClick={profilePopupShow}>
+      <div onClick={togglePopup}>
         <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
       </div>
-
-      <div className="profilePopup" style={{display:"flex !important"}} style={{ display: showProfilePopup ? "block" : "none" }}>
-        {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
-        <div className="profileImageUploadBtn">
-          <PhotoListContainer
-            setImage={setImage}
-          />
+      <div className="showHidePopup" style={{ position: "relative", display: showProfilePopup ? "block" : "none" }}>
+        <div className="profilePopup" >
+          {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
+          <div className="profileImageUploadBtn">
+            <PhotoListContainer
+              setImage={setImage}
+            />
+          </div>
+          <p className="profilePopupText noselect"> Select a profile image</p>
+          <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white" }} onClick={handleUploadPhoto} > Submit </Button>
         </div>
-        <p className="profilePopupText"> Choose a profile image</p>
-        <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white", justifyContent: "flex-end" }} onClick={handleUploadPhoto} > Done </Button>
       </div>
 
       <h2
-        className="profileName">
+        className="profileName noselect">
         {displayName}
       </h2>
     </>
