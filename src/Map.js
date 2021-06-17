@@ -36,16 +36,18 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const [image, setImage] = useState([]);
   const [showProfilePopup, setShowProfilePopup] = useState();
   const [username, setUsername] = useState();
-
   const geocoderContainerRef = useRef();
   const geolocateControlRef = useRef();
   const mapRef = useRef();
+  const [refresh, setRefresh] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState();
 
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
-  // useEffect(() => {
-  //   setImage (setImage)
-  // }, [image])
+  useEffect(() => {
+    setProfilePhoto(photoURL)
+  }, [refresh])
+
 
   const togglePopup = (e) => {
     if (showProfilePopup)
@@ -141,7 +143,9 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     try {
       console.log("Attempting photo upload")
       console.log(image[0])
-      updatePhotoURL(image[0])
+      updatePhotoURL(image[0]).then(() => {
+        setRefresh(!refresh)
+      })
       profilePopupHide()
     }
     catch {
@@ -318,7 +322,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
       <ProfileImage
         className="profileImageDiv noselect"
-        avatarImage={photoURL}
+        avatarImage={profilePhoto}
       // {defaultUserImage}
       />
 

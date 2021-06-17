@@ -97,7 +97,7 @@ font-size: medium;
 /* ------------------Title----------------------- */
 
 @media (max-width: 360px) {
-  .messageSender-bottom-form{
+  .messageSender-top-left-form{
  width: 11.5rem
 }
 }
@@ -245,4 +245,18 @@ margin-top: 0;
 
 .messageSender-top-right-form{
   display: flex;
+}
+
+/* --------------------------- */
+
+@media (max-width: 360px) {
+  .messageSenderImage{
+ display: none !important
+}
+}
+
+@media (min-width: 360px) {
+  .messageSenderImage{
+ display: block
+}
 }

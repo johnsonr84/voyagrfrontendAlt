@@ -1,4 +1,4 @@
-import { useAuth, AuthProvider } from "../AuthContext"
+import { useAuth } from "../AuthContext"
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { API } from "../../utils/API";
 
