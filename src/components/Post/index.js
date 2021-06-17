@@ -1,6 +1,6 @@
 import React from 'react'
 import "./style.css"
-import { useAuth, AuthProvider } from "../../Contexts/AuthContext"
+import { useAuth } from "../../Contexts/AuthContext"
 import Message from '../Message'
 import { usePosts } from '../../Contexts/PostContexts';
 

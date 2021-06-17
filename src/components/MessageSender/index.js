@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./style.css";
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 import { faVideo } from '@fortawesome/free-solid-svg-icons'
@@ -6,7 +6,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faGrinAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Avatar from '../Avatar';
-import { useAuth, AuthProvider } from "../../Contexts/AuthContext"
+import { useAuth } from "../../Contexts/AuthContext"
 import { API } from "../../utils/API"
 import { usePosts } from '../../Contexts/PostContexts';
 import { Col } from '../Grid';
@@ -17,6 +17,7 @@ import PhotoListContainer from "../PhotoList";
 var moment = require('moment');
 
 export default function MessageSender({ addPostLocation, setAddPostLocation, viewport, setViewport }) {
+
     let timestamp = Date.now()
     var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
@@ -61,9 +62,11 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
         <>
             <div className="messageSender">
                 <div className="messageSender-forms">
-                    <Avatar
-                        avatarImage={photoURL}
-                    />
+                    <div className="messageSenderImage">
+                        <Avatar
+                            avatarImage={photoURL}
+                        />
+                    </div>
                     <form>
                         <div className="messageSender-top-forms">
                             <Col size="md-6">
@@ -137,7 +140,7 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
                             </div>
                             <div className="messageSender-icon">
                                 <FontAwesomeIcon icon={faGrinAlt} size="2x" />
-                                Feeling/Activity
+                                Feeling
                             </div>
                         </div>
                     </div>

@@ -227,3 +227,23 @@ margin-right: 1rem !important;
     -ms-user-select: none;
     user-select: none;
 }
+
+/* ------------------------- */
+@media (max-width: 320px) {
+ .profilePopupText  {
+  font-size: x-small !important;
+  }
+}
+
+
+@media (min-width: 320px) {
+ .profilePopupText  {
+  font-size: smaller !important;
+  }
+}
+
+@media (min-width: 410px) {
+ .profilePopupText  {
+  font-size: medium !important;
+  }
+}

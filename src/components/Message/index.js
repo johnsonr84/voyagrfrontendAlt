@@ -6,6 +6,7 @@ import { faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Message({ username, date, description, images, title, profileImage }) {
+
     return (
         <div className="post" >
             <div className="post-top">
@@ -29,15 +30,15 @@ export default function Message({ username, date, description, images, title, pr
                 <div className="post-options">
                     <div className="post-icon">
                         <FontAwesomeIcon icon={faThumbsUp} size="lg" style={{ marginRight: 7 }} />
-                    Like
+                        Like
                     </div>
                     <div className="post-icon">
                         <FontAwesomeIcon icon={faCommentAlt} size="lg" style={{ marginRight: 7 }} />
-                    Comment
+                        Comment
                     </div>
                     <div className="post-icon">
                         <FontAwesomeIcon icon={faShare} size="lg" style={{ marginRight: 7 }} />
-                    Share
+                        Share
                     </div>
                 </div>
             </div>
