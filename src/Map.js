@@ -45,7 +45,12 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
   useEffect(() => {
-    setProfilePhoto(photoURL)
+    if (photoURL == null) {
+      setProfilePhoto(defaultUserImage)
+    }
+    else {
+      setProfilePhoto(photoURL)
+    }
   }, [refresh])
 
 
@@ -142,8 +147,8 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
     try {
       console.log("Attempting photo upload")
-      console.log(image[0])
-      updatePhotoURL(image[0]).then(() => {
+      console.log(image[image.length - 1])
+      updatePhotoURL(image[image.length - 1]).then(() => {
         setRefresh(!refresh)
       })
       profilePopupHide()
@@ -182,8 +187,9 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
         mapStyle="mapbox://styles/thecjreynolds/ck117fnjy0ff61cnsclwimyay"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         onViewportChange={nextViewport => setViewport(nextViewport)}
-        onClick={showAddMarkerPopup}
+        onDblClick={showAddMarkerPopup}
         transitionDuration="200"
+        doubleClickZoom={false}
       >
         <GeolocateControl
           style={geolocateControlStyle}

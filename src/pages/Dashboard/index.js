@@ -3,6 +3,7 @@ import Header from "../../Map"
 import MessageSender from "../../components/MessageSender"
 import Feed from "../../components/Feed";
 import Post from "../../components/Post";
+import UserInfo from "../../components/UserInfo";
 
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
@@ -21,6 +22,7 @@ function DashboardPage() {
       style={{ backgroundColor: "lightgray" }}
     >
       <Header addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
+      <UserInfo></UserInfo>
       <Feed>
         <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
         <Post />

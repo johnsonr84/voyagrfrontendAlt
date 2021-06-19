@@ -28,9 +28,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" component={Landing} exact />
-            <Route path="/password-reset" component={ResetPassword} />
-            <PrivateRoute path="/settings" component={Settings} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <Route path="/password-reset" component={ResetPassword} exact />
+            <PrivateRoute path="/settings" component={Settings} exact />
+            <PrivateRoute path="/dashboard" component={Dashboard} exact />
+            <PrivateRoute path="/dashboard/:uid" component={Dashboard} exact />
           </Switch>
         </Router >
       </CloudinaryContext>
