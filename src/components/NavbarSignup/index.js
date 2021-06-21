@@ -17,6 +17,8 @@ import { auth } from "../../firebase"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
+
+
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const NavbarSignup = () => {
@@ -30,6 +32,7 @@ export const NavbarSignup = () => {
     const [password, setPassword] = useState()
     const [passwordConfirm, setPasswordConfirm] = useState()
     const [message, setMessage] = useState("")
+    const [userUid, setUserUid] = useState()
 
     async function handleSubmitSignup(e) {
         e.preventDefault()
@@ -43,6 +46,11 @@ export const NavbarSignup = () => {
             setError("")
             setLoading(true)
             await signup(name, email, password)
+
+           
+
+               
+            
             setMessage("Check your inbox for further instructions")
             handleCloseSignup();
             handleShowAlert();
@@ -51,9 +59,12 @@ export const NavbarSignup = () => {
             setError("Failed to create an account")
         }
 
+
         setLoading(false)
 
     }
+
+
 
 
     async function handleSubmitLogin(e) {
@@ -64,6 +75,7 @@ export const NavbarSignup = () => {
             setError("")
             setLoading(true)
             await login(email, password)
+
         }
 
 

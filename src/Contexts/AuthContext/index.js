@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../../firebase"
 import { useHistory } from "react-router-dom"
 import firebase from "firebase/app"
+import { API } from "../../utils/API";
 
 const AuthContext = React.createContext()
 
@@ -19,9 +20,23 @@ export function AuthProvider({ children }) {
         return auth.createUserWithEmailAndPassword(email, password)
             .then((userData) => {
                 userData.user.updateProfile({ displayName: name });
-                userData.user.sendEmailVerification();
+                userData.user.sendEmailVerification();    
+    // console.log(userData.user.uid)
+    // console.log(name)
+    const newUser = {
+        userName: name,
+        profileImage: "",
+        uidID: userData.user.uid,
+
+    }
+
+   
+    console.log(newUser)
+    API.saveUser(newUser).catch(e => console.log(e))
+
             })
             .catch((error) => console.log(error));
+            
     }
 
     async function login(email, password) {
