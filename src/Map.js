@@ -53,7 +53,15 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     }
   }, [refresh])
 
+// const updatedProfileImage = (profilePhoto) => {
+//   currentUser.uid ? API.userExists(currentUser.uid).then(
+//     {$set: {ProfileImage: profilePhoto}},
+//     console.log("Image Updated")
+//   ) : console.log("not Found")
+// }
+// console.log(profilePhoto)
 
+//console.log(currentUser.uid)
   const togglePopup = (e) => {
     if (showProfilePopup)
       setShowProfilePopup(false)
@@ -151,7 +159,8 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       updatePhotoURL(image[image.length - 1]).then(() => {
         setRefresh(!refresh)
       })
-      profilePopupHide()
+      // updatedProfileImage();
+      profilePopupHide();
     }
     catch {
       console.log("Didn't work")
