@@ -13,6 +13,7 @@ import { photosFetched } from './actions';
 import { fetchPhotos } from './utils/CloudinaryService';
 // import { AuthProvider } from "./Contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute"
+import UserDashboard from "./pages/UserDashboard";
 
 class App extends Component {
   componentDidMount() {
@@ -32,6 +33,8 @@ class App extends Component {
             <PrivateRoute path="/settings" component={Settings} exact />
             <PrivateRoute path="/dashboard" component={Dashboard} exact />
             <PrivateRoute path="/dashboard/:uid" component={Dashboard} exact />
+            <PrivateRoute path="/:id" component={UserDashboard} />
+
           </Switch>
         </Router >
       </CloudinaryContext>

@@ -20,23 +20,23 @@ export function AuthProvider({ children }) {
         return auth.createUserWithEmailAndPassword(email, password)
             .then((userData) => {
                 userData.user.updateProfile({ displayName: name });
-                userData.user.sendEmailVerification();    
-    // console.log(userData.user.uid)
-    // console.log(name)
-    const newUser = {
-        userName: name,
-        profileImage: "",
-        uidID: userData.user.uid,
+                userData.user.sendEmailVerification();
+                // console.log(userData.user.uid)
+                // console.log(name)
+                const newUser = {
+                    userName: name,
+                    profileImage: "",
+                    uid: userData.user.uid,
 
-    }
+                }
 
-   
-    console.log(newUser)
-    API.saveUser(newUser).catch(e => console.log(e))
+
+                console.log(newUser)
+                API.saveUser(newUser).catch(e => console.log(e))
 
             })
             .catch((error) => console.log(error));
-            
+
     }
 
     async function login(email, password) {

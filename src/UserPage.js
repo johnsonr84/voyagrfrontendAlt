@@ -20,19 +20,20 @@ import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
+import { useParams } from 'react-router-dom';
 
 var moment = require('moment');
 
 
 
-export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
+export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
   const { updatePhotoURL, currentUser } = useAuth()
   const { uid, displayName, photoURL } = currentUser;
-  const userID = uid;
+  // const userID = uid;
   const [input, setInput] = useState({});
-  const [newPosts, setNewPosts] = usePosts();
+  const [newPosts, setNewPosts] = useState([]);
   const [showPopup, setShowPopup] = useState({});
-  const [posts, setPosts] = usePosts();
+  // const [posts, setPosts] = usePosts();
   const [image, setImage] = useState([]);
   const [showProfilePopup, setShowProfilePopup] = useState();
   const [username, setUsername] = useState();
@@ -44,6 +45,22 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
+
+  const { id } = useParams()
+  console.log("UserPage id: " + id)
+
+  useEffect(() => {
+    if (!currentUser) {
+      return
+    }
+
+    API.getPost(id)
+      .then(res =>
+        setNewPosts(res.data)
+      )
+      .catch(err => console.log(err));
+  }, [id]);
+
   useEffect(() => {
     if (photoURL == null) {
       setProfilePhoto(defaultUserImage)
@@ -53,15 +70,6 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     }
   }, [refresh])
 
-  // const updatedProfileImage = (profilePhoto) => {
-  //   currentUser.uid ? API.userExists(currentUser.uid).then(
-  //     {$set: {ProfileImage: profilePhoto}},
-  //     console.log("Image Updated")
-  //   ) : console.log("not Found")
-  // }
-  // console.log(profilePhoto)
-
-  // console.log(currentUser.uid)
 
   const togglePopup = (e) => {
     if (showProfilePopup)
@@ -156,12 +164,11 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
     try {
       console.log("Attempting photo upload")
+      console.log(image[image.length - 1])
       updatePhotoURL(image[image.length - 1]).then(() => {
         setRefresh(!refresh)
-        setImage([])
       })
-      // updatedProfileImage();
-      profilePopupHide();
+      profilePopupHide()
     }
     catch {
       console.log("Didn't work")
@@ -366,4 +373,4 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   )
 }
 
-export default Header;
+export default UserHeader;
