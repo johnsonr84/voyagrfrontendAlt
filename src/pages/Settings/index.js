@@ -32,7 +32,7 @@ export default function Settings() {
     return (
         <>
             <div
-                style={{ backgroundColor: "#D3D3D3", height: "100vh" }}
+                style={{ backgroundColor: "#333333", height: "100vh" }}
             >
                 <Card className="updateProfile" style={{ top: 100, marginLeft: "auto", marginRight: "auto" }}>
                     <h2>Settings</h2>
@@ -46,6 +46,16 @@ export default function Settings() {
                             type="text" onChange={(e) => setEmail(e.target.value)} required
                         />
                         <label> Update email:</label>
+                        <Input
+                            // onChange={(e) => setEmail(e.target.value)}
+                            type="email" onChange={(e) => setEmail(e.target.value)} required
+                        />
+                        <label> Change password:</label>
+                        <Input
+                            // onChange={(e) => setEmail(e.target.value)}
+                            type="email" onChange={(e) => setEmail(e.target.value)} required
+                        />
+                        <label> Current password:</label>
                         <Input
                             // onChange={(e) => setEmail(e.target.value)}
                             type="email" onChange={(e) => setEmail(e.target.value)} required

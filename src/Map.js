@@ -50,7 +50,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
   useEffect(() => {
-    if (profilePhoto == null) {
+    if (photoURL == null) {
       setProfilePhoto(defaultUserImage)
     }
     else {
@@ -273,7 +273,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
                     anchor="top" >
                     <div className="popup">
                       <h3>{post.title}</h3>
-                      <p>{post.description}</p>
+                      <p className="popupDescription">{post.description}</p>
                       <h6>Latitude, Longitude:</h6>
                       <p> {post.latitude.toFixed(2)}, {post.longitude.toFixed(2)} </p>
 
