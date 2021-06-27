@@ -42,6 +42,7 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
   const mapRef = useRef();
   const [refresh, setRefresh] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState();
+  const [avatar, setAvatar] = useState([]);
 
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
@@ -63,16 +64,20 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
 
 
   useEffect(() => {
-    if (profilePhoto == null) {
-      setProfilePhoto(defaultUserImage)
-      return
-    }
+    if (avatar) {
+      console.log(avatar)
 
-    API.getUserByParam(id)
-      .then(res =>
-        setProfilePhoto(res.data.profileImage)
-      )
-      .catch(err => console.log(err));
+      API.getUserByParam(id)
+        .then(res =>
+          setAvatar(res.data)
+        )
+        .catch(err => console.log(err));
+
+    }
+    // else {
+    //   setProfilePhoto(defaultUserImage)
+    // }
+
   }, [id]);
 
 
@@ -185,6 +190,14 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
+
+  const handleProfileImage = () => {
+    if (avatar.profileImage) {
+      setProfilePhoto(avatar.profileImage)
+    } else {
+      setProfilePhoto(defaultUserImage)
+    }
+  };
 
   return (
     <>
@@ -347,12 +360,30 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
           ) : null
         }
       </ReactMapGL>
+      {/* {avatar
+        .map(avatar => {
+          if (avatar.profile == null) {
+            return <ProfileImage
+              className="profileImageDiv noselect"
+              avatarImage={defaultUserImage}
+            />
 
-      <ProfileImage
-        className="profileImageDiv noselect"
-        avatarImage={profilePhoto}
-      // {defaultUserImage}
-      />
+          }
+          else {
+            return <ProfileImage
+              className="profileImageDiv noselect"
+              avatarImage={avatar.profileImage}
+            />
+          }
+        })
+      } */}
+
+      {avatar
+        .map(avatar =>
+          <ProfileImage
+            className="profileImageDiv noselect"
+            avatarImage={avatar.profileImage}
+          />)}
 
       {/* <div onClick={togglePopup}>
         <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
@@ -369,12 +400,14 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
           <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white" }} onClick={handleUploadPhoto} > Submit </Button>
         </div>
       </div>
-
-      {/* <h2
-        className="profileName noselect">
-        {displayName}
-      </h2> */}
+      {avatar
+        .map(avatar =>
+          <h2
+            className="userProfileName noselect">
+            {avatar.userName}
+          </h2>)}
     </>
+
   )
 }
 

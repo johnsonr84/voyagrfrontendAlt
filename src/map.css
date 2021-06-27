@@ -163,6 +163,41 @@ top: -7rem;
    top: -7rem;
   }
 }
+/* ---------------User Profile Name--------------- */
+
+.userProfileName {
+  display: flex;
+  justify-content: center;
+  top: -2rem;
+  position: relative;
+  z-index: 1;
+}
+
+
+@media (max-width: 576px) {
+ .userProfileName  {
+  top: -3rem;
+  }
+}
+
+@media (min-width: 576px) {
+ .userProfileName  {
+  top: -3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .userProfileName  {
+top: -5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+   .userProfileName  {
+   top: -5rem;
+  }
+}
+
 
 /* ----------------------------- */
 .upload_link {

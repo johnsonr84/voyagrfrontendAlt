@@ -22,7 +22,7 @@ function DashboardPage() {
       style={{ backgroundColor: "lightgray" }}
     >
       <Header addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
-      {/* <UserInfo></UserInfo> */}
+      {/* <UserInfo /> */}
       <Feed>
         <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
         <Post />

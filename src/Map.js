@@ -50,7 +50,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
   useEffect(() => {
-    if (photoURL == null) {
+    if (profilePhoto == null) {
       setProfilePhoto(defaultUserImage)
     }
     else {
@@ -58,12 +58,12 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     }
   }, [refresh])
 
-  const getUserImage = () => {
-    API.getUser({ uid: uid }).then(res =>
-      setUserImage(res.data.profileImage)
-    )
-      .catch(err => console.log(err));
-  }
+  // const getUserImage = () => {
+  //   API.getUser({ uid: uid }).then(res =>
+  //     setUserImage(res.data)
+  //   )
+  //     .catch(err => console.log(err));
+  // }
 
   const updatedProfileImage = async () => {
     const profileImage = image[0]
