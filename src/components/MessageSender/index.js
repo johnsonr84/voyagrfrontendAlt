@@ -24,11 +24,25 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
     const { currentUser } = useAuth()
     const { uid, photoURL } = currentUser;
     const userID = uid;
-    const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
     const [input, setInput] = useState({});
     const [posts, setPosts] = usePosts();
     const [image, setImage] = useState([]);
+    const [refresh, setRefresh] = useState(false);
+
+    const [profilePhoto, setProfilePhoto] = useState();
+
+    const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
+
+    useEffect(() => {
+        if (photoURL == null) {
+            setProfilePhoto(defaultUserImage)
+        }
+        else {
+            setProfilePhoto(photoURL)
+        }
+    }, [])
+
 
     function handleChange(event) {
 
@@ -64,7 +78,7 @@ export default function MessageSender({ addPostLocation, setAddPostLocation, vie
                 <div className="messageSender-forms">
                     <div className="messageSenderImage">
                         <Avatar
-                            avatarImage={photoURL}
+                            avatarImage={profilePhoto}
                         />
                     </div>
                     <form>

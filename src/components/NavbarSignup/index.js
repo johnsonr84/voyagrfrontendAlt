@@ -47,10 +47,6 @@ export const NavbarSignup = () => {
             setLoading(true)
             await signup(name, email, password)
 
-           
-
-               
-            
             setMessage("Check your inbox for further instructions")
             handleCloseSignup();
             handleShowAlert();
@@ -75,13 +71,10 @@ export const NavbarSignup = () => {
             setError("")
             setLoading(true)
             await login(email, password)
-
         }
-
 
         catch {
             setError("Invalid Username or Password")
-
         }
 
         setLoading(false)

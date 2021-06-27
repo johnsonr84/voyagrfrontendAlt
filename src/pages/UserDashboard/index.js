@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Header from "../../Map"
+import UserHeader from "../../UserPage"
 import MessageSender from "../../components/MessageSender"
 import Feed from "../../components/Feed";
-import Post from "../../components/Post";
+import UserPost from "../../components/UserPost";
 import UserInfo from "../../components/UserInfo";
 
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 
-function DashboardPage() {
+function UserDashboard() {
   const [addPostLocation, setAddPostLocation] = useState(null);
   const [viewport, setViewport] = useState({
     width: '100vw',
@@ -21,14 +21,14 @@ function DashboardPage() {
     <div
       style={{ backgroundColor: "lightgray" }}
     >
-      <Header addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
-      {/* <UserInfo /> */}
+      <UserHeader addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
+      {/* <UserInfo></UserInfo> */}
       <Feed>
-        <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
-        <Post />
+        {/* <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} /> */}
+        <UserPost />
       </Feed>
     </div>
   );
 }
 
-export default DashboardPage;
+export default UserDashboard;

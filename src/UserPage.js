@@ -11,9 +11,6 @@ import { API } from "./utils/API"
 import ProfileImage from './components/ProfileImage';
 import UploadPhoto from './components/UploadPhoto';
 import { usePosts } from './Contexts/PostContexts';
-
-// import { usePhotoURL } from './Contexts/UserContexts/photoURL';
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useAuth, AuthProvider } from "./Contexts/AuthContext"
@@ -23,19 +20,20 @@ import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
+import { useParams } from 'react-router-dom';
 
 var moment = require('moment');
 
 
 
-export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
+export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
   const { updatePhotoURL, currentUser } = useAuth()
   const { uid, displayName, photoURL } = currentUser;
-  const userID = uid;
+  // const userID = uid;
   const [input, setInput] = useState({});
-  const [newPosts, setNewPosts] = usePosts();
+  const [newPosts, setNewPosts] = useState([]);
   const [showPopup, setShowPopup] = useState({});
-  const [posts, setPosts] = usePosts();
+  // const [posts, setPosts] = usePosts();
   const [image, setImage] = useState([]);
   const [showProfilePopup, setShowProfilePopup] = useState();
   const [username, setUsername] = useState();
@@ -43,35 +41,45 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const geolocateControlRef = useRef();
   const mapRef = useRef();
   const [refresh, setRefresh] = useState(false);
-  // const [upload, setUpload] = usePhotoURL()
-  const [userImage, setUserImage] = useState('')
   const [profilePhoto, setProfilePhoto] = useState();
+  const [avatar, setAvatar] = useState([]);
 
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
 
+
+  const { id } = useParams()
+  console.log("UserPage id: " + id)
+
   useEffect(() => {
-    if (photoURL == null) {
-      setProfilePhoto(defaultUserImage)
+    if (!currentUser) {
+      return
     }
-    else {
-      setProfilePhoto(photoURL)
+
+    API.getPost(id)
+      .then(res =>
+        setNewPosts(res.data)
+      )
+      .catch(err => console.log(err));
+  }, [id]);
+
+
+  useEffect(() => {
+    if (avatar) {
+      console.log(avatar)
+
+      API.getUserByParam(id)
+        .then(res =>
+          setAvatar(res.data)
+        )
+        .catch(err => console.log(err));
+
     }
-  }, [refresh])
+    // else {
+    //   setProfilePhoto(defaultUserImage)
+    // }
 
-  // const getUserImage = () => {
-  //   API.getUser({ uid: uid }).then(res =>
-  //     setUserImage(res.data)
-  //   )
-  //     .catch(err => console.log(err));
-  // }
+  }, [id]);
 
-  const updatedProfileImage = async () => {
-    const profileImage = image[0]
-    console.log("profilePhoto: " + profileImage)
-
-    await API.updateUser({ uid: uid, profileImage: profileImage }
-    )
-  }
 
   const togglePopup = (e) => {
     if (showProfilePopup)
@@ -115,14 +123,6 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
   let timestamp = Date.now()
   var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-
-
-
-  function handleUpload(event) {
-
-    const { value } = event.target
-    setInput({ ...input, [event.target.name]: value })
-  }
 
   function handleChange(event) {
 
@@ -170,16 +170,15 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     }
   };
 
-  async function handleUploadPhoto(e) {
-    e.preventDefault()
+  function handleUploadPhoto() {
+
     try {
-      updatedProfileImage()
-      updatePhotoURL(image[image.length - 1])
-        .then(() => {
-          setRefresh(!refresh)
-          setImage([])
-        })
-      profilePopupHide();
+      console.log("Attempting photo upload")
+      console.log(image[image.length - 1])
+      updatePhotoURL(image[image.length - 1]).then(() => {
+        setRefresh(!refresh)
+      })
+      profilePopupHide()
     }
     catch {
       console.log("Didn't work")
@@ -191,6 +190,14 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
+
+  const handleProfileImage = () => {
+    if (avatar.profileImage) {
+      setProfilePhoto(avatar.profileImage)
+    } else {
+      setProfilePhoto(defaultUserImage)
+    }
+  };
 
   return (
     <>
@@ -273,7 +280,7 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
                     anchor="top" >
                     <div className="popup">
                       <h3>{post.title}</h3>
-                      <p className="popupDescription">{post.description}</p>
+                      <p>{post.description}</p>
                       <h6>Latitude, Longitude:</h6>
                       <p> {post.latitude.toFixed(2)}, {post.longitude.toFixed(2)} </p>
 
@@ -353,38 +360,55 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
           ) : null
         }
       </ReactMapGL>
+      {/* {avatar
+        .map(avatar => {
+          if (avatar.profile == null) {
+            return <ProfileImage
+              className="profileImageDiv noselect"
+              avatarImage={defaultUserImage}
+            />
 
-      <ProfileImage
-        className="profileImageDiv noselect"
-        avatarImage={profilePhoto}
-      // {defaultUserImage}
-      />
+          }
+          else {
+            return <ProfileImage
+              className="profileImageDiv noselect"
+              avatarImage={avatar.profileImage}
+            />
+          }
+        })
+      } */}
 
-      <div onClick={togglePopup}>
+      {avatar
+        .map(avatar =>
+          <ProfileImage
+            className="profileImageDiv noselect"
+            avatarImage={avatar.profileImage}
+          />)}
+
+      {/* <div onClick={togglePopup}>
         <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
-      </div>
+      </div> */}
       <div className="showHidePopup" style={{ position: "relative", display: showProfilePopup ? "block" : "none" }}>
         <div className="profilePopup" >
+          {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
           <div className="profileImageUploadBtn">
             <PhotoListContainer
               setImage={setImage}
             />
           </div>
           <p className="profilePopupText noselect"> Select a profile image</p>
-          {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
-          <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white" }}
-            onClick={handleUploadPhoto}
-          >
-            Submit </Button>
+          <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white" }} onClick={handleUploadPhoto} > Submit </Button>
         </div>
       </div>
-
-      <h2
-        className="profileName noselect">
-        {displayName}
-      </h2>
+      {avatar
+        .map(avatar =>
+          <h2
+            className="userProfileName noselect">
+            {avatar.userName}
+          </h2>)}
     </>
+
   )
 }
 
-export default Header;
+export default UserHeader;
