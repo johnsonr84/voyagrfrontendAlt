@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UserHeader from "../../UserPage"
 import MessageSender from "../../components/MessageSender"
 import Feed from "../../components/Feed";
-import Post from "../../components/Post";
+import UserPost from "../../components/UserPost";
 import UserInfo from "../../components/UserInfo";
 
 // import Button from 'react-bootstrap/Button';
@@ -25,7 +25,7 @@ function UserDashboard() {
       {/* <UserInfo></UserInfo> */}
       <Feed>
         {/* <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} /> */}
-        <Post />
+        <UserPost />
       </Feed>
     </div>
   );

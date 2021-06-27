@@ -61,14 +61,19 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
       .catch(err => console.log(err));
   }, [id]);
 
+
   useEffect(() => {
-    if (photoURL == null) {
+    if (profilePhoto == null) {
       setProfilePhoto(defaultUserImage)
+      return
     }
-    else {
-      setProfilePhoto(photoURL)
-    }
-  }, [refresh])
+
+    API.getUserByParam(id)
+      .then(res =>
+        setProfilePhoto(res.data.profileImage)
+      )
+      .catch(err => console.log(err));
+  }, [id]);
 
 
   const togglePopup = (e) => {
@@ -349,9 +354,9 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
       // {defaultUserImage}
       />
 
-      <div onClick={togglePopup}>
+      {/* <div onClick={togglePopup}>
         <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
-      </div>
+      </div> */}
       <div className="showHidePopup" style={{ position: "relative", display: showProfilePopup ? "block" : "none" }}>
         <div className="profilePopup" >
           {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
@@ -365,10 +370,10 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
         </div>
       </div>
 
-      <h2
+      {/* <h2
         className="profileName noselect">
         {displayName}
-      </h2>
+      </h2> */}
     </>
   )
 }

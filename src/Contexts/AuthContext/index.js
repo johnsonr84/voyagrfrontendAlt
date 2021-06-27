@@ -25,11 +25,9 @@ export function AuthProvider({ children }) {
                 // console.log(name)
                 const newUser = {
                     userName: name,
-                    profileImage: "",
+                    profileImage: [],
                     uid: userData.user.uid,
-
                 }
-
 
                 console.log(newUser)
                 API.saveUser(newUser).catch(e => console.log(e))
@@ -40,13 +38,9 @@ export function AuthProvider({ children }) {
     }
 
     async function login(email, password) {
-        try {
-            auth.signInWithEmailAndPassword(email, password)
-        }
-        catch {
-            console.log("What happened?")
 
-        }
+        auth.signInWithEmailAndPassword(email, password)
+
     }
 
     function logout() {

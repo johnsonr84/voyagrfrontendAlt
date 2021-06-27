@@ -32,7 +32,6 @@ class App extends Component {
             <Route path="/password-reset" component={ResetPassword} exact />
             <PrivateRoute path="/settings" component={Settings} exact />
             <PrivateRoute path="/dashboard" component={Dashboard} exact />
-            <PrivateRoute path="/dashboard/:uid" component={Dashboard} exact />
             <PrivateRoute path="/:id" component={UserDashboard} />
 
           </Switch>

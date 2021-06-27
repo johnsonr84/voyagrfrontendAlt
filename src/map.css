@@ -247,3 +247,6 @@ margin-right: 1rem !important;
   font-size: medium !important;
   }
 }
+.hidden-input {
+  display:none
+}

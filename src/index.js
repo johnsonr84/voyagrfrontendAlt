@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 import { BrowserRouter as Router } from "react-router-dom";
 import { PostContextProvider } from './Contexts/PostContexts';
+// import { PhotoURLContextProvider } from './Contexts/UserContexts/photoURL';
+
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import PhotosListReducer from './reducers/PhotosListReducer';
@@ -26,7 +28,9 @@ ReactDOM.render(
     <AuthProvider>
       <Provider store={store}>
         <PostContextProvider>
+          {/* <PhotoURLContextProvider> */}
           <App cloudName={cloud_name} uploadPreset={upload_preset} />
+          {/* </PhotoURLContextProvider> */}
         </PostContextProvider>
       </Provider>
     </AuthProvider>

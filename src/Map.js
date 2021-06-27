@@ -11,6 +11,9 @@ import { API } from "./utils/API"
 import ProfileImage from './components/ProfileImage';
 import UploadPhoto from './components/UploadPhoto';
 import { usePosts } from './Contexts/PostContexts';
+
+// import { usePhotoURL } from './Contexts/UserContexts/photoURL';
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useAuth, AuthProvider } from "./Contexts/AuthContext"
@@ -40,6 +43,8 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
   const geolocateControlRef = useRef();
   const mapRef = useRef();
   const [refresh, setRefresh] = useState(false);
+  // const [upload, setUpload] = usePhotoURL()
+  const [userImage, setUserImage] = useState('')
   const [profilePhoto, setProfilePhoto] = useState();
 
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
@@ -53,15 +58,20 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     }
   }, [refresh])
 
-  // const updatedProfileImage = (profilePhoto) => {
-  //   currentUser.uid ? API.userExists(currentUser.uid).then(
-  //     {$set: {ProfileImage: profilePhoto}},
-  //     console.log("Image Updated")
-  //   ) : console.log("not Found")
-  // }
-  // console.log(profilePhoto)
+  const getUserImage = () => {
+    API.getUser({ uid: uid }).then(res =>
+      setUserImage(res.data.profileImage)
+    )
+      .catch(err => console.log(err));
+  }
 
-  // console.log(currentUser.uid)
+  const updatedProfileImage = async () => {
+    const profileImage = image[0]
+    console.log("profilePhoto: " + profileImage)
+
+    await API.updateUser({ uid: uid, profileImage: profileImage }
+    )
+  }
 
   const togglePopup = (e) => {
     if (showProfilePopup)
@@ -105,6 +115,14 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
 
   let timestamp = Date.now()
   var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+
+
+
+  function handleUpload(event) {
+
+    const { value } = event.target
+    setInput({ ...input, [event.target.name]: value })
+  }
 
   function handleChange(event) {
 
@@ -152,15 +170,15 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
     }
   };
 
-  function handleUploadPhoto() {
-
+  async function handleUploadPhoto(e) {
+    e.preventDefault()
     try {
-      console.log("Attempting photo upload")
-      updatePhotoURL(image[image.length - 1]).then(() => {
-        setRefresh(!refresh)
-        setImage([])
-      })
-      // updatedProfileImage();
+      updatedProfileImage()
+      updatePhotoURL(image[image.length - 1])
+        .then(() => {
+          setRefresh(!refresh)
+          setImage([])
+        })
       profilePopupHide();
     }
     catch {
@@ -347,14 +365,17 @@ export const Header = ({ addPostLocation, setAddPostLocation, viewport, setViewp
       </div>
       <div className="showHidePopup" style={{ position: "relative", display: showProfilePopup ? "block" : "none" }}>
         <div className="profilePopup" >
-          {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
           <div className="profileImageUploadBtn">
             <PhotoListContainer
               setImage={setImage}
             />
           </div>
           <p className="profilePopupText noselect"> Select a profile image</p>
-          <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white" }} onClick={handleUploadPhoto} > Submit </Button>
+          {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
+          <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white" }}
+            onClick={handleUploadPhoto}
+          >
+            Submit </Button>
         </div>
       </div>
 
