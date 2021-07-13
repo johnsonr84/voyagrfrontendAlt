@@ -382,7 +382,7 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
         .map(avatar =>
           <ProfileImage
             className="profileImageDiv noselect"
-            avatarImage={avatar.profileImage}
+            avatarImage={avatar.profileImage.length !== 0 ? avatar.profileImage : defaultUserImage}
           />)}
 
       {/* <div onClick={togglePopup}>
@@ -393,6 +393,7 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
           {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
           <div className="profileImageUploadBtn">
             <PhotoListContainer
+           
               setImage={setImage}
             />
           </div>

@@ -4,7 +4,7 @@ import MessageSender from "../../components/MessageSender"
 import Feed from "../../components/Feed";
 import Post from "../../components/Post";
 import UserInfo from "../../components/UserInfo";
-
+import VoyagrSearchFriend from "../../components/VoyagrSearchFriend";
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 
@@ -24,6 +24,7 @@ function DashboardPage() {
       <Header addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
       {/* <UserInfo /> */}
       <Feed>
+      <VoyagrSearchFriend/>
         <MessageSender addPostLocation={addPostLocation} setAddPostLocation={setAddPostLocation} viewport={viewport} setViewport={setViewport} />
         <Post />
       </Feed>
