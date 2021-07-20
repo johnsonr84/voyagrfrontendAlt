@@ -5,7 +5,7 @@ export const API = {
 
   getUser: (uid) => axios.get("api/users/", uid),
 
-  getUserByName: (userName) => axios.get("api/users/" , userName),
+  getUserByName: (userName) => axios.get("api/search/" , userName),
 
   getUserByParam: (uid) => axios.get("api/users/" + uid),
 
