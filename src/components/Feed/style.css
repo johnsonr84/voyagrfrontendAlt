@@ -1,3 +1,120 @@
-.feed {
-    margin-top: -3rem !important;
+.camera {
+  background-color: #333333;
+  color: #d3d3d3;
+  border-radius: 50px;
+  padding: 10px;
+  position: relative;
+  display: flex !important;
+  margin-left: auto;
+  margin-right: auto;
+  left: 4rem;
+}
+
+.camera:hover {
+  background-color: #3d3d3d;
+}
+
+@media (max-width: 576px) {
+  .camera {
+    top: -7rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .camera {
+    top: -6rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .camera {
+    top: -8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .camera {
+    top: -8rem;
+  }
+}
+
+.profilePopupSubmit {
+  margin-right: 1rem !important;
+}
+
+.profilePopupSubmit:hover {
+  background-color: #6d6d6d !important;
+}
+
+.profilePopupText {
+  font-size: large !important;
+  margin-top: auto;
+  margin-bottom: auto;
+  /* margin-left: 0% !important; */
+}
+
+/* ------------------------- */
+@media (max-width: 320px) {
+  .profilePopupText {
+    font-size: x-small !important;
+  }
+}
+
+@media (min-width: 320px) {
+  .profilePopupText {
+    font-size: smaller !important;
+  }
+}
+
+@media (min-width: 410px) {
+  .profilePopupText {
+    font-size: medium !important;
+  }
+}
+
+.profileImageUploadBtn {
+  justify-content: center;
+  width: 100% !important;
+  background-color: #585858 !important;
+  height: 3rem;
+  border-radius: 15px;
+  width: 20% !important;
+}
+
+.profileImageUploadBtn:hover {
+  background-color: #6d6d6d !important;
+}
+
+/* ---------Profile Name------------ */
+
+.profileName {
+  display: flex;
+  justify-content: center;
+  top: -4rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 576px) {
+  .profileName {
+    top: -5rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .profileName {
+    top: -5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .profileName {
+    top: -7rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .profileName {
+    top: -7rem;
+  }
 }
