@@ -16,6 +16,7 @@ import { faImages } from "@fortawesome/free-solid-svg-icons";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faGrinAlt } from "@fortawesome/free-solid-svg-icons";
+import VoyagrSearchFriend from "../VoyagrSearchFriend"
 import "./style.css";
 
 var moment = require("moment");
@@ -197,7 +198,7 @@ export default function Feed({
               >
                 <input
                   name="description"
-                  placeholder="What's on your mind?                                        "
+                  placeholder="What's on your mind?"
                   value={input.description}
                   onChange={handleChange}
                   className="descriptionInput"
@@ -252,6 +253,7 @@ export default function Feed({
           images={message.image}
         />
       ))}
+      {/* <VoyagrSearchFriend/> */}
     </FeedWrap>
   );
 }
