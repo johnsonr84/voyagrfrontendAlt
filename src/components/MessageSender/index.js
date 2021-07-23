@@ -85,7 +85,7 @@ export default function MessageSender({
           </div>
           <form>
             <div className="messageSender-top-forms">
-              <Col size="md-6">
+              <Col size="md-3">
                 <div className="messageSender-top-left-form">
                   <input
                     name="title"
@@ -97,7 +97,7 @@ export default function MessageSender({
                   />
                 </div>
               </Col>
-              <Col size="md-6">
+              <Col size="md-3">
                 <div className="messageSender-top-right-form">
                   <div className="visitDateText">Date Visited:</div>
                   <div className="visitDateDiv">

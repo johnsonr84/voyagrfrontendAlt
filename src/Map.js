@@ -325,12 +325,6 @@ export const Header = ({
           </>
         ) : null}
       </ReactMapGL>
-      <Feed
-        addPostLocation={addPostLocation}
-        setAddPostLocation={setAddPostLocation}
-        viewport={viewport}
-        setViewport={setViewport}
-      />
     </>
   );
 };

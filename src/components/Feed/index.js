@@ -17,6 +17,7 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faGrinAlt } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
+import VoyagrSearchFriend from "../VoyagrSearchFriend";
 
 var moment = require("moment");
 
@@ -117,7 +118,7 @@ export default function Feed({
     });
 
   return (
-    <FeedWrap>
+    <>
       <ProfileImage
         className="profileImageDiv noselect"
         avatarImage={profilePhoto}
@@ -155,103 +156,108 @@ export default function Feed({
       </div>
 
       <h2 className="profileName noselect">{displayName}</h2>
+      <Container className="feed-columns">
+        <VoyagrSearchFriend />
 
-      <div className="messageSender">
-        <div className="messageSender-forms">
-          <div className="messageSenderImage">
-            <Avatar avatarImage={profilePhoto} />
-          </div>
-          <form>
-            <div className="messageSender-top-forms">
-              <Col size="md-6">
-                <div className="messageSender-top-left-form">
-                  <input
-                    name="title"
-                    placeholder="Title"
-                    value={input.title}
-                    onChange={handleChange}
-                    className="titleInput"
-                    type="text"
-                  />
+        <Container>
+          <div className="messageSender">
+            <div className="messageSender-forms">
+              <div className="messageSenderImage">
+                <Avatar avatarImage={profilePhoto} />
+              </div>
+              <form>
+                <div className="messageSender-top-forms">
+                  <Col size="md-5">
+                    <div className="messageSender-top-left-form">
+                      <input
+                        name="title"
+                        placeholder="Title"
+                        value={input.title}
+                        onChange={handleChange}
+                        className="titleInput"
+                        type="text"
+                      />
+                    </div>
+                  </Col>
+                  <Col size="md-5">
+                    <div className="messageSender-top-right-form">
+                      <div className="visitDateText">Date Visited:</div>
+                      <div className="visitDateDiv">
+                        <input
+                          name="visitDate"
+                          value={input.visitDate}
+                          onChange={handleChange}
+                          className="visitDateInput"
+                          type="date"
+                        />
+                      </div>
+                    </div>
+                  </Col>
                 </div>
-              </Col>
-              <Col size="md-6">
-                <div className="messageSender-top-right-form">
-                  <div className="visitDateText">Date Visited:</div>
-                  <div className="visitDateDiv">
+                <Container>
+                  <div
+                    className="messageSender-bottom-form"
+                    style={{ marginTop: 15 }}
+                  >
                     <input
-                      name="visitDate"
-                      value={input.visitDate}
+                      name="description"
+                      placeholder="What's on your mind?                                        "
+                      value={input.description}
                       onChange={handleChange}
-                      className="visitDateInput"
-                      type="date"
+                      className="descriptionInput"
+                      type="text"
                     />
                   </div>
-                </div>
-              </Col>
+                  <input
+                    className="senderBtn"
+                    type="submit"
+                    value="Submit"
+                    onClick={handleSubmit}
+                  />
+                </Container>
+              </form>
             </div>
             <Container>
-              <div
-                className="messageSender-bottom-form"
-                style={{ marginTop: 15 }}
-              >
-                <input
-                  name="description"
-                  placeholder="What's on your mind?                                        "
-                  value={input.description}
-                  onChange={handleChange}
-                  className="descriptionInput"
-                  type="text"
-                />
+              <div className="messageSender-icons">
+                <div className="icons-row-first">
+                  <div
+                    className="messageSender-icon"
+                    variant="primary"
+                    onClick={handleShow}
+                  >
+                    <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" />
+                    Pin
+                  </div>
+                  <div className="messageSender-icon ">
+                    <FontAwesomeIcon icon={faImages} size="2x" />
+                    <PhotoListContainer setImage={setImage} />
+                  </div>
+                </div>
+                <div className="icons-row-second">
+                  <div className="messageSender-icon">
+                    <FontAwesomeIcon icon={faVideo} size="2x" />
+                    Live
+                  </div>
+                  <div className="messageSender-icon">
+                    <FontAwesomeIcon icon={faGrinAlt} size="2x" />
+                    Feeling
+                  </div>
+                </div>
               </div>
-              <input
-                className="senderBtn"
-                type="submit"
-                value="Submit"
-                onClick={handleSubmit}
-              />
             </Container>
-          </form>
-        </div>
-        <Container>
-          <div className="messageSender-icons">
-            <div className="icons-row-first">
-              <div
-                className="messageSender-icon"
-                variant="primary"
-                onClick={handleShow}
-              >
-                <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" />
-                Pin
-              </div>
-              <div className="messageSender-icon ">
-                <FontAwesomeIcon icon={faImages} size="2x" />
-                <PhotoListContainer setImage={setImage} />
-              </div>
-            </div>
-            <div className="icons-row-second">
-              <div className="messageSender-icon">
-                <FontAwesomeIcon icon={faVideo} size="2x" />
-                Live
-              </div>
-              <div className="messageSender-icon">
-                <FontAwesomeIcon icon={faGrinAlt} size="2x" />
-                Feeling
-              </div>
-            </div>
           </div>
+          {messages.map((message) => (
+            <Message
+              title={message.title}
+              profileImage={profilePhoto}
+              username={displayName}
+              date={message.date}
+              description={message.description}
+              images={message.image}
+            />
+          ))}
         </Container>
-      </div>
-      {messages.map((message) => (
-        <Message
-          title={message.title}
-          profileImage={profilePhoto}
-          username={displayName}
-          date={message.date}
-          description={message.description}
-          images={message.image}
-        />
-      ))}
-    </FeedWrap>
+      </Container>
+    </>
   );
 }

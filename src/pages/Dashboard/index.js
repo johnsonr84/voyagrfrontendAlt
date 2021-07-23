@@ -5,6 +5,7 @@ import Feed from "../../components/Feed";
 import Post from "../../components/Post";
 import UserInfo from "../../components/UserInfo";
 import VoyagrSearchFriend from "../../components/VoyagrSearchFriend";
+import FeedWrap from "../../components/FeedWrap";
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 
@@ -25,14 +26,22 @@ function DashboardPage() {
         viewport={viewport}
         setViewport={setViewport}
       />
-      {/* <UserInfo /> */}
-      {/* <Feed>
-        <VoyagrSearchFriend/>
-        <MessageSender
+      <FeedWrap>
+        <Feed
           addPostLocation={addPostLocation}
           setAddPostLocation={setAddPostLocation}
           viewport={viewport}
           setViewport={setViewport}
+        />
+      </FeedWrap>
+      {/* <UserInfo /> */}
+      {/* <Feed>
+        <VoyagrSearchFriend/>
+        <MessageSender
+        addPostLocation={addPostLocation}
+        setAddPostLocation={setAddPostLocation}
+        viewport={viewport}
+        setViewport={setViewport}
         />
         <Post />
       </Feed> */}
