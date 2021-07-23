@@ -1,30 +1,31 @@
-
 /* -------------Icons 4x1--------------- */
 
 @media (min-width: 992px) {
-.messageSender-icons, .icons-row-first, .icons-row-second {
-  padding-top: 10px;
-  display: flex; 
-  justify-content: space-evenly;
-}
+  .messageSender-icons,
+  .icons-row-first,
+  .icons-row-second {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 
 /* -------Icons 2x2------------- */
 
 @media (max-width: 992px) {
-.icons-row-first {
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-evenly;
-}
+  .icons-row-first {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 
 @media (max-width: 992px) {
-.icons-row-second {
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-evenly;
-}
+  .icons-row-second {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 /* --------------------- */
 
@@ -32,8 +33,8 @@
   background-color: #333333;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, .75);
-  width: 100%;
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.75);
+  width: 50vw;
   padding: 10px;
   border-radius: 33px;
 }
@@ -41,7 +42,7 @@
 .messageSender-forms {
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #61DAFB;
+  border-bottom: 2px solid #61dafb;
   padding: 20px;
 }
 
@@ -51,7 +52,6 @@
   color: white;
 }
 
-
 @media (max-width: 576px) {
   .upload_link {
     font-size: small;
@@ -59,150 +59,159 @@
 }
 
 @media (max-width: 476px) {
-.upload_link {
-font-size: x-small;
-}
+  .upload_link {
+    font-size: x-small;
+  }
 }
 
 @media (min-width: 576px) {
-.upload_link {
-font-size: medium;
-}
+  .upload_link {
+    font-size: medium;
+  }
 }
 
 /* ----------------Hide Inputs------------- */
 
-.visitDateInput, .titleInput {
-  border:none;
+.visitDateInput,
+.titleInput {
+  border: none;
   background-color: transparent;
   outline-width: 0;
-   width: 100%;
+  width: 100%;
 }
 
 .descriptionInput {
-  border:none;
+  border: none;
   background-color: transparent;
   outline-width: 0;
-   width: 100%
+  width: 100%;
 }
 
 /* --------Form break-point----------------- */
 
 @media (min-width: 768px) {
   .messageSender-top-forms {
-  display: flex;
-}
+    display: flex;
+  }
 }
 
 /* ------------------Title----------------------- */
 
 @media (max-width: 360px) {
-  .messageSender-top-left-form{
- width: 11.5rem
+  .messageSender-top-left-form {
+    width: 15vw;
+  }
 }
+
+@media (min-width: 360px) {
+  .messageSender-top-left-form {
+    width: 15vw;
+  }
 }
 
 @media (min-width: 768px) {
-  .messageSender-top-left-form{
- width: 15rem
-}
+  .messageSender-top-left-form {
+    width: 15vw;
+  }
 }
 
 @media (min-width: 992px) {
-  .messageSender-top-left-form{
- width: 20rem
-}
+  .messageSender-top-left-form {
+    width: 15vw;
+  }
 }
 
 @media (min-width: 1200px) {
-  .messageSender-top-left-form{
- width: 28rem
-}
+  .messageSender-top-left-form {
+    width: 15vw;
+  }
 }
 
 /* --------------------Date---------------------- */
 
-
-.visitDateDiv{
- width: 100%;
- }
-
+.visitDateDiv {
+  width: 15vw;
+}
 
 @media (max-width: 768px) {
-.visitDateDiv {
-margin-top: 1rem;
-}
+  .visitDateDiv {
+    margin-top: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
-.visitDateDiv {
-margin-top: 0;
+  .visitDateDiv {
+    margin-top: 0;
+  }
 }
-}
-
 
 /* -------------------------------------------- */
 
-
-@media (max-width:992px) {
-.visitDateText{
-  display: none;
-    }
+@media (max-width: 992px) {
+  .visitDateText {
+    display: none;
+  }
 }
 
 @media (min-width: 992px) {
-.visitDateText{
-  color: white;
-  font-size: larger;
-  width: 40%;
-  margin-top: 8px !important;
-  margin-right: 2px !important;
-
+  .visitDateText {
+    color: white;
+    font-size: larger;
+    width: 40%;
+    margin-top: 8px !important;
+    margin-right: 2px !important;
   }
 }
 
 /* -------------------Description---------------------- */
 
 @media (max-width: 360px) {
-  .messageSender-bottom-form{
- width: 11.5rem
+  .messageSender-bottom-form {
+    width: 20vw;
+  }
 }
+
+@media (min-width: 360px) {
+  .messageSender-bottom-form {
+    width: 25vw;
+  }
 }
 
 @media (min-width: 576px) {
-  .messageSender-bottom-form{
- width: 20rem
-}
+  .messageSender-bottom-form {
+    width: 30vw;
+  }
 }
 
 @media (min-width: 768px) {
-  .messageSender-bottom-form{
- width: 30rem
-}
+  .messageSender-bottom-form {
+    width: 33vw;
+  }
 }
 
 @media (min-width: 992px) {
-  .messageSender-bottom-form{
- width: 49rem
-}
+  .messageSender-bottom-form {
+    width: 36vw;
+  }
 }
 
 @media (min-width: 1200px) {
-  .messageSender-bottom-form{
- width: 58rem
-}
+  .messageSender-bottom-form {
+    width: 38vw;
+  }
 }
 /* -------------------------- */
 
- .messageSender-bottom-form ,.visitDateInput, .messageSender-top-left-form {
+.messageSender-bottom-form,
+.visitDateInput,
+.messageSender-top-left-form {
   background-color: rgb(240, 240, 240) !important;
   padding: 10px;
   border-radius: 24px;
-  
 }
 
-.senderBtn  {
-  display:  none;
+.senderBtn {
+  display: none;
 }
 
 .fa-user-circle {
@@ -210,7 +219,7 @@ margin-top: 0;
 }
 
 .fa-images {
-  color: #61DAFB;
+  color: #61dafb;
 }
 
 .fa-video {
@@ -219,7 +228,7 @@ margin-top: 0;
 }
 
 .fa-map-marker-alt {
-  color: #FE7A02;
+  color: #fe7a02;
   margin-right: 5px;
 }
 
@@ -229,12 +238,12 @@ margin-top: 0;
 }
 
 .messageSender-icon {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   align-items: center;
   display: flex;
   color: white;
   padding: 10px;
-  width: 200px;
+  width: 10vw;
 }
 
 .messageSender-icon:hover {
@@ -243,20 +252,20 @@ margin-top: 0;
   cursor: pointer;
 }
 
-.messageSender-top-right-form{
+.messageSender-top-right-form {
   display: flex;
 }
 
 /* --------------------------- */
 
 @media (max-width: 360px) {
-  .messageSenderImage{
- display: none !important
-}
+  .messageSenderImage {
+    display: none !important;
+  }
 }
 
 @media (min-width: 360px) {
-  .messageSenderImage{
- display: block
-}
+  .messageSenderImage {
+    display: block;
+  }
 }

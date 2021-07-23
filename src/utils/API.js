@@ -5,7 +5,7 @@ export const API = {
 
   getUser: (uid) => axios.get("api/users/", uid),
 
-  getUserByName: (userName) => axios.get("api/search/" , userName),
+  getUserByName: (userName) => axios.get("api/users/" + userName),
 
   getUserByParam: (uid) => axios.get("api/users/" + uid),
 
@@ -13,5 +13,5 @@ export const API = {
 
   savePost: (post) => axios.post("api/posts", post),
 
-  getPost: (uid) => axios.get("api/posts/" + uid)
-}
+  getPost: (uid) => axios.get("api/posts/" + uid),
+};
