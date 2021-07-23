@@ -16,6 +16,7 @@ import { faImages } from "@fortawesome/free-solid-svg-icons";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faGrinAlt } from "@fortawesome/free-solid-svg-icons";
+import VoyagrSearchFriend from "../VoyagrSearchFriend"
 import "./style.css";
 import VoyagrSearchFriend from "../VoyagrSearchFriend";
 
