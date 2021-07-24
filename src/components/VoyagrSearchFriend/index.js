@@ -10,42 +10,25 @@ import "./style.css";
 
 function VoyagrSearchFriend() {
   const [listOfUsers, setListOfUsers] = useState([]);
-  const [friendSearch, setFriendSearch] = useState("");
   const [nameFilter, setNameFilter] = useState("");
 
-  // const handleOnChange = (evt) => {
-  //   setFriendSearch(evt.target.value);
-  // };
-  // console.log(friendSearch);
+  const defaultUserImage = "https://i.imgur.com/ScCwMk8.png";
 
   const nameFilterRegExp = new RegExp(nameFilter, "i");
 
   useEffect(() => {
     API.getUserByName(nameFilter)
-      .then(
-        (res) => setListOfUsers(res.data)
-        // console.log("friendSearch: " + friendSearch)
-      )
+      .then((res) => setListOfUsers(res.data))
       .catch(console.log("Did not Get the data"));
   }, []);
-  console.log("listOfUsers: " + listOfUsers.userName);
 
   return (
-    <div className="messageSender">
+    <div className="friendSearch">
       <div className="form-group">
         <label htmlFor="search" className="searchLabel">
-          Search For Friend
+          Search Friends
         </label>
         <SearchForm setNameFilter={setNameFilter} />
-        {/* <input
-          type="text"
-          className="form-control"
-          onChange={handleOnChange}
-          name="friendSearch"
-          id=""
-          aria-describedby="helpId"
-          placeholder="Search For Friend Here"
-        /> */}
       </div>
 
       {listOfUsers
@@ -54,7 +37,11 @@ function VoyagrSearchFriend() {
           <VoyagrSearchPopup
             uidID={friend.uid}
             userName={friend.userName}
-            profileImage={friend.profileImage}
+            profileImage={
+              friend.profileImage.length > 0
+                ? friend.profileImage
+                : defaultUserImage
+            }
           />
         ))}
     </div>

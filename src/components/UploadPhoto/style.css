@@ -1,62 +1,60 @@
 .ImagesPopup {
-color: #D3D3D3;
+  color: #d3d3d3;
 }
 
 .profilePopup {
-background-color: #333333;
-color: #D3D3D3;
-border-radius: 20px;
-padding: 10px;
-position: absolute;
-display: flex !important;
-justify-content: space-between;
-align-items: center;
-width: 30vw;
-z-index: 2;
-top: -6rem;
-left: 50%;
-transform: translate(-50%, 0);
+  background-color: #333333;
+  color: #d3d3d3;
+  border-radius: 20px;
+  padding: 10px;
+  position: absolute;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  width: 30vw;
+  z-index: 2;
+  top: -6rem;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 @media (max-width: 360px) {
-.profilePopup  {
-top: -6rem;
-width: 95vw;
+  .profilePopup {
+    top: -6rem;
+    width: 95vw;
   }
 }
 
 @media (min-width: 360px) {
-.profilePopup  {
-top: -6rem;
-width: 95vw;
+  .profilePopup {
+    top: -6rem;
+    width: 95vw;
   }
 }
 
 @media (min-width: 425px) {
-.profilePopup  {
-top: -6rem;
-width: 88vw;
+  .profilePopup {
+    top: -6rem;
+    width: 88vw;
   }
 }
 
 @media (min-width: 576px) {
-.profilePopup  {
-top: -6rem;
-width: 65vw;
+  .profilePopup {
+    top: -6rem;
+    width: 65vw;
   }
 }
 
 @media (min-width: 992px) {
-.profilePopup  {
-top: -8rem;
-width: 40vw;
+  .profilePopup {
+    width: 40vw;
   }
 }
 
 @media (min-width: 1200px) {
-.profilePopup  {
-top: -8rem;
-width: 32vw;
-max-width: 450px;
+  .profilePopup {
+    width: 32vw;
+    max-width: 450px;
   }
 }

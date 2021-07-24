@@ -26,14 +26,14 @@ function DashboardPage() {
         viewport={viewport}
         setViewport={setViewport}
       />
-      <FeedWrap>
-        <Feed
-          addPostLocation={addPostLocation}
-          setAddPostLocation={setAddPostLocation}
-          viewport={viewport}
-          setViewport={setViewport}
-        />
-      </FeedWrap>
+      {/* <FeedWrap> */}
+      <Feed
+        addPostLocation={addPostLocation}
+        setAddPostLocation={setAddPostLocation}
+        viewport={viewport}
+        setViewport={setViewport}
+      />
+      {/* </FeedWrap> */}
       {/* <UserInfo /> */}
       {/* <Feed>
         <VoyagrSearchFriend/>

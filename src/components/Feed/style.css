@@ -10,7 +10,6 @@
   top: -2rem;
   width: 10rem;
   height: 10rem;
-  margin-bottom: 1rem;
 }
 
 @media (max-width: 576px) {
@@ -28,7 +27,7 @@
   }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .profileImage {
     top: -5rem;
   }
@@ -38,7 +37,7 @@
   .profileImage {
     top: -5rem;
   }
-}
+} */
 
 .imageDiv {
   border-top: 5px solid #61dafb;
@@ -175,7 +174,7 @@
   }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .camera {
     top: -8rem;
   }
@@ -185,7 +184,7 @@
   .camera {
     top: -8rem;
   }
-}
+} */
 
 .profilePopupSubmit {
   margin-right: 1rem !important;
@@ -256,7 +255,7 @@
   }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .profileName {
     top: -7rem;
   }
@@ -266,10 +265,43 @@
   .profileName {
     top: -7rem;
   }
-}
+} */
 
 /* -------------------- */
 
 .feed-columns {
   display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 992px) {
+  .friend-search-column {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .friend-search-column {
+    display: block;
+  }
+}
+
+/* -------Posts Column---------- */
+
+.posts-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 992px) {
+  .posts-column {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .posts-column {
+    margin: 0;
+  }
 }

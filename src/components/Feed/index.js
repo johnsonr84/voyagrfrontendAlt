@@ -16,9 +16,11 @@ import { faImages } from "@fortawesome/free-solid-svg-icons";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faGrinAlt } from "@fortawesome/free-solid-svg-icons";
-import VoyagrSearchFriend from "../VoyagrSearchFriend"
-import "./style.css";
 import VoyagrSearchFriend from "../VoyagrSearchFriend";
+import "./style.css";
+// import VoyagrSearchFriend from "../VoyagrSearchFriend";
+import SearchForm from "../SearchForm";
+import VoyagrSearchPopup from "../VoyagrSearchPopup";
 
 var moment = require("moment");
 
@@ -43,6 +45,16 @@ export default function Feed({
   const [image, setImage] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [messages, setMessages] = usePosts();
+
+  const [listOfUsers, setListOfUsers] = useState([]);
+  const [nameFilter, setNameFilter] = useState("");
+  const nameFilterRegExp = new RegExp(nameFilter, "i");
+
+  useEffect(() => {
+    API.getUserByName(nameFilter)
+      .then((res) => setListOfUsers(res.data))
+      .catch(console.log("Did not Get the data"));
+  }, []);
 
   useEffect(() => {
     if (photoURL == null) {
@@ -155,12 +167,39 @@ export default function Feed({
           </Button>
         </div>
       </div>
-
       <h2 className="profileName noselect">{displayName}</h2>
-      <Container className="feed-columns">
-        <VoyagrSearchFriend />
 
-        <Container>
+      <Container className="feed-columns">
+        <Container className="friend-search-column">
+          <div className="friendSearch">
+            <div className="form-group">
+              <label htmlFor="search" className="searchLabel">
+                Search Friends
+              </label>
+              <SearchForm setNameFilter={setNameFilter} />
+            </div>
+            {listOfUsers
+              .filter((name) => nameFilterRegExp.test(name.userName))
+              .map((friend) => (
+                <VoyagrSearchPopup
+                  uidID={friend.uid}
+                  userName={
+                    friend.userName == currentUser.displayName
+                      ? "You"
+                      : friend.userName
+                  }
+                  profileImage={
+                    friend.uid == currentUser.uid
+                      ? photoURL
+                      : friend.profileImage.length > 0
+                      ? friend.profileImage
+                      : defaultUserImage
+                  }
+                />
+              ))}
+          </div>
+        </Container>
+        <Container className="posts-column">
           <div className="messageSender">
             <div className="messageSender-forms">
               <div className="messageSenderImage">
@@ -168,7 +207,7 @@ export default function Feed({
               </div>
               <form>
                 <div className="messageSender-top-forms">
-                  <Col size="md-5">
+                  <Container>
                     <div className="messageSender-top-left-form">
                       <input
                         name="title"
@@ -179,8 +218,8 @@ export default function Feed({
                         type="text"
                       />
                     </div>
-                  </Col>
-                  <Col size="md-5">
+                  </Container>
+                  <Container>
                     <div className="messageSender-top-right-form">
                       <div className="visitDateText">Date Visited:</div>
                       <div className="visitDateDiv">
@@ -193,7 +232,7 @@ export default function Feed({
                         />
                       </div>
                     </div>
-                  </Col>
+                  </Container>
                 </div>
                 <Container>
                   <div
