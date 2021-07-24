@@ -29,14 +29,25 @@
 }
 /* --------------------- */
 
-.messageSender {
+.messageSender,
+.friendSearch {
   background-color: #333333;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.75);
-  width: 50vw;
   padding: 10px;
   border-radius: 33px;
+}
+
+.messageSender {
+  width: 100%;
+}
+
+.friendSearch {
+  height: fit-content;
+  width: 200px;
+  padding: 1rem;
+  margin: 0 1rem;
 }
 
 .messageSender-forms {
@@ -99,38 +110,32 @@
 
 @media (max-width: 360px) {
   .messageSender-top-left-form {
-    width: 15vw;
-  }
-}
-
-@media (min-width: 360px) {
-  .messageSender-top-left-form {
-    width: 15vw;
+    width: 11.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .messageSender-top-left-form {
-    width: 15vw;
+    width: 15rem;
   }
 }
 
 @media (min-width: 992px) {
   .messageSender-top-left-form {
-    width: 15vw;
+    width: 20rem;
   }
 }
 
 @media (min-width: 1200px) {
   .messageSender-top-left-form {
-    width: 15vw;
+    width: 20rem;
   }
 }
 
 /* --------------------Date---------------------- */
 
 .visitDateDiv {
-  width: 15vw;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -167,39 +172,34 @@
 
 @media (max-width: 360px) {
   .messageSender-bottom-form {
-    width: 20vw;
-  }
-}
-
-@media (min-width: 360px) {
-  .messageSender-bottom-form {
-    width: 25vw;
+    width: 11.5rem;
   }
 }
 
 @media (min-width: 576px) {
   .messageSender-bottom-form {
-    width: 30vw;
+    width: 20rem;
   }
 }
 
 @media (min-width: 768px) {
   .messageSender-bottom-form {
-    width: 33vw;
+    width: 30rem;
   }
 }
 
 @media (min-width: 992px) {
   .messageSender-bottom-form {
-    width: 36vw;
+    width: 49rem;
   }
 }
 
 @media (min-width: 1200px) {
   .messageSender-bottom-form {
-    width: 38vw;
+    width: 49rem;
   }
 }
+
 /* -------------------------- */
 
 .messageSender-bottom-form,
@@ -222,6 +222,8 @@
   color: #61dafb;
 }
 
+/* -------------Icocs------------ */
+
 .fa-video {
   color: rgb(224, 9, 9);
   margin-right: 5px;
@@ -236,14 +238,13 @@
   color: rgba(221, 199, 0, 0.986);
   margin-right: 5px;
 }
-
 .messageSender-icon {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   align-items: center;
   display: flex;
   color: white;
   padding: 10px;
-  width: 10vw;
+  width: 200px;
 }
 
 .messageSender-icon:hover {

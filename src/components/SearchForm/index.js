@@ -16,7 +16,7 @@ function SearchForm({ setNameFilter }) {
           name="search"
           list="term"
           className="form-control"
-          placeholder="Search by name or email"
+          placeholder="Search by name"
           id="term"
         />
       </div>

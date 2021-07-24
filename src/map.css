@@ -151,7 +151,7 @@ a:hover {
   }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .userProfileName {
     top: -5rem;
   }
@@ -161,7 +161,7 @@ a:hover {
   .userProfileName {
     top: -5rem;
   }
-}
+} */
 
 /* ----------------------------- */
 .upload_link {
