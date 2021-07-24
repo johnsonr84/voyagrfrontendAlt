@@ -19,6 +19,7 @@ export default function VoyagrSearchPopup({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            textAlign: "center",
           }}
         >
           <Link to={{ pathname: "/" + uidID }}>

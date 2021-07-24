@@ -41,11 +41,7 @@ function VoyagrSearchFriend() {
           .map((friend) => (
             <VoyagrSearchPopup
               uidID={friend.uid}
-              userName={
-                friend.userName == currentUser.displayName
-                  ? "You"
-                  : friend.userName
-              }
+              userName={friend.uid == currentUser.uid ? "You" : friend.userName}
               profileImage={
                 friend.uid == currentUser.uid
                   ? photoURL

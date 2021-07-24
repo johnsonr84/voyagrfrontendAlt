@@ -44,6 +44,7 @@
 }
 
 .friendSearch {
+  min-height: 16rem;
   height: fit-content;
   width: 200px;
   padding: 1rem;
