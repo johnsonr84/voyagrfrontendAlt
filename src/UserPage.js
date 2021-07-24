@@ -1,33 +1,37 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import PhotoListContainer from "./components/PhotoList";
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import ReactMapGL, { Marker, Popup, GeolocateControl } from 'react-map-gl';
-import Geocoder from 'react-map-gl-geocoder';
-import { Nav, NavMenu } from "./NavbarElements"
-import BurgerMenu from "./components/Dropdown"
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import ReactMapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
+import Geocoder from "react-map-gl-geocoder";
+import { Nav, NavMenu } from "./NavbarElements";
+import BurgerMenu from "./components/Dropdown";
 import "./map.css";
-import { API } from "./utils/API"
-import ProfileImage from './components/ProfileImage';
-import UploadPhoto from './components/UploadPhoto';
-import { usePosts } from './Contexts/PostContexts';
+import { API } from "./utils/API";
+import ProfileImage from "./components/ProfileImage";
+import UploadPhoto from "./components/UploadPhoto";
+import { usePosts } from "./Contexts/PostContexts";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useAuth, AuthProvider } from "./Contexts/AuthContext"
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
-import Button from 'react-bootstrap/Button';
-import { faImage } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form'
-import { useParams } from 'react-router-dom';
+import { useAuth, AuthProvider } from "./Contexts/AuthContext";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import Button from "react-bootstrap/Button";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import { useParams } from "react-router-dom";
 
-var moment = require('moment');
+var moment = require("moment");
 
-
-
-export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setViewport, images }) => {
-  const { updatePhotoURL, currentUser } = useAuth()
+export const UserHeader = ({
+  addPostLocation,
+  setAddPostLocation,
+  viewport,
+  setViewport,
+  images,
+}) => {
+  const { updatePhotoURL, currentUser } = useAuth();
   const { uid, displayName, photoURL } = currentUser;
   // const userID = uid;
   const [input, setInput] = useState({});
@@ -44,56 +48,46 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
   const [profilePhoto, setProfilePhoto] = useState();
   const [avatar, setAvatar] = useState([]);
 
-  const defaultUserImage = "https://i.imgur.com/ScCwMk8.png"
+  const defaultUserImage = "https://i.imgur.com/ScCwMk8.png";
 
-
-  const { id } = useParams()
-  console.log("UserPage id: " + id)
+  const { id } = useParams();
+  console.log("UserPage id: " + id);
 
   useEffect(() => {
     if (!currentUser) {
-      return
+      return;
     }
 
     API.getPost(id)
-      .then(res =>
-        setNewPosts(res.data)
-      )
-      .catch(err => console.log(err));
+      .then((res) => setNewPosts(res.data))
+      .catch((err) => console.log(err));
   }, [id]);
-
 
   useEffect(() => {
     if (avatar) {
-      console.log(avatar)
+      console.log(avatar);
 
       API.getUserByParam(id)
-        .then(res =>
-          setAvatar(res.data)
-        )
-        .catch(err => console.log(err));
-
+        .then((res) => setAvatar(res.data))
+        .catch((err) => console.log(err));
     }
     // else {
     //   setProfilePhoto(defaultUserImage)
     // }
-
   }, [id]);
 
-
   const togglePopup = (e) => {
-    if (showProfilePopup)
-      setShowProfilePopup(false)
+    if (showProfilePopup) setShowProfilePopup(false);
     else {
-      setShowProfilePopup(true)
+      setShowProfilePopup(true);
     }
-  }
+  };
 
   const profilePopupShow = (event) => {
-    setShowProfilePopup(true)
+    setShowProfilePopup(true);
   };
   const profilePopupHide = (event) => {
-    setShowProfilePopup(false)
+    setShowProfilePopup(false);
   };
 
   const handleViewportChange = useCallback(
@@ -102,7 +96,7 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
   );
   const geolocateControlStyle = {
     right: 30,
-    top: 15
+    top: 15,
   };
 
   const showAddMarkerPopup = (event) => {
@@ -115,24 +109,23 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
       const geocoderDefaultOverrides = { transitionDuration: 1000 };
       return handleViewportChange({
         ...newViewport,
-        ...geocoderDefaultOverrides
+        ...geocoderDefaultOverrides,
       });
     },
     [handleViewportChange]
   );
 
-  let timestamp = Date.now()
+  let timestamp = Date.now();
   var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
   function handleChange(event) {
-
-    const { value } = event.target
-    setInput({ ...input, [event.target.name]: value })
+    const { value } = event.target;
+    setInput({ ...input, [event.target.name]: value });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setInput({ title: "", description: "", image: "", visitDate: "" })
+    setInput({ title: "", description: "", image: "", visitDate: "" });
 
     const newPost = {
       title: input.title,
@@ -143,48 +136,44 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
       visitDate: input.visitDate,
       userID: uid,
       date: now,
-      timestamp: timestamp
-    }
+      timestamp: timestamp,
+    };
     console.log(newPost);
-    API.savePost(newPost).catch(e => console.log(e))
-    setNewPosts((newPosts) => [newPost, ...newPosts])
-  }
+    API.savePost(newPost).catch((e) => console.log(e));
+    setNewPosts((newPosts) => [newPost, ...newPosts]);
+  };
 
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 5
+      items: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
+      items: 1,
+    },
   };
 
   function handleUploadPhoto() {
-
     try {
-      console.log("Attempting photo upload")
-      console.log(image[image.length - 1])
+      console.log("Attempting photo upload");
+      console.log(image[image.length - 1]);
       updatePhotoURL(image[image.length - 1]).then(() => {
-        setRefresh(!refresh)
-      })
-      profilePopupHide()
+        setRefresh(!refresh);
+      });
+      profilePopupHide();
+    } catch {
+      console.log("Didn't work");
     }
-    catch {
-      console.log("Didn't work")
-    }
-
-
   }
 
   const [showModal, setShowModal] = useState(false);
@@ -193,9 +182,9 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
 
   const handleProfileImage = () => {
     if (avatar.profileImage) {
-      setProfilePhoto(avatar.profileImage)
+      setProfilePhoto(avatar.profileImage);
     } else {
-      setProfilePhoto(defaultUserImage)
+      setProfilePhoto(defaultUserImage);
     }
   };
 
@@ -208,20 +197,19 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
           className="voyagr-logo-header"
           alt="Voyagr logo"
         />
-        <NavMenu
-          ref={geocoderContainerRef}
-        >
-        </NavMenu>
+        <NavMenu ref={geocoderContainerRef}></NavMenu>
         <BurgerMenu />
       </Nav>
       <ReactMapGL
         ref={mapRef}
         {...viewport}
-        width="100vw" height="60vh" onViewportChange={setViewport}
+        width="100vw"
+        height="60vh"
+        onViewportChange={setViewport}
         attributionControl={false}
         mapStyle="mapbox://styles/thecjreynolds/ck117fnjy0ff61cnsclwimyay"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        onViewportChange={nextViewport => setViewport(nextViewport)}
+        onViewportChange={(nextViewport) => setViewport(nextViewport)}
         onDblClick={showAddMarkerPopup}
         transitionDuration="200"
         doubleClickZoom={false}
@@ -231,7 +219,7 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
           containerRef={geolocateControlRef}
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
-        // auto
+          // auto
         />
         <Geocoder
           mapRef={mapRef}
@@ -240,176 +228,188 @@ export const UserHeader = ({ addPostLocation, setAddPostLocation, viewport, setV
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           placeholder="Find Your Destination"
         />
-        {
-          newPosts.map(post => (
-            <React.Fragment key={post._id}>
-              <Marker
-                latitude={post.latitude}
-                longitude={post.longitude}
-              >
-                <div
-                  onClick={() => setShowPopup({
+        {newPosts.map((post) => (
+          <React.Fragment key={post._id}>
+            <Marker latitude={post.latitude} longitude={post.longitude}>
+              <div
+                onClick={() =>
+                  setShowPopup({
                     // ...showPopup,
                     [post._id]: true,
-                  })}
-                >
-                  <svg
-                    className="marker yellow"
-                    style={{
-                      height: `${6 * viewport.zoom}px`,
-                      width: `${6 * viewport.zoom}px`,
-                    }}
-                    version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512">
-                    <g>
-                      <g>
-                        <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" />
-                      </g>
-                    </g>
-                  </svg>
-                </div>
-              </Marker>
-              {
-                showPopup[post._id] ? (
-                  <Popup
-                    latitude={post.latitude}
-                    longitude={post.longitude}
-                    closeButton={true}
-                    closeOnClick={false}
-                    dynamicPosition={true}
-                    onClose={() => setShowPopup({})}
-                    anchor="top" >
-                    <div className="popup">
-                      <h3>{post.title}</h3>
-                      <p>{post.description}</p>
-                      <h6>Latitude, Longitude:</h6>
-                      <p> {post.latitude.toFixed(2)}, {post.longitude.toFixed(2)} </p>
-
-                      <small>Visited on: {new Date(post.visitDate).toLocaleDateString()}</small>
-                      <Carousel
-                        swipeable={true}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        infinite={true}
-                      >
-                        {post.image.length > 0 && post.image.map(img => <img src={img} alt={post.title} />)}
-                      </Carousel>
-                    </div>
-                  </Popup>
-                ) : null
-              }
-            </React.Fragment>
-          ))
-        }
-        {
-          addPostLocation ? (
-            <>
-              <Marker
-                latitude={addPostLocation.latitude}
-                longitude={addPostLocation.longitude}
+                  })
+                }
               >
-                <div>
-                  <svg
-                    className="marker react-blue"
-                    style={{
-                      height: `${6 * viewport.zoom}px`,
-                      width: `${6 * viewport.zoom}px`,
-                    }}
-                    version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512">
+                <svg
+                  className="marker yellow"
+                  style={{
+                    height: `${6 * viewport.zoom}px`,
+                    width: `${6 * viewport.zoom}px`,
+                  }}
+                  version="1.1"
+                  id="Layer_1"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 512 512"
+                >
+                  <g>
                     <g>
-                      <g>
-                        <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" />
-                      </g>
+                      <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" />
                     </g>
-                  </svg>
-                </div>
-              </Marker>
+                  </g>
+                </svg>
+              </div>
+            </Marker>
+            {showPopup[post._id] ? (
               <Popup
-                latitude={addPostLocation.latitude}
-                longitude={addPostLocation.longitude}
+                latitude={post.latitude}
+                longitude={post.longitude}
                 closeButton={true}
                 closeOnClick={false}
                 dynamicPosition={true}
-                onClose={() => setAddPostLocation(null)}
-                anchor="top" >
+                onClose={() => setShowPopup({})}
+                anchor="top"
+              >
                 <div className="popup">
-                  <form className="post-form" onSubmit={handleSubmit}>
-                    <label htmlFor="title">Title</label>
-                    <input name="title" required
-                      onChange={handleChange}
-                      value={input.title} />
-                    <label htmlFor="description">Description</label>
-                    <input name="description" rows={3}
-                      value={input.description}
-                      onChange={handleChange}
-                    />
-                    <label htmlFor="image">Images</label>
-                    <div className="popupImages">
-                      <PhotoListContainer
-                        style={{ justifyContent: "center" }}
-                        setImage={setImage}
-                      />
-                    </div>
-                    <label htmlFor="visitDate">Visit Date</label>
-                    <input name="visitDate" type="date" value={input.visitDate} onChange={handleChange} />
-                    <input type="submit" value="Submit" />
-                  </form>
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p>
+                  <h6>Latitude, Longitude:</h6>
+                  <p>
+                    {" "}
+                    {post.latitude.toFixed(2)}, {post.longitude.toFixed(2)}{" "}
+                  </p>
+
+                  <small>
+                    Visited on: {new Date(post.visitDate).toLocaleDateString()}
+                  </small>
+                  <Carousel
+                    swipeable={true}
+                    draggable={false}
+                    showDots={true}
+                    responsive={responsive}
+                    infinite={true}
+                  >
+                    {post.image.length > 0 &&
+                      post.image.map((img) => (
+                        <img src={img} alt={post.title} />
+                      ))}
+                  </Carousel>
                 </div>
               </Popup>
-            </>
-          ) : null
-        }
+            ) : null}
+          </React.Fragment>
+        ))}
+        {addPostLocation ? (
+          <>
+            <Marker
+              latitude={addPostLocation.latitude}
+              longitude={addPostLocation.longitude}
+            >
+              <div>
+                <svg
+                  className="marker react-blue"
+                  style={{
+                    height: `${6 * viewport.zoom}px`,
+                    width: `${6 * viewport.zoom}px`,
+                  }}
+                  version="1.1"
+                  id="Layer_1"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 512 512"
+                >
+                  <g>
+                    <g>
+                      <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </Marker>
+            <Popup
+              latitude={addPostLocation.latitude}
+              longitude={addPostLocation.longitude}
+              closeButton={true}
+              closeOnClick={false}
+              dynamicPosition={true}
+              onClose={() => setAddPostLocation(null)}
+              anchor="top"
+            >
+              <div className="popup">
+                <form className="post-form" onSubmit={handleSubmit}>
+                  <label htmlFor="title">Title</label>
+                  <input
+                    name="title"
+                    required
+                    onChange={handleChange}
+                    value={input.title}
+                  />
+                  <label htmlFor="description">Description</label>
+                  <input
+                    name="description"
+                    rows={3}
+                    value={input.description}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="image">Images</label>
+                  <div className="popupImages">
+                    <PhotoListContainer
+                      style={{ justifyContent: "center" }}
+                      setImage={setImage}
+                    />
+                  </div>
+                  <label htmlFor="visitDate">Visit Date</label>
+                  <input
+                    name="visitDate"
+                    type="date"
+                    value={input.visitDate}
+                    onChange={handleChange}
+                  />
+                  <input type="submit" value="Submit" />
+                </form>
+              </div>
+            </Popup>
+          </>
+        ) : null}
       </ReactMapGL>
-      {/* {avatar
-        .map(avatar => {
-          if (avatar.profile == null) {
-            return <ProfileImage
-              className="profileImageDiv noselect"
-              avatarImage={defaultUserImage}
-            />
 
+      {avatar.map((avatar) => (
+        <ProfileImage
+          className="profileImageDiv noselect"
+          avatarImage={
+            avatar.profileImage.length !== 0
+              ? avatar.profileImage
+              : defaultUserImage
           }
-          else {
-            return <ProfileImage
-              className="profileImageDiv noselect"
-              avatarImage={avatar.profileImage}
-            />
-          }
-        })
-      } */}
+        />
+      ))}
 
-      {avatar
-        .map(avatar =>
-          <ProfileImage
-            className="profileImageDiv noselect"
-            avatarImage={avatar.profileImage.length !== 0 ? avatar.profileImage : defaultUserImage}
-          />)}
-
-      {/* <div onClick={togglePopup}>
-        <FontAwesomeIcon icon={faCamera} className="camera" size="3x" />
-      </div> */}
-      <div className="showHidePopup" style={{ position: "relative", display: showProfilePopup ? "block" : "none" }}>
-        <div className="profilePopup" >
-          {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
+      <div
+        className="showHidePopup"
+        style={{
+          position: "relative",
+          display: showProfilePopup ? "block" : "none",
+        }}
+      >
+        <div className="profilePopup">
           <div className="profileImageUploadBtn">
-            <PhotoListContainer
-           
-              setImage={setImage}
-            />
+            <PhotoListContainer setImage={setImage} />
           </div>
           <p className="profilePopupText noselect"> Select a profile image</p>
-          <Button className="profilePopupSubmit" style={{ backgroundColor: "#585858", borderColor: "white" }} onClick={handleUploadPhoto} > Submit </Button>
+          <Button
+            className="profilePopupSubmit"
+            style={{ backgroundColor: "#585858", borderColor: "white" }}
+            onClick={handleUploadPhoto}
+          >
+            {" "}
+            Submit{" "}
+          </Button>
         </div>
       </div>
-      {avatar
-        .map(avatar =>
-          <h2
-            className="userProfileName noselect">
-            {avatar.userName}
-          </h2>)}
+      {avatar.map((avatar) => (
+        <h2 className="userProfileName noselect">{avatar.userName}</h2>
+      ))}
     </>
-
-  )
-}
+  );
+};
 
 export default UserHeader;

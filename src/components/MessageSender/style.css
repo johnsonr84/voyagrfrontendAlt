@@ -161,9 +161,9 @@
 @media (min-width: 992px) {
   .visitDateText {
     color: white;
-    font-size: larger;
+    font-size: small;
     width: 40%;
-    margin-top: 8px !important;
+    margin-top: 14px !important;
     margin-right: 2px !important;
   }
 }
@@ -173,6 +173,12 @@
 @media (max-width: 360px) {
   .messageSender-bottom-form {
     width: 11.5rem;
+  }
+}
+
+@media (min-width: 360px) {
+  .messageSender-bottom-form {
+    width: 17rem;
   }
 }
 
@@ -190,13 +196,13 @@
 
 @media (min-width: 992px) {
   .messageSender-bottom-form {
-    width: 49rem;
+    width: 40rem;
   }
 }
 
 @media (min-width: 1200px) {
   .messageSender-bottom-form {
-    width: 49rem;
+    width: 40rem;
   }
 }
 
@@ -244,7 +250,30 @@
   display: flex;
   color: white;
   padding: 10px;
-  width: 200px;
+}
+
+@media (max-width: 360px) {
+  .messageSender-icon {
+    width: 100px;
+  }
+}
+
+@media (min-width: 360px) {
+  .messageSender-icon {
+    width: 100px;
+  }
+}
+
+@media (min-width: 576px) {
+  .messageSender-icon {
+    width: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .messageSender-icon {
+    width: 200px;
+  }
 }
 
 .messageSender-icon:hover {
