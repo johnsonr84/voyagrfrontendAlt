@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../../firebase";
+import { auth, provider } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import { API } from "../../utils/API";
@@ -15,6 +15,26 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const history = useHistory();
+
+  async function signupWithGoogle() {
+    return auth
+      .signInWithPopup(provider)
+      .then((userData) => {
+        // userData.user.updateProfile({ displayName: currentUser.displayName });
+        // userData.user.sendEmailVerification();
+        // console.log(userData.user.uid)
+        // console.log(name)
+        const newUser = {
+          userName: userData.user.displayName,
+          profileImage: [],
+          uid: userData.user.uid,
+        };
+
+        console.log(newUser);
+        API.saveUser(newUser).catch((e) => console.log(e));
+      })
+      .catch((error) => console.log(error));
+  }
 
   function signup(name, email, password) {
     return auth
@@ -78,6 +98,7 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     updatePhotoURL,
+    signupWithGoogle,
   };
 
   return (

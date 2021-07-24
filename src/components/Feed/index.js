@@ -167,11 +167,18 @@ export default function Feed({
           </Button>
         </div>
       </div>
+      {/* <div
+        style={{
+          position: "relative",
+        }}
+      > */}
       <h2 className="profileName noselect">{displayName}</h2>
+      {/* </div> */}
 
       <Container className="feed-columns">
         <Container className="friend-search-column">
-          <div className="friendSearch">
+          <VoyagrSearchFriend />
+          {/* <div className="friendSearch">
             <div className="form-group">
               <label htmlFor="search" className="searchLabel">
                 Search Friends
@@ -195,9 +202,10 @@ export default function Feed({
                       ? friend.profileImage
                       : defaultUserImage
                   }
+                  showHide={friend.uid == currentUser.uid ? "hidden" : "show"}
                 />
               ))}
-          </div>
+          </div> */}
         </Container>
         <Container className="posts-column">
           <div className="messageSender">

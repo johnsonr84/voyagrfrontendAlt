@@ -6,9 +6,14 @@ import { API } from "../../utils/API";
 // import { Col } from '../Grid';
 // import Container from "../Container";
 import SearchForm from "../SearchForm";
+import { useAuth } from "../../Contexts/AuthContext";
+
 import "./style.css";
 
 function VoyagrSearchFriend() {
+  const { updatePhotoURL, currentUser } = useAuth();
+  const { uid, displayName, photoURL } = currentUser;
+
   const [listOfUsers, setListOfUsers] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
 
@@ -30,20 +35,28 @@ function VoyagrSearchFriend() {
         </label>
         <SearchForm setNameFilter={setNameFilter} />
       </div>
-
-      {listOfUsers
-        .filter((name) => nameFilterRegExp.test(name.userName))
-        .map((friend) => (
-          <VoyagrSearchPopup
-            uidID={friend.uid}
-            userName={friend.userName}
-            profileImage={
-              friend.profileImage.length > 0
-                ? friend.profileImage
-                : defaultUserImage
-            }
-          />
-        ))}
+      <div style={{ display: nameFilter ? "block" : "none" }}>
+        {listOfUsers
+          .filter((name) => nameFilterRegExp.test(name.userName))
+          .map((friend) => (
+            <VoyagrSearchPopup
+              uidID={friend.uid}
+              userName={
+                friend.userName == currentUser.displayName
+                  ? "You"
+                  : friend.userName
+              }
+              profileImage={
+                friend.uid == currentUser.uid
+                  ? photoURL
+                  : friend.profileImage.length > 0
+                  ? friend.profileImage
+                  : defaultUserImage
+              }
+              showHide={friend.uid == currentUser.uid ? "hidden" : "show"}
+            />
+          ))}
+      </div>
     </div>
   );
 }

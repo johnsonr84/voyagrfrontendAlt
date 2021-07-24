@@ -1,13 +1,19 @@
 import React from "react";
 //import { Image, Popup } from 'semantic-ui-react';
-import { Col, Row, Card, Button } from "reactstrap";
+import { Col, Row, Button } from "reactstrap";
 import Container from "../Container";
+import { Link } from "react-router-dom";
 
-export default function VoyagrSearchPopup({ uidID, userName, profileImage }) {
+export default function VoyagrSearchPopup({
+  uidID,
+  userName,
+  profileImage,
+  showHide,
+}) {
   return (
     <Container style={{ marginBottom: 15 }}>
       {/* <Card style={{ marginBottom: 10 }}> */}
-      <Row>
+      <Row className={showHide}>
         <Col
           style={{
             display: "flex",
@@ -15,10 +21,12 @@ export default function VoyagrSearchPopup({ uidID, userName, profileImage }) {
             alignItems: "center",
           }}
         >
-          <img
-            src={profileImage}
-            style={{ maxWidth: 50, borderRadius: "50%" }}
-          />
+          <Link to={{ pathname: "/" + uidID }}>
+            <img
+              src={profileImage}
+              style={{ maxWidth: 50, borderRadius: "50%" }}
+            />
+          </Link>
           <div
             style={{
               marginTop: 5,
