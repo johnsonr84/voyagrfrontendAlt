@@ -9,15 +9,13 @@ function SearchForm({ setNameFilter }) {
   };
   return (
     <div class="container-fluid">
-      <div className="form-group searchDiv">
+      <div className="searchDiv">
         <input
           type="text"
           onChange={handleOnChange}
           name="search"
-          list="term"
-          className="form-control"
+          className="friendSearchInput"
           placeholder="Search by name"
-          id="term"
         />
       </div>
     </div>

@@ -10,6 +10,7 @@
   top: -2rem;
   width: 10rem;
   height: 10rem;
+  z-index: 3;
 }
 
 @media (max-width: 576px) {
@@ -104,24 +105,6 @@
   color: white;
 }
 
-/* -------Icons 2x2------------- */
-
-@media (max-width: 992px) {
-  .icons-row-first {
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-evenly;
-  }
-}
-
-@media (max-width: 992px) {
-  .icons-row-second {
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-evenly;
-  }
-}
-
 /* -----Popup Image Upload Link------------- */
 
 .upload_link {
@@ -156,6 +139,7 @@
   margin-left: auto;
   margin-right: auto;
   left: 4rem;
+  z-index: 4;
 }
 
 .camera:hover {
@@ -291,10 +275,12 @@
 .posts-column {
   display: flex;
   flex-direction: column;
+  margin-bottom: 5rem !important;
 }
 
 @media (max-width: 992px) {
   .posts-column {
+    padding: 0 5rem;
     margin-left: auto;
     margin-right: auto;
   }
@@ -302,6 +288,7 @@
 
 @media (min-width: 992px) {
   .posts-column {
+    max-width: 50vw;
     margin: 0;
   }
 }

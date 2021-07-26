@@ -1,6 +1,15 @@
 .searchDiv {
-  /* padding: 2rem 1rem 3rem 1rem; */
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  background-color: rgb(240, 240, 240) !important;
+  padding: 12px;
+  border-radius: 30px;
+}
+
+.friendSearchInput {
+  border: none !important;
+  background-color: transparent !important;
+  outline: none !important;
+  width: 100%;
 }

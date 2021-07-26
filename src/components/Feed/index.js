@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import FeedWrap from "../FeedWrap";
 import PhotoListContainer from "../PhotoList";
 import ProfileImage from "../ProfileImage";
 import Button from "react-bootstrap/Button";
@@ -135,7 +134,6 @@ export default function Feed({
       <ProfileImage
         className="profileImageDiv noselect"
         avatarImage={profilePhoto}
-        // {defaultUserImage}
       />
 
       <FontAwesomeIcon
@@ -157,7 +155,6 @@ export default function Feed({
             <PhotoListContainer setImage={setImage} />
           </div>
           <p className="profilePopupText noselect"> Select a profile image</p>
-          {/* <FontAwesomeIcon icon={faImage} className="imagePopup" size="2x" /> */}
           <Button
             className="profilePopupSubmit"
             style={{ backgroundColor: "#585858", borderColor: "white" }}
@@ -174,7 +171,6 @@ export default function Feed({
       > */}
       <h2 className="profileName noselect">{displayName}</h2>
       {/* </div> */}
-
       <Container className="feed-columns">
         <Container className="friend-search-column">
           <VoyagrSearchFriend />
