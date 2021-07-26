@@ -20,7 +20,6 @@ function VoyagrSearchFriend() {
   const [listOfFriends, setListOfFriends] = useState([]);
   const [UserFriends, setUserFriends] = useState([]);
 
-
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png";
 
   const nameFilterRegExp = new RegExp(nameFilter, "i");
@@ -31,26 +30,26 @@ function VoyagrSearchFriend() {
       .catch(console.log("Did not Get the data"));
   }, []);
 
-//   useEffect(() => {
-//     API.getUserByParam(currentUser.uid)
-//       .then((res) => setCurrentUserFriends(res.data))
-//       .catch(console.log("Did not Get the data"));
-//   }, []);
+  //   useEffect(() => {
+  //     API.getUserByParam(currentUser.uid)
+  //       .then((res) => setCurrentUserFriends(res.data))
+  //       .catch(console.log("Did not Get the data"));
+  //   }, []);
 
-//   useEffect(() => {
-//     API.getUserByParam(currentUser.uid)
-//       .then((res) => setListOfFriends(res.data))
-//       .catch(console.log("Did not Get the data"));
-//   }, []);
+  //   useEffect(() => {
+  //     API.getUserByParam(currentUser.uid)
+  //       .then((res) => setListOfFriends(res.data))
+  //       .catch(console.log("Did not Get the data"));
+  //   }, []);
 
-//   useEffect(() => {
-//     API.getUserByParam(currentUserFriends.friendUid)
-//       .then((res) => setUserFriends(res.data))
-//       .catch(console.log("Did not Get the data"));
-//   }, []);
+  //   useEffect(() => {
+  //     API.getUserByParam(currentUserFriends.friendUid)
+  //       .then((res) => setUserFriends(res.data))
+  //       .catch(console.log("Did not Get the data"));
+  //   }, []);
 
-//   console.log(currentUserFriends[0])
-// console.log(UserFriends)
+  //   console.log(currentUserFriends[0])
+  // console.log(UserFriends)
 
   return (
     <div className="friendSearch">
@@ -78,7 +77,7 @@ function VoyagrSearchFriend() {
             />
           ))}
       </div>
-      
+
       {/* <div >
         {listOfFriends
           .filter((name) => nameFilterRegExp.test(name.friendUid))
@@ -97,7 +96,6 @@ function VoyagrSearchFriend() {
             />
           ))}
       </div> */}
-
     </div>
   );
 }

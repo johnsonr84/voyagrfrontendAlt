@@ -235,7 +235,7 @@ export const Header = ({
                 anchor="top"
               >
                 <div className="popup">
-                  <h3>{post.title}</h3>
+                  <h3 className="popupPostTitle">{post.title}</h3>
                   <p className="popupDescription">{post.description}</p>
                   <h6>Latitude, Longitude:</h6>
                   <p>

@@ -265,24 +265,26 @@ export default function Feed({
               <div className="messageSender-icons">
                 <div className="icons-row-first">
                   <div
-                    className="messageSender-icon"
+                    className="messageSenderIcon"
                     variant="primary"
                     onClick={handleShow}
                   >
                     <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" />
                     Pin
                   </div>
-                  <div className="messageSender-icon ">
+                  <div className="messageSenderImgIcon">
                     <FontAwesomeIcon icon={faImages} size="2x" />
-                    <PhotoListContainer setImage={setImage} />
+                    <div className="messageSenderImageBtn">
+                      <PhotoListContainer setImage={setImage} />
+                    </div>
                   </div>
                 </div>
                 <div className="icons-row-second">
-                  <div className="messageSender-icon">
+                  <div className="messageSenderIcon">
                     <FontAwesomeIcon icon={faVideo} size="2x" />
                     Live
                   </div>
-                  <div className="messageSender-icon">
+                  <div className="messageSenderIcon">
                     <FontAwesomeIcon icon={faGrinAlt} size="2x" />
                     Feeling
                   </div>

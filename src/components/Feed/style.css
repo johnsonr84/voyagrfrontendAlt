@@ -111,7 +111,7 @@
   color: white;
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .upload_link {
     font-size: small;
   }
@@ -127,7 +127,7 @@
   .upload_link {
     font-size: medium;
   }
-}
+} */
 
 .camera {
   background-color: #333333;
@@ -278,9 +278,25 @@
   margin-bottom: 5rem !important;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 360px) {
   .posts-column {
-    padding: 0 5rem;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 360px) {
+  .posts-column {
+    padding: 0 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 576px) {
+  .posts-column {
+    padding: 0 5rem 0 1rem;
     margin-left: auto;
     margin-right: auto;
   }

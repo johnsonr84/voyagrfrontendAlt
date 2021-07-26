@@ -36,7 +36,7 @@
   color: white;
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .upload_link {
     font-size: small;
   }
@@ -52,7 +52,7 @@
   .upload_link {
     font-size: medium;
   }
-}
+} */
 
 /* ----------------Hide Inputs------------- */
 
@@ -73,7 +73,7 @@
 
 /* --------Form break-point----------------- */
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .messageSender-top-forms {
     display: flex;
     /* width: fit-content; */
@@ -84,43 +84,59 @@
 /* ------------------Title----------------------- */
 
 .messageSender-top-left-form {
-  width: 100%;
+  width: auto;
 }
 
 /* --------------------Date---------------------- */
 .messageSender-top-right-form {
   display: flex;
-  /* width: 100%; */
+  width: auto;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .messageSender-top-right-form {
     justify-content: flex-start;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .messageSender-top-right-form {
     justify-content: flex-end;
   }
 }
 
-.visitDateDiv {
-  width: 100%;
-}
-
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .visitDateDiv {
     margin-top: 1rem;
+    width: 100%;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .visitDateDiv {
     margin-top: 0;
+    width: auto;
   }
 }
+/* -------------------------------------------- */
+
+@media (max-width: 1500px) {
+  .visitDateText {
+    display: none;
+  }
+}
+
+@media (min-width: 1500px) {
+  .visitDateText {
+    color: white;
+    font-size: small;
+    width: max-content;
+    margin-top: 14px !important;
+    margin-right: 2px !important;
+  }
+}
+
 /* -------Icons 2x2------------- */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .messageSender-icons,
   .icons-row-first,
   .icons-row-second {
@@ -131,7 +147,7 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .icons-row-first {
     padding-top: 10px;
     display: flex;
@@ -139,29 +155,11 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .icons-row-second {
     padding-top: 10px;
     display: flex;
     justify-content: space-evenly;
-  }
-}
-
-/* -------------------------------------------- */
-
-@media (max-width: 1200px) {
-  .visitDateText {
-    display: none;
-  }
-}
-
-@media (min-width: 1200px) {
-  .visitDateText {
-    color: white;
-    font-size: small;
-    width: 100px;
-    margin-top: 14px !important;
-    margin-right: 2px !important;
   }
 }
 
@@ -212,7 +210,7 @@ form {
   color: rgba(221, 199, 0, 0.986);
   margin-right: 5px;
 }
-.messageSender-icon {
+.messageSenderIcon {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   align-items: center;
   display: flex;
@@ -220,7 +218,7 @@ form {
   padding: 10px;
 }
 
-.messageSender-icon:hover {
+.messageSenderIcon:hover {
   background-color: grey;
   border-radius: 20px;
   cursor: pointer;
@@ -238,4 +236,26 @@ form {
   .messageSenderImage {
     display: block;
   }
+}
+
+/* -------messageSenderImage--------- */
+
+.messageSenderImageBtn {
+  position: absolute;
+  width: 135px;
+}
+
+.messageSenderImgIcon {
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  align-items: center;
+  display: flex;
+  color: white;
+  padding: 10px 70px 10px 10px;
+}
+
+.messageSenderImgIcon:hover {
+  background-color: grey;
+  border-radius: 20px;
+  cursor: pointer;
 }
