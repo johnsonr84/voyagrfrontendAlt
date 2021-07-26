@@ -17,43 +17,50 @@ export function AuthProvider({ children }) {
   const history = useHistory();
 
   async function signupWithGoogle() {
-    return auth
+    auth
       .signInWithPopup(provider)
-      .then((userData) => {
-        // userData.user.updateProfile({ displayName: currentUser.displayName });
-        // userData.user.sendEmailVerification();
-        // console.log(userData.user.uid)
-        // console.log(name)
-        const newUser = {
-          userName: userData.user.displayName,
-          profileImage: [],
-          uid: userData.user.uid,
-        };
+      .then((result) => (result.additionalUserInfo.isNewUser ? result : false))
+      .then((result) => {
+        if (result) {
+          const newUser = {
+            userName: result.user.displayName,
+            profileImage: [],
+            uid: result.user.uid,
+          };
 
-        console.log(newUser);
-        API.saveUser(newUser).catch((e) => console.log(e));
-      })
-      .catch((error) => console.log(error));
+          console.log(newUser);
+          API.saveUser(newUser);
+        } else {
+          console.log("I'm Sorry, I'm afraid I can't do that.");
+        }
+      });
   }
 
   function signup(name, email, password) {
     return auth
       .createUserWithEmailAndPassword(email, password)
-      .then((userData) => {
-        userData.user.updateProfile({ displayName: name });
-        userData.user.sendEmailVerification();
-        // console.log(userData.user.uid)
-        // console.log(name)
-        const newUser = {
-          userName: name,
-          profileImage: [],
-          uid: userData.user.uid,
-        };
+      .then((result) => (result.additionalUserInfo.isNewUser ? result : false))
+      .then((result) => {
+        if (result) {
+          result.user.updateProfile({ displayName: name });
+          result.user.sendEmailVerification();
 
-        console.log(newUser);
-        API.saveUser(newUser).catch((e) => console.log(e));
-      })
-      .catch((error) => console.log(error));
+          const newUser = {
+            userName: name,
+            profileImage: [],
+            uid: result.user.uid,
+          };
+
+          console.log(newUser);
+          API.saveUser(newUser);
+        } else {
+          console.log("I'm Sorry, I'm afraid I can't do that.");
+        }
+      });
+  }
+
+  async function loginWithGoogle() {
+    return auth.signInWithPopup(provider);
   }
 
   async function login(email, password) {
@@ -99,6 +106,7 @@ export function AuthProvider({ children }) {
     updatePassword,
     updatePhotoURL,
     signupWithGoogle,
+    loginWithGoogle,
   };
 
   return (
