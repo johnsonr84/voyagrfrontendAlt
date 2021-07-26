@@ -16,6 +16,10 @@ function VoyagrSearchFriend() {
 
   const [listOfUsers, setListOfUsers] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
+  const [currentUserFriends, setCurrentUserFriends] = useState([]);
+  const [listOfFriends, setListOfFriends] = useState([]);
+  const [UserFriends, setUserFriends] = useState([]);
+
 
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png";
 
@@ -26,6 +30,27 @@ function VoyagrSearchFriend() {
       .then((res) => setListOfUsers(res.data))
       .catch(console.log("Did not Get the data"));
   }, []);
+
+//   useEffect(() => {
+//     API.getUserByParam(currentUser.uid)
+//       .then((res) => setCurrentUserFriends(res.data))
+//       .catch(console.log("Did not Get the data"));
+//   }, []);
+
+//   useEffect(() => {
+//     API.getUserByParam(currentUser.uid)
+//       .then((res) => setListOfFriends(res.data))
+//       .catch(console.log("Did not Get the data"));
+//   }, []);
+
+//   useEffect(() => {
+//     API.getUserByParam(currentUserFriends.friendUid)
+//       .then((res) => setUserFriends(res.data))
+//       .catch(console.log("Did not Get the data"));
+//   }, []);
+
+//   console.log(currentUserFriends[0])
+// console.log(UserFriends)
 
   return (
     <div className="friendSearch">
@@ -53,6 +78,26 @@ function VoyagrSearchFriend() {
             />
           ))}
       </div>
+      
+      {/* <div >
+        {listOfFriends
+          .filter((name) => nameFilterRegExp.test(name.friendUid))
+          .map((friend) => (
+            <VoyagrSearchPopup
+              uidID={friend.friendUid}
+              userName={friend.friendUid == currentUser.uid ? "You" : friend.userName}
+              profileImage={
+                friend.friendUid == currentUser.friendUid
+                  ? photoURL
+                  : friend.profileImage.length > 0
+                  ? friend.profileImage
+                  : defaultUserImage
+              }
+              showHide={friend.uid == currentUser.uid ? "hidden" : "show"}
+            />
+          ))}
+      </div> */}
+
     </div>
   );
 }
