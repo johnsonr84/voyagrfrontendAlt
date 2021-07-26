@@ -111,6 +111,10 @@ a:hover {
   padding: 1rem;
 }
 
+.postPopup {
+  z-index: 2;
+}
+
 .popup img {
   height: 200px;
   width: auto;

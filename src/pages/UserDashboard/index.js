@@ -18,7 +18,7 @@ function UserDashboard() {
     zoom: 2,
   });
   return (
-    <div style={{ backgroundColor: "lightgray" }}>
+    <div style={{ backgroundColor: "lightgray", minHeight: "100vh" }}>
       <UserHeader
         addPostLocation={addPostLocation}
         setAddPostLocation={setAddPostLocation}

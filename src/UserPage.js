@@ -2,7 +2,12 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import PhotoListContainer from "./components/PhotoList";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import ReactMapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
+import ReactMapGL, {
+  Marker,
+  Popup,
+  GeolocateControl,
+  NavigationControl,
+} from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 import { Nav, NavMenu } from "./NavbarElements";
 import BurgerMenu from "./components/Dropdown";
@@ -214,6 +219,11 @@ export const UserHeader = ({
         transitionDuration="200"
         doubleClickZoom={false}
       >
+        <NavigationControl
+          style={{ padding: 15 }}
+          showZoom={true}
+          showCompass={false}
+        />
         <GeolocateControl
           style={geolocateControlStyle}
           containerRef={geolocateControlRef}
@@ -261,6 +271,7 @@ export const UserHeader = ({
             </Marker>
             {showPopup[post._id] ? (
               <Popup
+                className="postPopup"
                 latitude={post.latitude}
                 longitude={post.longitude}
                 closeButton={true}
