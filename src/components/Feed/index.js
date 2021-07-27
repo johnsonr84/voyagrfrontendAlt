@@ -48,6 +48,7 @@ export default function Feed({
   const [listOfUsers, setListOfUsers] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
   const nameFilterRegExp = new RegExp(nameFilter, "i");
+  const [avatar, setAvatar] = useState([]);
 
   useEffect(() => {
     API.getUserByName(nameFilter)
@@ -56,12 +57,27 @@ export default function Feed({
   }, []);
 
   useEffect(() => {
-    if (photoURL == null) {
-      setProfilePhoto(defaultUserImage);
-    } else {
-      setProfilePhoto(photoURL);
-    }
+    API.getUser(currentUser.uid)
+      .then((res) => setAvatar(res.data))
+      .then((res) =>
+        setProfilePhoto(
+          res.data.profileImage[0] ? res.data.profileImage[0] : defaultUserImage
+        )
+      )
+      .catch((err) => console.log(err));
+    console.log("API request: " + profilePhoto);
+    // else {
+    //   setProfilePhoto(defaultUserImage)
+    // }
   }, [photoURL]);
+
+  // useEffect(() => {
+  //   if (photoURL == null) {
+  //     setProfilePhoto(defaultUserImage);
+  //   } else {
+  //     setProfilePhoto(photoURL);
+  //   }
+  // }, [photoURL]);
 
   const togglePopup = (e) => {
     if (showProfilePopup) setShowProfilePopup(false);
@@ -131,10 +147,16 @@ export default function Feed({
 
   return (
     <>
-      <ProfileImage
-        className="profileImageDiv noselect"
-        avatarImage={profilePhoto}
-      />
+      {avatar.map((avatar) => (
+        <ProfileImage
+          className="profileImageDiv noselect"
+          avatarImage={
+            avatar.profileImage.length !== 0
+              ? avatar.profileImage
+              : defaultUserImage
+          }
+        />
+      ))}
 
       <FontAwesomeIcon
         onClick={togglePopup}
@@ -169,7 +191,9 @@ export default function Feed({
           position: "relative",
         }}
       > */}
-      <h2 className="profileName noselect">{displayName}</h2>
+      {avatar.map((avatar) => (
+        <h2 className="profileName noselect">{avatar.userName}</h2>
+      ))}
       {/* </div> */}
       <Container className="feed-columns">
         <Container className="friend-search-column">
@@ -207,7 +231,15 @@ export default function Feed({
           <div className="messageSender">
             <div className="messageSender-forms">
               <div className="messageSenderImage">
-                <Avatar avatarImage={profilePhoto} />
+                {avatar.map((avatar) => (
+                  <Avatar
+                    avatarImage={
+                      avatar.profileImage.length !== 0
+                        ? avatar.profileImage
+                        : defaultUserImage
+                    }
+                  />
+                ))}
               </div>
               <form>
                 <div className="messageSender-top-forms">

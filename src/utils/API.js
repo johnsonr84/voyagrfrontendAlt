@@ -5,7 +5,7 @@ export const API = {
     axios.post("https://voyagrapp.herokuapp.com/api/users", user),
 
   getUser: (uid) =>
-    axios.get("https://voyagrapp.herokuapp.com/api/users/", uid),
+    axios.get("https://voyagrapp.herokuapp.com/api/users/" + uid),
 
   getUserByName: (userName) =>
     axios.get("https://voyagrapp.herokuapp.com/api/users/" + userName),
