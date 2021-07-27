@@ -59,10 +59,6 @@ export function AuthProvider({ children }) {
       });
   }
 
-  async function loginWithGoogle() {
-    return auth.signInWithPopup(provider);
-  }
-
   async function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
   }
@@ -106,7 +102,6 @@ export function AuthProvider({ children }) {
     updatePassword,
     updatePhotoURL,
     signupWithGoogle,
-    loginWithGoogle,
   };
 
   return (

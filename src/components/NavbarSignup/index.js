@@ -21,14 +21,7 @@ import Form from "react-bootstrap/Form";
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const NavbarSignup = () => {
-  const {
-    login,
-    logout,
-    signup,
-    currentUser,
-    signupWithGoogle,
-    loginWithGoogle,
-  } = useAuth();
+  const { login, logout, signup, currentUser, signupWithGoogle } = useAuth();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -101,17 +94,6 @@ export const NavbarSignup = () => {
 
     checkVerified();
   }, [currentUser]);
-
-  async function handleGoogleLogin() {
-    if (!currentUser) {
-      // .then((result) => {
-      await signupWithGoogle();
-      // })
-      // .catch((error) => {
-      //   alert(error.message);
-      // });
-    }
-  }
 
   async function handleGoogleSignup() {
     if (!currentUser) {
@@ -197,7 +179,7 @@ export const NavbarSignup = () => {
             />
           </Form.Group>
 
-          <Button className="w-100 google-icon" onClick={handleGoogleLogin}>
+          <Button className="w-100 google-icon" onClick={handleGoogleSignup}>
             <img src="google-icon.png" />
             <h6>Login with Google</h6>
           </Button>
