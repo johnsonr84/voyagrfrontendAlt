@@ -1,8 +1,9 @@
 .post {
   background-color: #333333;
   margin-top: 20px;
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, .75);
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.75);
   border-radius: 15px;
+  width: 100%;
 }
 
 .post-top {
@@ -17,15 +18,16 @@
   margin-left: 15px;
 }
 
-.post-image > img{
+.post-image > img {
   width: 100%;
 }
 
 .post-bottom {
-  margin: 10px 0px ;
+  margin: 10px 0px;
 }
 
-.post-message, .post-title {
+.post-message,
+.post-title {
   color: white;
   margin: 0px 20px;
 }
@@ -34,9 +36,8 @@
   color: white;
   display: flex;
   justify-content: space-evenly;
-  border-top: 2px solid #61DAFB;
+  border-top: 2px solid #61dafb;
   cursor: pointer;
-
 }
 
 .post-icon {
@@ -51,6 +52,8 @@
   cursor: pointer;
 }
 
-.fa-thumbs-up, .fa-comment-alt, .fa-share{
-  color:white
+.fa-thumbs-up,
+.fa-comment-alt,
+.fa-share {
+  color: white;
 }

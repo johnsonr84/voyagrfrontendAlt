@@ -1,140 +1,104 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from "react";
+import VoyagrSearchPopup from "../VoyagrSearchPopup";
+// import "./style.css";
+// import { useAuth } from "../../Contexts/AuthContext"
+import { API } from "../../utils/API";
+// import { Col } from '../Grid';
+// import Container from "../Container";
+import SearchForm from "../SearchForm";
+import { useAuth } from "../../Contexts/AuthContext";
+
 import "./style.css";
-import { useAuth } from "../../Contexts/AuthContext"
-import { API } from "../../utils/API"
-import { Col } from '../Grid';
-import Container from "../Container";
 
+function VoyagrSearchFriend() {
+  const { updatePhotoURL, currentUser } = useAuth();
+  const { uid, displayName, photoURL } = currentUser;
 
+  const [listOfUsers, setListOfUsers] = useState([]);
+  const [nameFilter, setNameFilter] = useState("");
+  const [currentUserFriends, setCurrentUserFriends] = useState([]);
+  const [listOfFriends, setListOfFriends] = useState([]);
+  const [UserFriends, setUserFriends] = useState([]);
 
+  const defaultUserImage = "https://i.imgur.com/ScCwMk8.png";
 
+  const nameFilterRegExp = new RegExp(nameFilter, "i");
 
-export default function VoyagrSearchFriend(search) {
+  useEffect(() => {
+    API.getUserByName(nameFilter)
+      .then((res) => setListOfUsers(res.data))
+      .catch(console.log("Did not Get the data"));
+  }, []);
 
-    
-    const { currentUser } = useAuth()
-    const { uid} = currentUser;
-    const userID = uid;
- 
+  //   useEffect(() => {
+  //     API.getUserByParam(currentUser.uid)
+  //       .then((res) => setCurrentUserFriends(res.data))
+  //       .catch(console.log("Did not Get the data"));
+  //   }, []);
 
-    const [search, setSearch] = useState({});
-   
-    function handleChange(event) {
+  //   useEffect(() => {
+  //     API.getUserByParam(currentUser.uid)
+  //       .then((res) => setListOfFriends(res.data))
+  //       .catch(console.log("Did not Get the data"));
+  //   }, []);
 
-        const { value } = event.target
-        setSearch(event.target)
-    }
+  //   useEffect(() => {
+  //     API.getUserByParam(currentUserFriends.friendUid)
+  //       .then((res) => setUserFriends(res.data))
+  //       .catch(console.log("Did not Get the data"));
+  //   }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSearch({ search: ""})
-       
-        const newPost = {
-            title: input.title,
-            description: input.description,
-            image: image,
-            latitude: addPostLocation?.latitude || viewport.latitude,
-            longitude: addPostLocation?.longitude || viewport.longitude,
-            visitDate: input.visitDate,
-            userID: uid,
-            date: now,
-            timestamp: timestamp
-        }
-        console.log(newPost);
-        API.savePost(newPost).catch(e => console.log(e))
-        setPosts((newPosts) => [newPost, ...newPosts])
-    }
+  //   console.log(currentUserFriends[0])
+  // console.log(UserFriends)
 
-    const handleShow = () => setAddPostLocation({ latitude: addPostLocation?.latitude || viewport.latitude, longitude: addPostLocation?.longitude || viewport.longitude });
+  return (
+    <div className="friendSearch">
+      <div className="form-group">
+        <label htmlFor="search" className="searchLabel">
+          Search Friends
+        </label>
+        <SearchForm setNameFilter={setNameFilter} />
+      </div>
 
-    return (
-        <>
-            <div className="messageSender">
-                <div className="messageSender-forms">
-                    <div className="messageSenderImage">
-                        <Avatar
-                            avatarImage={photoURL}
-                        />
-                    </div>
-                    <form>
-                        <div className="messageSender-top-forms">
-                            <Col size="md-6">
-                                <div
-                                    className="messageSender-top-left-form"
-                                >
-                                    <input
-                                        name="title"
-                                        placeholder="Title"
-                                        value={input.title}
-                                        onChange={handleChange}
-                                        className="titleInput"
-                                        type="text"
-                                    />
-                                </div>
-                            </Col>
-                            <Col size="md-6">
-                                <div className="messageSender-top-right-form">
-                                    <div className="visitDateText">
-                                        Date Visited:
-                                    </div>
-                                    <div
-                                        className="visitDateDiv"
-                                    >
-                                        <input
-                                            name="visitDate"
-                                            value={input.visitDate}
-                                            onChange={handleChange}
-                                            className="visitDateInput"
-                                            type="date"
-                                        />
-                                    </div>
-                                </div>
-                            </Col>
-                        </div>
-                        <Container>
-                            <div className="messageSender-bottom-form"
-                                style={{ marginTop: 15 }}
-                            >
-                                <input
-                                    name="description"
-                                    placeholder="What's on your mind?                                        "
-                                    value={input.description}
-                                    onChange={handleChange}
-                                    className="descriptionInput"
-                                    type="text"
-                                />
-                            </div>
-                            <input className="senderBtn" type="submit" value="Submit" onClick={handleSubmit} />
-                        </Container>
-                    </form>
-                </div>
-                <Container>
-                    <div className="messageSender-icons">
-                        <div className="icons-row-first">
-                            <div className="messageSender-icon" variant="primary" onClick={handleShow}>
-                                <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" />
-                                Pin
-                            </div>
-                            <div className="messageSender-icon ">
-                                <FontAwesomeIcon icon={faImages} size="2x" />
-                                <PhotoListContainer
-                                    setImage={setImage}
-                                />
-                            </div>
-                        </div>
-                        <div className="icons-row-second">
-                            <div className="messageSender-icon">
-                                <FontAwesomeIcon icon={faVideo} size="2x" />
-                                Live
-                            </div>
-                            <div className="messageSender-icon">
-                                <FontAwesomeIcon icon={faGrinAlt} size="2x" />
-                                Feeling
-                            </div>
-                        </div>
-                    </div>
-                </Container>
-            </div>
-        </>
-    )
+      <div style={{ display: nameFilter ? "block" : "none" }}>
+        {listOfUsers
+          .filter((name) => nameFilterRegExp.test(name.userName))
+          .map((friend) => (
+            <VoyagrSearchPopup
+              uidID={friend.uid}
+              userName={friend.uid == currentUser.uid ? "You" : friend.userName}
+              profileImage={
+                friend.uid == currentUser.uid
+                  ? photoURL
+                  : friend.profileImage.length > 0
+                  ? friend.profileImage
+                  : defaultUserImage
+              }
+              showHide={friend.uid == currentUser.uid ? "hidden" : "show"}
+            />
+          ))}
+      </div>
+
+      {/* <div style={{ display: nameFilter ? "none" : "block" }}>
+        {listOfUsers
+          .filter((name) => name.uid == )
+          .map((friend) => (
+            <VoyagrSearchPopup
+              uidID={friend.uid}
+              userName={friend.uid == currentUser.uid ? "You" : friend.userName}
+              profileImage={
+                friend.uid == currentUser.uid
+                  ? photoURL
+                  : friend.profileImage.length > 0
+                  ? friend.profileImage
+                  : defaultUserImage
+              }
+              showHide={friend.uid == currentUser.uid ? "hidden" : "show"}
+            />
+          ))}
+      </div> */}
+    </div>
+  );
 }
+
+export default VoyagrSearchFriend;

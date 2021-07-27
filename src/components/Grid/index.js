@@ -12,7 +12,7 @@ export function Col({ size, children }) {
     <div
       className={size
         .split(" ")
-        .map(size => "col-" + size)
+        .map((size) => "col-" + size)
         .join(" ")}
     >
       {children}

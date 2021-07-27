@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
@@ -6,13 +6,13 @@ import ResetPassword from "./pages/ResetPassword";
 import Settings from "./pages/Settings";
 import "./App.css";
 // import ProtectedRoute from "./auth/protected-route";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { CloudinaryContext } from 'cloudinary-react';
-import { photosFetched } from './actions';
-import { fetchPhotos } from './utils/CloudinaryService';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { CloudinaryContext } from "cloudinary-react";
+import { photosFetched } from "./actions";
+import { fetchPhotos } from "./utils/CloudinaryService";
 // import { AuthProvider } from "./Contexts/AuthContext";
-import PrivateRoute from "./components/PrivateRoute"
+import PrivateRoute from "./components/PrivateRoute";
 import UserDashboard from "./pages/UserDashboard";
 
 class App extends Component {
@@ -21,7 +21,6 @@ class App extends Component {
   }
   render() {
     return (
-
       <CloudinaryContext
         cloudName={this.props.cloudName}
         uploadPreset={this.props.uploadPreset}
@@ -33,11 +32,9 @@ class App extends Component {
             <PrivateRoute path="/settings" component={Settings} exact />
             <PrivateRoute path="/dashboard" component={Dashboard} exact />
             <PrivateRoute path="/:id" component={UserDashboard} />
-
           </Switch>
-        </Router >
+        </Router>
       </CloudinaryContext>
-
     );
   }
 }
@@ -48,9 +45,6 @@ App.propTypes = {
   onPhotosFetched: PropTypes.func,
 };
 
-const AppContainer = connect(
-  null,
-  { onPhotosFetched: photosFetched }
-)(App);
+const AppContainer = connect(null, { onPhotosFetched: photosFetched })(App);
 
 export default AppContainer;

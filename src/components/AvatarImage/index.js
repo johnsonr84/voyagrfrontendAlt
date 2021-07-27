@@ -32,7 +32,8 @@ export default function AvatarImage({ avatarImage }) {
         avatar
             .map(avatar =>
                 <Avatar
-                    avatarImage={avatar.profileImage}
+                avatarImage={avatar.profileImage.length !== 0 ? avatar.profileImage : defaultUserImage}
+                    //avatarImage={avatar.profileImage}
                 />)
     )
 }

@@ -1,48 +1,33 @@
-
-/* -------------Icons 4x1--------------- */
-
-@media (min-width: 992px) {
-.messageSender-icons, .icons-row-first, .icons-row-second {
-  padding-top: 10px;
-  display: flex; 
-  justify-content: space-evenly;
-}
-}
-
-/* -------Icons 2x2------------- */
-
-@media (max-width: 992px) {
-.icons-row-first {
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-evenly;
-}
-}
-
-@media (max-width: 992px) {
-.icons-row-second {
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-evenly;
-}
-}
 /* --------------------- */
 
-.messageSender {
+.messageSender,
+.friendSearch {
   background-color: #333333;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, .75);
-  width: 100%;
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.75);
   padding: 10px;
   border-radius: 33px;
+}
+
+.messageSender {
+  width: 100%;
+}
+
+.friendSearch {
+  min-height: 16rem;
+  height: fit-content;
+  width: 225px;
+  padding: 1rem;
+  margin: 0 1rem;
 }
 
 .messageSender-forms {
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #61DAFB;
+  border-bottom: 2px solid #61dafb;
   padding: 20px;
+  width: 100% !important;
 }
 
 /* -----Popup Image Upload Link------------- */
@@ -51,158 +36,154 @@
   color: white;
 }
 
-
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .upload_link {
     font-size: small;
   }
 }
 
 @media (max-width: 476px) {
-.upload_link {
-font-size: x-small;
-}
+  .upload_link {
+    font-size: x-small;
+  }
 }
 
 @media (min-width: 576px) {
-.upload_link {
-font-size: medium;
-}
-}
+  .upload_link {
+    font-size: medium;
+  }
+} */
 
 /* ----------------Hide Inputs------------- */
 
-.visitDateInput, .titleInput {
-  border:none;
+.visitDateInput,
+.titleInput {
+  border: none;
   background-color: transparent;
   outline-width: 0;
-   width: 100%;
+  width: 100%;
 }
 
 .descriptionInput {
-  border:none;
+  border: none;
   background-color: transparent;
   outline-width: 0;
-   width: 100%
+  width: 100%;
 }
 
 /* --------Form break-point----------------- */
 
-@media (min-width: 768px) {
+@media (min-width: 1300px) {
   .messageSender-top-forms {
-  display: flex;
-}
+    display: flex;
+    /* width: fit-content; */
+    justify-content: space-around;
+  }
 }
 
 /* ------------------Title----------------------- */
 
-@media (max-width: 360px) {
-  .messageSender-top-left-form{
- width: 11.5rem
-}
-}
-
-@media (min-width: 768px) {
-  .messageSender-top-left-form{
- width: 15rem
-}
-}
-
-@media (min-width: 992px) {
-  .messageSender-top-left-form{
- width: 20rem
-}
-}
-
-@media (min-width: 1200px) {
-  .messageSender-top-left-form{
- width: 28rem
-}
+.messageSender-top-left-form {
+  width: auto;
 }
 
 /* --------------------Date---------------------- */
-
-
-.visitDateDiv{
- width: 100%;
- }
-
-
-@media (max-width: 768px) {
-.visitDateDiv {
-margin-top: 1rem;
-}
+.messageSender-top-right-form {
+  display: flex;
+  width: auto;
 }
 
-@media (min-width: 768px) {
-.visitDateDiv {
-margin-top: 0;
+@media (max-width: 1300px) {
+  .messageSender-top-right-form {
+    justify-content: flex-start;
+  }
 }
+@media (min-width: 1300px) {
+  .messageSender-top-right-form {
+    justify-content: flex-end;
+  }
 }
 
+@media (max-width: 1300px) {
+  .visitDateDiv {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
 
+@media (min-width: 1300px) {
+  .visitDateDiv {
+    margin-top: 0;
+    width: auto;
+  }
+}
 /* -------------------------------------------- */
 
-
-@media (max-width:992px) {
-.visitDateText{
-  display: none;
-    }
+@media (max-width: 1500px) {
+  .visitDateText {
+    display: none;
+  }
 }
 
-@media (min-width: 992px) {
-.visitDateText{
-  color: white;
-  font-size: larger;
-  width: 40%;
-  margin-top: 8px !important;
-  margin-right: 2px !important;
+@media (min-width: 1500px) {
+  .visitDateText {
+    color: white;
+    font-size: small;
+    width: max-content;
+    margin-top: 14px !important;
+    margin-right: 2px !important;
+  }
+}
 
+/* -------Icons 2x2------------- */
+@media (min-width: 1200px) {
+  .messageSender-icons,
+  .icons-row-first,
+  .icons-row-second {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .icons-row-first {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 1200px) {
+  .icons-row-second {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
   }
 }
 
 /* -------------------Description---------------------- */
-
-@media (max-width: 360px) {
-  .messageSender-bottom-form{
- width: 11.5rem
-}
+.messageSender-bottom-form {
+  width: 100%;
 }
 
-@media (min-width: 576px) {
-  .messageSender-bottom-form{
- width: 20rem
-}
+form {
+  width: 100%;
 }
 
-@media (min-width: 768px) {
-  .messageSender-bottom-form{
- width: 30rem
-}
-}
-
-@media (min-width: 992px) {
-  .messageSender-bottom-form{
- width: 49rem
-}
-}
-
-@media (min-width: 1200px) {
-  .messageSender-bottom-form{
- width: 58rem
-}
-}
 /* -------------------------- */
 
- .messageSender-bottom-form ,.visitDateInput, .messageSender-top-left-form {
+.messageSender-bottom-form,
+.visitDateInput,
+.messageSender-top-left-form {
   background-color: rgb(240, 240, 240) !important;
   padding: 10px;
   border-radius: 24px;
-  
 }
 
-.senderBtn  {
-  display:  none;
+.senderBtn {
+  display: none;
 }
 
 .fa-user-circle {
@@ -210,8 +191,10 @@ margin-top: 0;
 }
 
 .fa-images {
-  color: #61DAFB;
+  color: #61dafb;
 }
+
+/* -------------Icocs------------ */
 
 .fa-video {
   color: rgb(224, 9, 9);
@@ -219,7 +202,7 @@ margin-top: 0;
 }
 
 .fa-map-marker-alt {
-  color: #FE7A02;
+  color: #fe7a02;
   margin-right: 5px;
 }
 
@@ -227,36 +210,52 @@ margin-top: 0;
   color: rgba(221, 199, 0, 0.986);
   margin-right: 5px;
 }
-
-.messageSender-icon {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+.messageSenderIcon {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   align-items: center;
   display: flex;
   color: white;
   padding: 10px;
-  width: 200px;
 }
 
-.messageSender-icon:hover {
+.messageSenderIcon:hover {
   background-color: grey;
   border-radius: 20px;
   cursor: pointer;
 }
 
-.messageSender-top-right-form{
-  display: flex;
-}
-
 /* --------------------------- */
 
-@media (max-width: 360px) {
-  .messageSenderImage{
- display: none !important
-}
+@media (max-width: 700px) {
+  .messageSenderImage {
+    display: none !important;
+  }
 }
 
-@media (min-width: 360px) {
-  .messageSenderImage{
- display: block
+@media (min-width: 700px) {
+  .messageSenderImage {
+    display: block;
+  }
 }
+
+/* -------messageSenderImage--------- */
+
+.messageSenderImageBtn {
+  position: absolute;
+  width: 135px;
+}
+
+.messageSenderImgIcon {
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  align-items: center;
+  display: flex;
+  color: white;
+  padding: 10px 70px 10px 10px;
+}
+
+.messageSenderImgIcon:hover {
+  background-color: grey;
+  border-radius: 20px;
+  cursor: pointer;
 }
