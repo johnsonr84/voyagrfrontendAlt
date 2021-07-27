@@ -59,9 +59,9 @@ export function AuthProvider({ children }) {
       });
   }
 
-  async function loginWithGoogle() {
-    return auth.signInWithPopup(provider);
-  }
+  // async function loginWithGoogle() {
+  //   return auth.signInWithPopup(provider);
+  // }
 
   async function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
