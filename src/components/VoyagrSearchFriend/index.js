@@ -59,6 +59,7 @@ function VoyagrSearchFriend() {
         </label>
         <SearchForm setNameFilter={setNameFilter} />
       </div>
+
       <div style={{ display: nameFilter ? "block" : "none" }}>
         {listOfUsers
           .filter((name) => nameFilterRegExp.test(name.userName))
@@ -78,15 +79,15 @@ function VoyagrSearchFriend() {
           ))}
       </div>
 
-      {/* <div >
-        {listOfFriends
-          .filter((name) => nameFilterRegExp.test(name.friendUid))
+      {/* <div style={{ display: nameFilter ? "none" : "block" }}>
+        {listOfUsers
+          .filter((name) => name.uid == )
           .map((friend) => (
             <VoyagrSearchPopup
-              uidID={friend.friendUid}
-              userName={friend.friendUid == currentUser.uid ? "You" : friend.userName}
+              uidID={friend.uid}
+              userName={friend.uid == currentUser.uid ? "You" : friend.userName}
               profileImage={
-                friend.friendUid == currentUser.friendUid
+                friend.uid == currentUser.uid
                   ? photoURL
                   : friend.profileImage.length > 0
                   ? friend.profileImage

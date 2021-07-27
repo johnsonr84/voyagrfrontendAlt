@@ -246,18 +246,20 @@ export const Header = ({
                   <small>
                     Visited on: {new Date(post.visitDate).toLocaleDateString()}
                   </small>
-                  <Carousel
-                    swipeable={true}
-                    draggable={false}
-                    showDots={true}
-                    responsive={responsive}
-                    infinite={true}
-                  >
-                    {post.image.length > 0 &&
-                      post.image.map((img) => (
-                        <img src={img} alt={post.title} />
-                      ))}
-                  </Carousel>
+                  <div className="centerPopupImage">
+                    <Carousel
+                      swipeable={true}
+                      draggable={false}
+                      showDots={true}
+                      responsive={responsive}
+                      infinite={true}
+                    >
+                      {post.image.length > 0 &&
+                        post.image.map((img) => (
+                          <img src={img} alt={post.title} />
+                        ))}
+                    </Carousel>
+                  </div>
                 </div>
               </Popup>
             ) : null}

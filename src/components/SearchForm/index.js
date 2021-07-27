@@ -16,6 +16,7 @@ function SearchForm({ setNameFilter }) {
           name="search"
           className="friendSearchInput"
           placeholder="Search by name"
+          autocomplete="off"
         />
       </div>
     </div>
