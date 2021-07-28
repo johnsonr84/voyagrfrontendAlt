@@ -35,7 +35,7 @@ export default function Feed({
   const { updatePhotoURL, currentUser } = useAuth();
   const { uid, displayName, photoURL } = currentUser;
 
-  const [profilePhoto, setProfilePhoto] = useState();
+  const [profilePhoto, setProfilePhoto] = useState([]);
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png";
   const [showProfilePopup, setShowProfilePopup] = useState();
   const [userImage, setUserImage] = useState("");
@@ -44,11 +44,10 @@ export default function Feed({
   const [image, setImage] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [messages, setMessages] = usePosts();
-
+  const [profileName, setProfileName] = useState();
   const [listOfUsers, setListOfUsers] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
   const nameFilterRegExp = new RegExp(nameFilter, "i");
-  const [avatar, setAvatar] = useState([]);
 
   useEffect(() => {
     API.getUserByName(nameFilter)
@@ -58,26 +57,15 @@ export default function Feed({
 
   useEffect(() => {
     API.getUser(currentUser.uid)
-      .then((res) => setAvatar(res.data))
-      .then((res) =>
-        setProfilePhoto(
-          res.data.profileImage[0] ? res.data.profileImage[0] : defaultUserImage
-        )
-      )
+      .then((res) => {
+        setProfileName(res.data[0].userName);
+        setProfilePhoto(res.data[0].profileImage[0]);
+      })
       .catch((err) => console.log(err));
-    console.log("API request: " + profilePhoto);
-    // else {
-    //   setProfilePhoto(defaultUserImage)
-    // }
   }, [photoURL]);
 
-  // useEffect(() => {
-  //   if (photoURL == null) {
-  //     setProfilePhoto(defaultUserImage);
-  //   } else {
-  //     setProfilePhoto(photoURL);
-  //   }
-  // }, [photoURL]);
+  console.log(profileName);
+  console.log(profilePhoto);
 
   const togglePopup = (e) => {
     if (showProfilePopup) setShowProfilePopup(false);
@@ -119,10 +107,15 @@ export default function Feed({
     setInput({ ...input, [event.target.name]: value });
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setInput({ title: "", description: "", visitDate: "" });
+  async function clearImages() {
     setImage([]);
+  }
+
+  async function handleSubmit(e) {
+    // const handleSubmit = (e) => {
+    e.preventDefault();
+    setInput({ title: "", description: "", image: "", visitDate: "" });
+    // setImage([]);
     const newPost = {
       title: input.title,
       description: input.description,
@@ -137,7 +130,8 @@ export default function Feed({
     console.log(newPost);
     API.savePost(newPost).catch((e) => console.log(e));
     setPosts((newPosts) => [newPost, ...newPosts]);
-  };
+    await clearImages();
+  }
 
   const handleShow = () =>
     setAddPostLocation({
@@ -147,16 +141,12 @@ export default function Feed({
 
   return (
     <>
-      {avatar.map((avatar) => (
-        <ProfileImage
-          className="profileImageDiv noselect"
-          avatarImage={
-            avatar.profileImage.length !== 0
-              ? avatar.profileImage
-              : defaultUserImage
-          }
-        />
-      ))}
+      <ProfileImage
+        className="profileImageDiv noselect"
+        avatarImage={
+          profilePhoto !== undefined ? profilePhoto : defaultUserImage
+        }
+      />
 
       <FontAwesomeIcon
         onClick={togglePopup}
@@ -186,60 +176,21 @@ export default function Feed({
           </Button>
         </div>
       </div>
-      {/* <div
-        style={{
-          position: "relative",
-        }}
-      > */}
-      {avatar.map((avatar) => (
-        <h2 className="profileName noselect">{avatar.userName}</h2>
-      ))}
-      {/* </div> */}
+      <h2 className="profileName noselect">{profileName}</h2>
+
       <Container className="feed-columns">
         <Container className="friend-search-column">
           <VoyagrSearchFriend />
-          {/* <div className="friendSearch">
-            <div className="form-group">
-              <label htmlFor="search" className="searchLabel">
-                Search Friends
-              </label>
-              <SearchForm setNameFilter={setNameFilter} />
-            </div>
-            {listOfUsers
-              .filter((name) => nameFilterRegExp.test(name.userName))
-              .map((friend) => (
-                <VoyagrSearchPopup
-                  uidID={friend.uid}
-                  userName={
-                    friend.userName == currentUser.displayName
-                      ? "You"
-                      : friend.userName
-                  }
-                  profileImage={
-                    friend.uid == currentUser.uid
-                      ? photoURL
-                      : friend.profileImage.length > 0
-                      ? friend.profileImage
-                      : defaultUserImage
-                  }
-                  showHide={friend.uid == currentUser.uid ? "hidden" : "show"}
-                />
-              ))}
-          </div> */}
         </Container>
         <Container className="posts-column">
           <div className="messageSender">
             <div className="messageSender-forms">
               <div className="messageSenderImage">
-                {avatar.map((avatar) => (
-                  <Avatar
-                    avatarImage={
-                      avatar.profileImage.length !== 0
-                        ? avatar.profileImage
-                        : defaultUserImage
-                    }
-                  />
-                ))}
+                <Avatar
+                  avatarImage={
+                    profilePhoto !== undefined ? profilePhoto : defaultUserImage
+                  }
+                />
               </div>
               <form>
                 <div className="messageSender-top-forms">
@@ -327,8 +278,10 @@ export default function Feed({
           {messages.map((message) => (
             <Message
               title={message.title}
-              profileImage={profilePhoto}
-              username={displayName}
+              profileImage={
+                profilePhoto !== undefined ? profilePhoto : defaultUserImage
+              }
+              username={profileName}
               date={message.date}
               description={message.description}
               images={message.image}

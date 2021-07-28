@@ -309,7 +309,7 @@ export const UserHeader = ({
             ) : null}
           </React.Fragment>
         ))}
-        {addPostLocation ? (
+        {/* {addPostLocation ? (
           <>
             <Marker
               latitude={addPostLocation.latitude}
@@ -380,7 +380,7 @@ export const UserHeader = ({
               </div>
             </Popup>
           </>
-        ) : null}
+        ) : null} */}
       </ReactMapGL>
 
       {avatar.map((avatar) => (
