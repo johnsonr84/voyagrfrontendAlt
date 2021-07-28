@@ -35,7 +35,7 @@ export default function VoyagrSearchPopup({
           <Link to={{ pathname: "/" + uidID }}>
             <img
               src={profileImage}
-              style={{ maxWidth: 50, maxHeight: 50, borderRadius: "50%" }}
+              style={{ width: 50, height: 50, borderRadius: "50%" }}
             />
           </Link>
           <div
