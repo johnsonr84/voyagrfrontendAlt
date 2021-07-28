@@ -32,6 +32,7 @@ export const NavbarSignup = () => {
   const [passwordConfirm, setPasswordConfirm] = useState();
   const [message, setMessage] = useState("");
   const [userUid, setUserUid] = useState();
+  const [user, setUser] = useState(null);
 
   async function handleSubmitSignup(e) {
     e.preventDefault();
@@ -45,7 +46,6 @@ export const NavbarSignup = () => {
       setError("");
       setLoading(true);
       await signup(name, email, password);
-
       setMessage("Check your inbox for further instructions");
       handleCloseSignup();
       handleShowAlert();
@@ -91,18 +91,14 @@ export const NavbarSignup = () => {
         auth.signOut();
       }
     };
-
-    checkVerified();
+    const timeout = setTimeout(() => {
+      checkVerified();
+    }, 500);
   }, [currentUser]);
 
   async function handleGoogleSignup() {
     if (!currentUser) {
-      // .then((result) => {
       await signupWithGoogle();
-      // })
-      // .catch((error) => {
-      //   alert(error.message);
-      // });
     }
   }
 
