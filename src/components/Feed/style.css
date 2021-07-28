@@ -296,7 +296,7 @@
 
 @media (min-width: 576px) {
   .posts-column {
-    padding: 0 5rem 0 1rem;
+    padding: 0 5rem;
     margin-left: auto;
     margin-right: auto;
   }
@@ -304,6 +304,7 @@
 
 @media (min-width: 992px) {
   .posts-column {
+    padding: 0 5rem 0 1rem;
     max-width: 50vw;
     margin: 0;
   }

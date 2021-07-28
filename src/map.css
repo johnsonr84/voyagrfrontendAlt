@@ -150,7 +150,10 @@ a:hover {
 .searchDiv,
 .imageDiv,
 .messageSenderIcon,
-.messageSenderImgIcon {
+.messageSenderImgIcon,
+.avatarImage,
+.messageSenderImage,
+.post-top {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
