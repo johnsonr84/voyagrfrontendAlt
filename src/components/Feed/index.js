@@ -35,7 +35,7 @@ export default function Feed({
   const { updatePhotoURL, currentUser } = useAuth();
   const { uid, displayName, photoURL } = currentUser;
 
-  const [profilePhoto, setProfilePhoto] = useState();
+  const [profilePhoto, setProfilePhoto] = useState([]);
   const defaultUserImage = "https://i.imgur.com/ScCwMk8.png";
   const [showProfilePopup, setShowProfilePopup] = useState();
   const [userImage, setUserImage] = useState("");
@@ -44,7 +44,7 @@ export default function Feed({
   const [image, setImage] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [messages, setMessages] = usePosts();
-
+  const [profileName, setProfileName] = useState();
   const [listOfUsers, setListOfUsers] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
   const nameFilterRegExp = new RegExp(nameFilter, "i");
@@ -56,12 +56,16 @@ export default function Feed({
   }, []);
 
   useEffect(() => {
-    if (photoURL == null) {
-      setProfilePhoto(defaultUserImage);
-    } else {
-      setProfilePhoto(photoURL);
-    }
+    API.getUser(currentUser.uid)
+      .then((res) => {
+        setProfileName(res.data[0].userName);
+        setProfilePhoto(res.data[0].profileImage[0]);
+      })
+      .catch((err) => console.log(err));
   }, [photoURL]);
+
+  console.log(profileName);
+  console.log(profilePhoto);
 
   const togglePopup = (e) => {
     if (showProfilePopup) setShowProfilePopup(false);
@@ -103,10 +107,15 @@ export default function Feed({
     setInput({ ...input, [event.target.name]: value });
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setInput({ title: "", description: "", visitDate: "" });
+  async function clearImages() {
     setImage([]);
+  }
+
+  async function handleSubmit(e) {
+    // const handleSubmit = (e) => {
+    e.preventDefault();
+    setInput({ title: "", description: "", image: "", visitDate: "" });
+    // setImage([]);
     const newPost = {
       title: input.title,
       description: input.description,
@@ -121,7 +130,8 @@ export default function Feed({
     console.log(newPost);
     API.savePost(newPost).catch((e) => console.log(e));
     setPosts((newPosts) => [newPost, ...newPosts]);
-  };
+    await clearImages();
+  }
 
   const handleShow = () =>
     setAddPostLocation({
@@ -133,7 +143,9 @@ export default function Feed({
     <>
       <ProfileImage
         className="profileImageDiv noselect"
-        avatarImage={profilePhoto}
+        avatarImage={
+          profilePhoto !== undefined ? profilePhoto : defaultUserImage
+        }
       />
 
       <FontAwesomeIcon
@@ -164,50 +176,21 @@ export default function Feed({
           </Button>
         </div>
       </div>
-      {/* <div
-        style={{
-          position: "relative",
-        }}
-      > */}
-      <h2 className="profileName noselect">{displayName}</h2>
-      {/* </div> */}
+      <h2 className="profileName noselect">{profileName}</h2>
+
       <Container className="feed-columns">
         <Container className="friend-search-column">
           <VoyagrSearchFriend />
-          {/* <div className="friendSearch">
-            <div className="form-group">
-              <label htmlFor="search" className="searchLabel">
-                Search Friends
-              </label>
-              <SearchForm setNameFilter={setNameFilter} />
-            </div>
-            {listOfUsers
-              .filter((name) => nameFilterRegExp.test(name.userName))
-              .map((friend) => (
-                <VoyagrSearchPopup
-                  uidID={friend.uid}
-                  userName={
-                    friend.userName == currentUser.displayName
-                      ? "You"
-                      : friend.userName
-                  }
-                  profileImage={
-                    friend.uid == currentUser.uid
-                      ? photoURL
-                      : friend.profileImage.length > 0
-                      ? friend.profileImage
-                      : defaultUserImage
-                  }
-                  showHide={friend.uid == currentUser.uid ? "hidden" : "show"}
-                />
-              ))}
-          </div> */}
         </Container>
         <Container className="posts-column">
           <div className="messageSender">
             <div className="messageSender-forms">
               <div className="messageSenderImage">
-                <Avatar avatarImage={profilePhoto} />
+                <Avatar
+                  avatarImage={
+                    profilePhoto !== undefined ? profilePhoto : defaultUserImage
+                  }
+                />
               </div>
               <form>
                 <div className="messageSender-top-forms">
@@ -295,8 +278,10 @@ export default function Feed({
           {messages.map((message) => (
             <Message
               title={message.title}
-              profileImage={profilePhoto}
-              username={displayName}
+              profileImage={
+                profilePhoto !== undefined ? profilePhoto : defaultUserImage
+              }
+              username={profileName}
               date={message.date}
               description={message.description}
               images={message.image}

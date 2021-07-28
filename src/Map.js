@@ -103,7 +103,12 @@ export const Header = ({
     setInput({ ...input, [event.target.name]: value });
   }
 
-  const handleSubmit = (e) => {
+  async function clearImages() {
+    setImage([]);
+  }
+
+  async function handleSubmit(e) {
+    // const handleSubmit = (e) => {
     e.preventDefault();
     setInput({ title: "", description: "", image: "", visitDate: "" });
 
@@ -121,7 +126,8 @@ export const Header = ({
     console.log(newPost);
     API.savePost(newPost).catch((e) => console.log(e));
     setNewPosts((newPosts) => [newPost, ...newPosts]);
-  };
+    await clearImages();
+  }
 
   const responsive = {
     superLargeDesktop: {
